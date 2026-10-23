@@ -437,6 +437,12 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 200, { ok: true, data });
       }
 
+      if (body.accion === 'ELIMINAR') {
+        data.proyectosComunitarios = (data.proyectosComunitarios || []).filter((p) => p.id !== body.proyectoId);
+        writeData(data);
+        return sendJson(res, 200, { ok: true, data });
+      }
+
       if (body.accion === 'ACTUALIZAR' || body.accion === 'ACTUALIZAR_ESTADO') {
         const pr = data.proyectosComunitarios.find((p) => p.id === body.proyectoId);
         if (!pr) return sendJson(res, 404, { error: 'Proyecto no encontrado' });

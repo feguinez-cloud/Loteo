@@ -4918,23 +4918,6 @@
       "responsable": "Comité de Mantención / Don Jorge",
       "votosAprobacion": 35,
       "votosTotales": 36
-    },
-    {
-      "id": "proy-4",
-      "titulo": "Telemetría y Automatización Estanque Red de Agua Común",
-      "categoria": "Agua Potable Rural",
-      "descripcion": "Sensor ultrasónico de nivel de estanque, alerta temprana de fugas y respaldo energético para bombas de impulsión de la red de agua común.",
-      "objetivoTecnico": "Control automático de presión y monitoreo en tiempo real para las parcelas conectadas a la red de agua.",
-      "metaFinanciera": 2400000,
-      "montoRecaudadoExtra": 0,
-      "aporteFondoComun": 450000,
-      "montoEjecutado": 0,
-      "estado": "EN_VOTACION",
-      "fechaInicio": "2026-11-15",
-      "fechaTermino": "2027-02-28",
-      "responsable": "Comisión de Agua Loteo Los Mañíos",
-      "votosAprobacion": 19,
-      "votosTotales": 22
     }
   ],
   "actasAsamblea": [
@@ -5045,111 +5028,6 @@
     }
   ],
   "votacionesAcuerdos": [
-    {
-      "id": "vot-1792723508078",
-      "actaId": "",
-      "titulo": "Consulta Test",
-      "descripcion": "Desc",
-      "materiaExtraordinaria": true,
-      "restringirMorosos": true,
-      "fechaCierre": "2026-12-01",
-      "estado": "ABIERTA",
-      "votosEmitidos": []
-    },
-    {
-      "id": "vot-1792721009059",
-      "actaId": "",
-      "titulo": "Cuota extra ",
-      "descripcion": "sdsds",
-      "materiaExtraordinaria": true,
-      "restringirMorosos": true,
-      "fechaCierre": "2026-11-30",
-      "estado": "ABIERTA",
-      "votosEmitidos": [
-        {
-          "parcelaId": "parc-14",
-          "numeroParcela": "17",
-          "propietario": "Silvana Bustos Astudillo",
-          "opcion": "APRUEBO",
-          "fecha": "2026-10-23"
-        }
-      ]
-    },
-    {
-      "id": "vot-1",
-      "actaId": "acta-2",
-      "titulo": "Aprobación Proyecto Telemetría y Automatización de Estanque de Agua Común",
-      "descripcion": "Autorizar el uso de hasta $1.200.000 del fondo de reserva en caja para instalar sensores de nivel, telemetría y respaldo automático en el estanque de agua del loteo.",
-      "materiaExtraordinaria": true,
-      "restringirMorosos": true,
-      "fechaCierre": "2026-11-30",
-      "estado": "ABIERTA",
-      "votosEmitidos": [
-        {
-          "parcelaId": "parc-1",
-          "numeroParcela": "4",
-          "propietario": "Gonzalo de la Cuadra",
-          "opcion": "APRUEBO",
-          "fecha": "2026-10-18"
-        },
-        {
-          "parcelaId": "parc-3",
-          "numeroParcela": "6",
-          "propietario": "Joaquín",
-          "opcion": "APRUEBO",
-          "fecha": "2026-10-18"
-        },
-        {
-          "parcelaId": "parc-5",
-          "numeroParcela": "8",
-          "propietario": "Nibaldo",
-          "opcion": "APRUEBO",
-          "fecha": "2026-10-19"
-        },
-        {
-          "parcelaId": "parc-6",
-          "numeroParcela": "9",
-          "propietario": "Camila",
-          "opcion": "APRUEBO",
-          "fecha": "2026-10-19"
-        },
-        {
-          "parcelaId": "parc-7",
-          "numeroParcela": "10",
-          "propietario": "Bárbara",
-          "opcion": "APRUEBO",
-          "fecha": "2026-10-20"
-        },
-        {
-          "parcelaId": "parc-8",
-          "numeroParcela": "11",
-          "propietario": "Cristian / Ximena",
-          "opcion": "APRUEBO",
-          "fecha": "2026-10-20"
-        },
-        {
-          "parcelaId": "parc-12",
-          "numeroParcela": "15",
-          "propietario": "Karina",
-          "opcion": "ABSTENCION",
-          "fecha": "2026-10-21"
-        },
-        {
-          "parcelaId": "parc-16",
-          "numeroParcela": "19",
-          "propietario": "Diego Gutierrez",
-          "opcion": "APRUEBO",
-          "fecha": "2026-10-21"
-        },
-        {
-          "parcelaId": "parc-14",
-          "numeroParcela": "17",
-          "propietario": "Silvana Bustos Astudillo",
-          "opcion": "APRUEBO",
-          "fecha": "2026-10-23"
-        }
-      ]
-    },
     {
       "id": "vot-2",
       "actaId": "acta-2",

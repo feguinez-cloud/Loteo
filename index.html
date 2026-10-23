@@ -292,14 +292,14 @@
           </button>
         </div>
 
-        <!-- Sub-vista 1: Egresos (Hoja 3) y Otros Ingresos (Hoja 4) -->
+        <!-- Sub-vista 1: Egresos y Otros Ingresos -->
         <div id="subtab-caja-EG_ING" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <!-- Hoja 3: Egresos -->
+          <!-- Egresos -->
           <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between mb-4">
                 <div>
-                  <h3 class="text-sm font-extrabold text-stone-900">📤 Egresos y Gastos Operativos (Hoja 3)</h3>
+                  <h3 class="text-sm font-extrabold text-stone-900">📤 Egresos y Gastos Operativos</h3>
                   <p class="text-xs text-stone-500">Gastos generales o imputados a proyectos comunitarios.</p>
                 </div>
                 <span id="badge-total-egresos" class="px-3 py-1 rounded-full text-xs font-extrabold bg-rose-100 text-rose-900"></span>
@@ -331,12 +331,12 @@
             </div>
           </div>
 
-          <!-- Hoja 4: Otros Ingresos Extras -->
+          <!-- Otros Ingresos Extras -->
           <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm flex flex-col justify-between">
             <div>
               <div class="flex items-center justify-between mb-4">
                 <div>
-                  <h3 class="text-sm font-extrabold text-stone-900">➕ Otros Ingresos Extras (Hoja 4)</h3>
+                  <h3 class="text-sm font-extrabold text-stone-900">➕ Otros Ingresos y Aportes Extraordinarios</h3>
                   <p class="text-xs text-stone-500">Aportes extraordinarios de proyectos, multas o eventos.</p>
                 </div>
                 <span id="badge-total-otros-ingresos" class="px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-900"></span>
@@ -1543,6 +1543,7 @@
         });
       }
       if (Array.isArray(data.proyectosComunitarios)) {
+        data.proyectosComunitarios = data.proyectosComunitarios.filter(p => p.id !== 'proy-4' && !/telemetr[ií]a/i.test(p.nombre || ''));
         for (const pr of data.proyectosComunitarios) {
           pr.montoEjecutado = (data.egresos || [])
             .filter(e => e.proyectoId === pr.id)
@@ -1559,9 +1560,17 @@
           c.fecha = c.fechaReunion;
           c.lugarOEnlace = c.lugarOEnlace || c.lugarEnlace || 'Acceso Principal Loteo Los Mañíos';
           c.lugarEnlace = c.lugarOEnlace;
+          if (Array.isArray(c.tablaPuntos)) {
+            c.tablaPuntos = c.tablaPuntos.map(pt =>
+              /telemetr[ií]a/i.test(pt) ? '2. Evaluación de mantención de caminos interiores y alumbrado común' : pt
+            );
+          }
         }
       }
       if (Array.isArray(data.votacionesAcuerdos)) {
+        data.votacionesAcuerdos = data.votacionesAcuerdos.filter(
+          v => v.id !== 'vot-1' && v.id !== 'vot-1792723508078' && v.id !== 'vot-1792721009059' && !/telemetr[ií]a/i.test(v.titulo || '')
+        );
         for (const v of data.votacionesAcuerdos) {
           if (v.estado === 'ABIERTA' && v.fechaCierre && v.fechaCierre < hoy) {
             v.estado = 'CERRADA';
@@ -1837,7 +1846,9 @@
       }
 
       if (path === '/api/proyecto') {
-        if (body.accion === 'CREAR') {
+        if (body.accion === 'ELIMINAR') {
+          data.proyectosComunitarios = (data.proyectosComunitarios || []).filter(p => p.id !== body.proyectoId);
+        } else if (body.accion === 'CREAR') {
           data.proyectosComunitarios.unshift({
             id: 'proy-' + Date.now(),
             titulo: body.titulo,
@@ -3269,12 +3280,12 @@
           <div class="text-[11px] text-stone-500 mt-1">Recaudado sobre la base histórica</div>
         </div>
         <div class="bg-white rounded-2xl p-4 border border-emerald-200 shadow-sm">
-          <div class="text-[11px] font-bold uppercase text-emerald-700">3. + Otros Ingresos (Hoja 4)</div>
+          <div class="text-[11px] font-bold uppercase text-emerald-700">3. + Otros Ingresos Extraordinarios</div>
           <div class="text-xl font-extrabold text-emerald-800 mt-1">+ ${fmtCLP(tot.otrosIngresosTotal)}</div>
           <div class="text-[11px] text-stone-500 mt-1">${STATE.otrosIngresos.length} registros extraordinarios</div>
         </div>
         <div class="bg-white rounded-2xl p-4 border border-rose-200 shadow-sm">
-          <div class="text-[11px] font-bold uppercase text-rose-700">4. - Total Egresos (Hoja 3)</div>
+          <div class="text-[11px] font-bold uppercase text-rose-700">4. - Total Egresos y Gastos</div>
           <div class="text-xl font-extrabold text-rose-700 mt-1">- ${fmtCLP(tot.egresosTotal)}</div>
           <div class="text-[11px] text-stone-500 mt-1">${STATE.egresos.length} gastos documentados</div>
         </div>
@@ -3676,13 +3687,18 @@
               <div class="flex items-center justify-between gap-2 mb-2">
                 <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-800">${pr.categoria}</span>
                 ${ROL_ACTIVO === 'ADMIN' ? `
-                  <select onchange="cambiarEstadoProyecto('${pr.id}', this.value)" class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold border cursor-pointer ${badgeColor}">
-                    <option value="IDEA" ${pr.estado === 'IDEA' ? 'selected' : ''}>IDEA</option>
-                    <option value="EN_VOTACION" ${pr.estado === 'EN_VOTACION' ? 'selected' : ''}>EN VOTACIÓN</option>
-                    <option value="FINANCIADO" ${pr.estado === 'FINANCIADO' ? 'selected' : ''}>FINANCIADO</option>
-                    <option value="EN_EJECUCION" ${pr.estado === 'EN_EJECUCION' ? 'selected' : ''}>EN EJECUCIÓN</option>
-                    <option value="CONCLUIDO" ${pr.estado === 'CONCLUIDO' ? 'selected' : ''}>CONCLUIDO</option>
-                  </select>
+                  <div class="flex items-center gap-1.5">
+                    <select onchange="cambiarEstadoProyecto('${pr.id}', this.value)" class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold border cursor-pointer ${badgeColor}">
+                      <option value="IDEA" ${pr.estado === 'IDEA' ? 'selected' : ''}>IDEA</option>
+                      <option value="EN_VOTACION" ${pr.estado === 'EN_VOTACION' ? 'selected' : ''}>EN VOTACIÓN</option>
+                      <option value="FINANCIADO" ${pr.estado === 'FINANCIADO' ? 'selected' : ''}>FINANCIADO</option>
+                      <option value="EN_EJECUCION" ${pr.estado === 'EN_EJECUCION' ? 'selected' : ''}>EN EJECUCIÓN</option>
+                      <option value="CONCLUIDO" ${pr.estado === 'CONCLUIDO' ? 'selected' : ''}>CONCLUIDO</option>
+                    </select>
+                    <button type="button" onclick="eliminarProyectoComunitario('${pr.id}')" class="px-2 py-0.5 rounded-lg bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 font-bold text-[10px] transition" title="Eliminar Proyecto">
+                      🗑️
+                    </button>
+                  </div>
                 ` : `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold border ${badgeColor}">${pr.estado}</span>`}
               </div>
               <h3 class="text-base font-extrabold text-stone-900">${pr.titulo}</h3>
@@ -3710,7 +3726,7 @@
                   <div class="font-bold text-stone-900">${fmtCLP(pr.aporteFondoComun)}</div>
                 </div>
                 <div class="p-2 rounded-lg bg-rose-50 border border-rose-200">
-                  <div class="text-stone-500">Gastos (Hoja 3)</div>
+                  <div class="text-stone-500">Gastos Ejecutados</div>
                   <div class="font-bold text-rose-900">${fmtCLP(pr.montoEjecutado)}</div>
                 </div>
                 <div class="p-2 rounded-lg ${saldoProyecto >= 0 ? 'bg-sky-50 border-sky-200' : 'bg-amber-50 border-amber-300'} border">
@@ -5046,14 +5062,28 @@
       }
     }
 
+    async function eliminarProyectoComunitario(proyectoId) {
+      const resp = await fetch('/api/proyecto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ accion: 'ELIMINAR', proyectoId })
+      });
+      const res = await resp.json();
+      if (res.ok) {
+        STATE = res.data;
+        inicializarControles();
+        renderTodo();
+      }
+    }
+
     function abrirModalMovimientoProyecto(proyectoId, tipo) {
       const pr = (STATE.proyectosComunitarios || []).find(x => x.id === proyectoId);
       if (!pr) return;
       document.getElementById('mov-proy-id').value = pr.id;
       document.getElementById('mov-proy-tipo').value = tipo;
       document.getElementById('mov-proy-subtitulo').textContent = tipo === 'EGRESO'
-        ? '🔻 Imputar Gasto / Factura al Proyecto (Impacta Hoja 3 Egresos)'
-        : '🔺 Registrar Aporte Extraordinario al Proyecto (Impacta Hoja 4 Otros Ingresos)';
+        ? '🔻 Imputar Gasto / Factura al Proyecto (Impacta Flujo de Egresos)'
+        : '🔺 Registrar Aporte Extraordinario al Proyecto (Impacta Otros Ingresos)';
       document.getElementById('mov-proy-titulo').textContent = pr.titulo;
       document.getElementById('mov-proy-destino').value = tipo === 'EGRESO' ? pr.titulo : `Aporte Proyecto: ${pr.titulo}`;
       const m = document.getElementById('modal-movimiento-proyecto');
