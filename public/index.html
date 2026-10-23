@@ -412,9 +412,9 @@
                 <h3 class="text-sm font-extrabold text-stone-900">📐 Plano Oficial de Subdivisión (PPS-2018 · Lote A-1-1)</h3>
                 <p class="text-xs text-stone-500">Inscrito a Fojas 3278 Vta. N° 3527 (2014) · Archivo N° 995 CBR Valdivia.</p>
               </div>
-              <a href="/plano-subdivision.pdf" target="_blank" class="px-3 py-1.5 rounded-xl bg-emerald-800 text-white text-xs font-bold hover:bg-emerald-900">Abrir PDF ↗</a>
+              <a href="plano-subdivision.pdf" target="_blank" class="px-3 py-1.5 rounded-xl bg-emerald-800 text-white text-xs font-bold hover:bg-emerald-900">Abrir PDF ↗</a>
             </div>
-            <iframe src="/plano-subdivision.pdf" class="w-full h-[480px] rounded-xl border border-stone-300"></iframe>
+            <iframe src="plano-subdivision.pdf" class="w-full h-[480px] rounded-xl border border-stone-300"></iframe>
           </div>
 
           <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm space-y-3">
@@ -1281,6 +1281,527 @@
   <div id="printable-cartola" class="hidden p-8 bg-white text-stone-900"></div>
 
   <script>
+    // ========================================================================
+    // MOTOR DUAL DE PERSISTENCIA (SERVIDOR NODE.JS + CLOUD GITHUB PAGES CDN)
+    // ========================================================================
+    const NATIVE_FETCH = window.fetch.bind(window);
+    const STORAGE_KEY_MANIOS = 'LOTEO_LOS_MANIOS_DB_V2';
+
+    function recalcularEstadoCloud(data) {
+      if (Array.isArray(data.proyectosComunitarios)) {
+        for (const pr of data.proyectosComunitarios) {
+          pr.montoEjecutado = (data.egresos || [])
+            .filter(e => e.proyectoId === pr.id)
+            .reduce((acc, e) => acc + Number(e.monto || 0), 0);
+          pr.montoRecaudadoExtra = (data.otrosIngresos || [])
+            .filter(o => o.proyectoId === pr.id && o.pagadoEnCaja !== false)
+            .reduce((acc, o) => acc + Number(o.monto || 0), 0);
+        }
+      }
+      const hoy = new Date().toISOString().slice(0, 10);
+      if (Array.isArray(data.citacionesAsamblea)) {
+        for (const c of data.citacionesAsamblea) {
+          c.fechaReunion = c.fechaReunion || c.fecha || hoy;
+          c.fecha = c.fechaReunion;
+          c.lugarOEnlace = c.lugarOEnlace || c.lugarEnlace || 'Acceso Principal Loteo Los Mañíos';
+          c.lugarEnlace = c.lugarOEnlace;
+        }
+      }
+      if (Array.isArray(data.votacionesAcuerdos)) {
+        for (const v of data.votacionesAcuerdos) {
+          if (v.estado === 'ABIERTA' && v.fechaCierre && v.fechaCierre < hoy) {
+            v.estado = 'CERRADA';
+            v.cierreAutomaticoPorPlazo = true;
+          }
+        }
+      }
+    }
+
+    function revertirImputacionCloud(parcela, comp) {
+      if (!parcela || !comp || !Array.isArray(comp.desgloseImputacion)) return;
+      for (const item of comp.desgloseImputacion) {
+        const actual = Number(parcela.pagos[item.periodo] || 0);
+        const nuevo = actual - Number(item.monto || 0);
+        if (nuevo <= 0) delete parcela.pagos[item.periodo];
+        else parcela.pagos[item.periodo] = nuevo;
+      }
+      comp.desgloseImputacion = [];
+    }
+
+    function imputarPagoEnParcelaCloud(parcela, montoTotal, periodoPreferido, mesCorte, listaMeses) {
+      let restante = Number(montoTotal || 0);
+      if (restante <= 0 || !parcela) return { desglose: [], textoResumen: '' };
+      const desglose = [];
+      const mesesAlCorte = (listaMeses || []).filter(m => m <= mesCorte);
+      const mesesPostCorte = (listaMeses || []).filter(m => m > mesCorte);
+
+      const abonarEnMes = (periodo, montoMax) => {
+        if (restante <= 0 || montoMax <= 0) return;
+        const abono = Math.min(restante, montoMax);
+        const actual = Number(parcela.pagos[periodo] || 0);
+        parcela.pagos[periodo] = actual + abono;
+        restante -= abono;
+        const ex = desglose.find(d => d.periodo === periodo);
+        if (ex) ex.monto += abono;
+        else desglose.push({ periodo, monto: abono });
+      };
+
+      if (periodoPreferido && periodoPreferido !== 'AUTO_DEUDA' && periodoPreferido <= mesCorte) {
+        const exigidoPref = calcularCuotaExigida(parcela, periodoPreferido);
+        const pagadoPref = Number(parcela.pagos[periodoPreferido] || 0);
+        const pendPref = Math.max(0, exigidoPref - pagadoPref);
+        if (pendPref > 0) abonarEnMes(periodoPreferido, pendPref);
+      }
+
+      for (const m of mesesAlCorte) {
+        if (restante <= 0) break;
+        const exigido = calcularCuotaExigida(parcela, m);
+        const pagado = Number(parcela.pagos[m] || 0);
+        const pend = Math.max(0, exigido - pagado);
+        if (pend > 0) abonarEnMes(m, pend);
+      }
+
+      if (restante > 0 && periodoPreferido && periodoPreferido !== 'AUTO_DEUDA' && periodoPreferido > mesCorte) {
+        const exigidoFut = calcularCuotaExigida(parcela, periodoPreferido);
+        const pagadoFut = Number(parcela.pagos[periodoPreferido] || 0);
+        abonarEnMes(periodoPreferido, Math.max(exigidoFut - pagadoFut, restante));
+      }
+
+      for (const m of mesesPostCorte) {
+        if (restante <= 0) break;
+        const exigido = calcularCuotaExigida(parcela, m);
+        const pagado = Number(parcela.pagos[m] || 0);
+        const pend = Math.max(0, exigido - pagado);
+        if (pend > 0) abonarEnMes(m, pend);
+      }
+
+      if (restante > 0) {
+        const dest = periodoPreferido && periodoPreferido !== 'AUTO_DEUDA' ? periodoPreferido : mesCorte;
+        abonarEnMes(dest, restante);
+      }
+
+      const textoResumen = desglose.map(d => `${d.periodo} ($${Number(d.monto).toLocaleString('es-CL')})`).join(', ');
+      return { desglose, textoResumen };
+    }
+
+    async function obtenerDBCloud() {
+      const guardado = localStorage.getItem(STORAGE_KEY_MANIOS);
+      if (guardado) {
+        try {
+          const parsed = JSON.parse(guardado);
+          recalcularEstadoCloud(parsed);
+          return parsed;
+        } catch (e) {}
+      }
+      const r = await NATIVE_FETCH('manios_real_data.json');
+      const inicial = await r.json();
+      recalcularEstadoCloud(inicial);
+      localStorage.setItem(STORAGE_KEY_MANIOS, JSON.stringify(inicial));
+      return inicial;
+    }
+
+    function guardarDBCloud(data) {
+      recalcularEstadoCloud(data);
+      localStorage.setItem(STORAGE_KEY_MANIOS, JSON.stringify(data));
+    }
+
+    async function procesarApiCloudFallback(urlStr, options = {}) {
+      const path = urlStr.replace(/^https?:\/\/[^/]+/, '');
+      const data = await obtenerDBCloud();
+      const body = options.body ? JSON.parse(options.body) : {};
+      const jsonResp = (obj) => new Response(JSON.stringify(obj), { status: 200, headers: { 'Content-Type': 'application/json' } });
+
+      if (path === '/api/data') return jsonResp(data);
+
+      if (path === '/api/pago') {
+        const parcela = data.parcelas.find(p => p.id === body.parcelaId);
+        if (parcela) {
+          if (body.periodo) {
+            const monto = Number(body.monto || 0);
+            if (monto <= 0) delete parcela.pagos[body.periodo];
+            else parcela.pagos[body.periodo] = monto;
+          }
+          if (body.propietarioActual !== undefined) parcela.propietarioActual = body.propietarioActual;
+          if (body.propietarioAnterior !== undefined) parcela.propietarioAnterior = body.propietarioAnterior;
+          if (body.condicion) parcela.condicion = body.condicion;
+          if (body.inicioCobro) parcela.inicioCobro = body.inicioCobro;
+          if (body.fechaPasoConCasa !== undefined) parcela.fechaPasoConCasa = body.fechaPasoConCasa || null;
+          if (body.observaciones !== undefined) parcela.observaciones = body.observaciones;
+          guardarDBCloud(data);
+        }
+        return jsonResp({ ok: true, data });
+      }
+
+      if (path === '/api/comprobante') {
+        const mesCorte = body.mesCorte || data.configuracion?.mesCorteActivo || '2026-10';
+        if (body.mesCorte && data.configuracion) data.configuracion.mesCorteActivo = body.mesCorte;
+        if (body.accion === 'CREAR') {
+          const parcela = data.parcelas.find(p => p.id === body.parcelaId);
+          const perDest = body.periodoDestino || 'AUTO_DEUDA';
+          const nuevo = {
+            id: 'comp-' + Date.now(),
+            parcelaId: parcela.id,
+            numeroParcela: parcela.numeroParcela,
+            propietario: parcela.propietarioActual,
+            fechaTransferencia: body.fechaTransferencia || new Date().toISOString().slice(0, 10),
+            monto: Number(body.monto || 0),
+            bancoOrigen: body.bancoOrigen || 'Transferencia Bancaria',
+            numeroOperacion: body.numeroOperacion || 'S/N',
+            periodosCubiertos: perDest === 'AUTO_DEUDA' ? 'Automático (Deuda más antigua al corte)' : (body.periodosCubiertos || perDest),
+            periodoDestino: perDest,
+            estado: body.autoValidar ? 'VALIDADO' : 'PENDIENTE',
+            observacionesVecino: body.observacionesVecino || ''
+          };
+          if (body.autoValidar && parcela) {
+            const resImp = imputarPagoEnParcelaCloud(parcela, nuevo.monto, nuevo.periodoDestino, mesCorte, data.meses);
+            nuevo.desgloseImputacion = resImp.desglose;
+            if (resImp.desglose.length > 0) {
+              nuevo.periodoDestino = resImp.desglose[0].periodo;
+              nuevo.periodosCubiertos = resImp.textoResumen;
+            }
+          }
+          data.comprobantesInformados.unshift(nuevo);
+          guardarDBCloud(data);
+          return jsonResp({ ok: true, data, comprobante: nuevo });
+        }
+        if (body.accion === 'ELIMINAR') {
+          const comp = data.comprobantesInformados.find(c => c.id === body.comprobanteId);
+          if (comp) {
+            const parcela = data.parcelas.find(p => p.id === comp.parcelaId);
+            if (comp.estado === 'VALIDADO' && parcela) revertirImputacionCloud(parcela, comp);
+            data.comprobantesInformados = data.comprobantesInformados.filter(c => c.id !== body.comprobanteId);
+            guardarDBCloud(data);
+          }
+          return jsonResp({ ok: true, data });
+        }
+        if (body.accion === 'CONCILIAR') {
+          const comp = data.comprobantesInformados.find(c => c.id === body.comprobanteId);
+          if (comp) {
+            const parcela = data.parcelas.find(p => p.id === comp.parcelaId);
+            if (comp.estado === 'VALIDADO' && parcela && Array.isArray(comp.desgloseImputacion)) {
+              revertirImputacionCloud(parcela, comp);
+            }
+            if (body.periodoDestino) comp.periodoDestino = body.periodoDestino;
+            comp.estado = body.nuevoEstado;
+            if (body.nuevoEstado === 'VALIDADO' && parcela) {
+              const resImp = imputarPagoEnParcelaCloud(parcela, comp.monto, comp.periodoDestino, mesCorte, data.meses);
+              comp.desgloseImputacion = resImp.desglose;
+              if (resImp.desglose.length > 0) {
+                comp.periodoDestino = resImp.desglose[0].periodo;
+                comp.periodosCubiertos = resImp.textoResumen;
+              }
+            }
+            guardarDBCloud(data);
+          }
+          return jsonResp({ ok: true, data, comprobante: comp });
+        }
+      }
+
+      if (path === '/api/egreso') {
+        const proy = (data.proyectosComunitarios || []).find(p => p.id === body.proyectoId);
+        data.egresos.push({
+          id: 'egr-' + Date.now(),
+          item: body.item,
+          fecha: body.fecha || new Date().toISOString().slice(0, 10),
+          destino: body.destino || '',
+          monto: Number(body.monto || 0),
+          observaciones: body.observaciones || '',
+          proyectoId: body.proyectoId || '',
+          proyectoTitulo: proy ? proy.titulo : 'Gasto Operativo General'
+        });
+        guardarDBCloud(data);
+        return jsonResp({ ok: true, data });
+      }
+
+      if (path === '/api/otro-ingreso') {
+        const proy = (data.proyectosComunitarios || []).find(p => p.id === body.proyectoId);
+        data.otrosIngresos.push({
+          id: 'oing-' + Date.now(),
+          item: body.item,
+          fecha: body.fecha || new Date().toISOString().slice(0, 10),
+          destino: body.destino || (proy ? proy.titulo : ''),
+          monto: Number(body.monto || 0),
+          observaciones: body.observaciones || '',
+          pagadoEnCaja: body.pagadoEnCaja !== false,
+          proyectoId: body.proyectoId || '',
+          proyectoTitulo: proy ? proy.titulo : 'Fondo General'
+        });
+        guardarDBCloud(data);
+        return jsonResp({ ok: true, data });
+      }
+
+      if (path === '/api/proyecto') {
+        if (body.accion === 'CREAR') {
+          data.proyectosComunitarios.unshift({
+            id: 'proy-' + Date.now(),
+            titulo: body.titulo,
+            categoria: body.categoria || 'Infraestructura Comunitaria',
+            descripcion: body.descripcion || '',
+            objetivoTecnico: body.objetivoTecnico || '',
+            metaFinanciera: Number(body.metaFinanciera || 0),
+            montoRecaudadoExtra: 0,
+            aporteFondoComun: Number(body.aporteFondoComun || 0),
+            montoEjecutado: 0,
+            estado: body.estado || 'EN_EJECUCION',
+            fechaInicio: body.fechaInicio || new Date().toISOString().slice(0, 10),
+            fechaTermino: body.fechaTermino || '',
+            responsable: body.responsable || 'Comité de Administración',
+            votosAprobacion: 1,
+            votosTotales: 1
+          });
+        } else {
+          const pr = data.proyectosComunitarios.find(p => p.id === body.proyectoId);
+          if (pr) {
+            if (body.estado) pr.estado = body.estado;
+            if (body.metaFinanciera !== undefined) pr.metaFinanciera = Number(body.metaFinanciera);
+            if (body.aporteFondoComun !== undefined) pr.aporteFondoComun = Number(body.aporteFondoComun);
+          }
+        }
+        guardarDBCloud(data);
+        return jsonResp({ ok: true, data });
+      }
+
+      if (path === '/api/citacion') {
+        if (!data.citacionesAsamblea) data.citacionesAsamblea = [];
+        if (body.accion === 'ELIMINAR') {
+          data.citacionesAsamblea = data.citacionesAsamblea.filter(c => c.id !== body.citacionId);
+        } else {
+          const tablaTemas = Array.isArray(body.tablaTemas) ? body.tablaTemas : String(body.tablaTemas || '').split('\n').map(s => s.trim()).filter(Boolean);
+          const fechaVal = body.fechaReunion || body.fecha || new Date().toISOString().slice(0, 10);
+          const lugarVal = body.lugarOEnlace || body.lugarEnlace || 'Acceso Principal Loteo Los Mañíos';
+          data.citacionesAsamblea.unshift({
+            id: 'cit-' + Date.now(),
+            numeroCitacion: body.numeroCitacion || `Citación N° 0${data.citacionesAsamblea.length + 1}/2026`,
+            tipo: body.tipo || 'ORDINARIA',
+            titulo: body.titulo,
+            fecha: fechaVal,
+            fechaReunion: fechaVal,
+            horaPrimeraCitacion: body.horaPrimeraCitacion || '19:00',
+            horaSegundaCitacion: body.horaSegundaCitacion || '19:30',
+            modalidad: body.modalidad || 'HIBRIDA',
+            lugarEnlace: lugarVal,
+            lugarOEnlace: lugarVal,
+            tablaTemas,
+            estado: body.estado || 'PROGRAMADA',
+            creadoPor: 'Comité de Administración'
+          });
+        }
+        guardarDBCloud(data);
+        return jsonResp({ ok: true, data });
+      }
+
+      if (path === '/api/acta') {
+        const parcelasPresentes = Number(body.parcelasPresentes || 30);
+        const totalParcelas = data.parcelas.length || 37;
+        data.actasAsamblea.unshift({
+          id: 'acta-' + Date.now(),
+          numeroActa: body.numeroActa || `Acta N° 0${data.actasAsamblea.length + 1}/2026`,
+          tipo: body.tipo || 'ORDINARIA',
+          fecha: body.fecha || new Date().toISOString().slice(0, 10),
+          horaInicio: body.horaInicio || '19:30',
+          horaCierre: body.horaCierre || '21:15',
+          modalidad: body.modalidad || 'HIBRIDA',
+          quorumPorcentaje: Number(((parcelasPresentes / totalParcelas) * 100).toFixed(1)),
+          parcelasPresentes,
+          totalParcelas,
+          titulo: body.titulo,
+          ordenDelDia: body.ordenDelDia || [],
+          resumenDeliberacion: body.resumenDeliberacion || '',
+          acuerdos: body.acuerdos || [],
+          firmantesComite: ['Presidente Comité', 'Tesorero', 'Secretario'],
+          documentoPdfUrl: body.pdfBase64 || ''
+        });
+        guardarDBCloud(data);
+        return jsonResp({ ok: true, data });
+      }
+
+      if (path === '/api/norma-convivencia') {
+        if (!data.normasConvivencia) data.normasConvivencia = [];
+        if (body.accion === 'ELIMINAR') {
+          data.normasConvivencia = data.normasConvivencia.filter(n => n.id !== body.normaId);
+        } else if (body.accion === 'EDITAR' && body.normaId) {
+          const norma = data.normasConvivencia.find(n => n.id === body.normaId);
+          if (norma) {
+            if (body.codigo !== undefined) norma.codigo = body.codigo;
+            if (body.categoria !== undefined) norma.categoria = body.categoria;
+            if (body.titulo !== undefined) norma.titulo = body.titulo;
+            if (body.descripcion !== undefined) norma.descripcion = body.descripcion;
+            if (body.sancionSugerida !== undefined) norma.sancionSugerida = Number(body.sancionSugerida || 0);
+          }
+        } else {
+          data.normasConvivencia.push({
+            id: 'norma-' + Date.now(),
+            codigo: body.codigo || `ART-0${data.normasConvivencia.length + 1}`,
+            categoria: body.categoria || 'Convivencia General',
+            titulo: body.titulo,
+            descripcion: body.descripcion || '',
+            sancionSugerida: Number(body.sancionSugerida || 30000)
+          });
+        }
+        guardarDBCloud(data);
+        return jsonResp({ ok: true, data });
+      }
+
+      if (path === '/api/votacion') {
+        if (body.accion === 'CREAR') {
+          data.votacionesAcuerdos.unshift({
+            id: 'vot-' + Date.now(),
+            actaId: body.actaId || '',
+            titulo: body.titulo,
+            descripcion: body.descripcion || '',
+            materiaExtraordinaria: body.materiaExtraordinaria !== false,
+            restringirMorosos: body.restringirMorosos !== false,
+            fechaCierre: body.fechaCierre || '2026-12-31',
+            estado: 'ABIERTA',
+            votosEmitidos: []
+          });
+        } else if (body.accion === 'TOGGLE_ESTADO') {
+          const vot = data.votacionesAcuerdos.find(v => v.id === body.votacionId);
+          if (vot) vot.estado = vot.estado === 'ABIERTA' ? 'CERRADA' : 'ABIERTA';
+        } else if (body.accion === 'CAMBIAR_FECHA') {
+          const vot = data.votacionesAcuerdos.find(v => v.id === body.votacionId);
+          if (vot) vot.fechaCierre = body.fechaCierre;
+        } else if (body.accion === 'EDITAR') {
+          const vot = data.votacionesAcuerdos.find(v => v.id === body.votacionId);
+          if (vot) {
+            if (body.titulo !== undefined) vot.titulo = body.titulo;
+            if (body.descripcion !== undefined) vot.descripcion = body.descripcion;
+            if (body.fechaCierre !== undefined) vot.fechaCierre = body.fechaCierre;
+            if (body.restringirMorosos !== undefined) vot.restringirMorosos = Boolean(body.restringirMorosos);
+          }
+        } else if (body.accion === 'ELIMINAR') {
+          data.votacionesAcuerdos = data.votacionesAcuerdos.filter(v => v.id !== body.votacionId);
+        }
+        guardarDBCloud(data);
+        return jsonResp({ ok: true, data });
+      }
+
+      if (path === '/api/voto') {
+        const votacion = data.votacionesAcuerdos.find(v => v.id === body.votacionId);
+        const parcela = data.parcelas.find(p => p.id === body.parcelaId);
+        if (votacion && parcela && votacion.estado !== 'CERRADA') {
+          votacion.votosEmitidos = votacion.votosEmitidos.filter(ve => ve.parcelaId !== parcela.id);
+          votacion.votosEmitidos.push({
+            parcelaId: parcela.id,
+            numeroParcela: parcela.numeroParcela,
+            propietario: parcela.propietarioActual,
+            opcion: body.opcion,
+            fecha: new Date().toISOString().slice(0, 10)
+          });
+          guardarDBCloud(data);
+        }
+        return jsonResp({ ok: true, data });
+      }
+
+      if (path === '/api/reporte-convivencia') {
+        if (body.accion === 'ELIMINAR') {
+          data.reportesConvivencia = (data.reportesConvivencia || []).filter(r => r.id !== body.reporteId);
+        } else if (body.accion === 'EDITAR') {
+          const rep = (data.reportesConvivencia || []).find(r => r.id === body.reporteId);
+          if (rep) {
+            if (body.categoria !== undefined) rep.categoria = body.categoria;
+            if (body.parcelaInfractoraId !== undefined) {
+              rep.parcelaInfractoraId = body.parcelaInfractoraId;
+              const pInf = data.parcelas.find(p => p.id === body.parcelaInfractoraId);
+              if (pInf) rep.parcelaInfractoraTexto = `Parcela ${pInf.numeroParcela} (${pInf.propietarioActual})`;
+            }
+            if (body.descripcion !== undefined) rep.descripcion = body.descripcion;
+            if (body.resolucionComite !== undefined) rep.resolucionComite = body.resolucionComite;
+          }
+        } else if (body.accion === 'CREAR') {
+          const pInf = data.parcelas.find(p => p.id === body.parcelaInfractoraId);
+          data.reportesConvivencia.unshift({
+            id: 'rep-' + Date.now(),
+            fechaIncidente: new Date().toISOString().slice(0, 10),
+            categoria: body.categoria || 'Vialidad y Caminos Interiores',
+            parcelaReportante: 'Comité de Administración',
+            parcelaInfractoraId: body.parcelaInfractoraId,
+            parcelaInfractoraTexto: pInf ? `Parcela ${pInf.numeroParcela} (${pInf.propietarioActual})` : 'Parcela Reportada',
+            descripcion: body.descripcion,
+            estado: 'EN_MEDIACION',
+            resolucionComite: body.resolucionComite || 'En evaluación por el Comité de Convivencia.',
+            montoMulta: 30000,
+            pagadoEnCaja: false
+          });
+        } else if (body.accion === 'RATIFICAR_MULTA') {
+          const rep = (data.reportesConvivencia || []).find(r => r.id === body.reporteId);
+          if (rep) {
+            rep.estado = 'MULTA_CURSADA';
+            rep.montoMulta = Number(body.montoMulta || 30000);
+            rep.pagadoEnCaja = true;
+            data.otrosIngresos.push({
+              id: 'oing-multa-' + Date.now(),
+              item: `Multa Convivencia - ${rep.parcelaInfractoraTexto}`,
+              fecha: new Date().toISOString().slice(0, 10),
+              destino: 'Fondo Común / Convivencia',
+              monto: rep.montoMulta,
+              observaciones: rep.categoria,
+              pagadoEnCaja: true,
+              proyectoId: '',
+              proyectoTitulo: 'Fondo General'
+            });
+          }
+        }
+        guardarDBCloud(data);
+        return jsonResp({ ok: true, data });
+      }
+
+      if (path === '/api/perfil-seguridad') {
+        const parcela = data.parcelas.find(p => p.id === body.parcelaId);
+        if (parcela) {
+          if (body.propietarioActual !== undefined) parcela.propietarioActual = body.propietarioActual;
+          if (body.rutPropietario !== undefined) parcela.rutPropietario = body.rutPropietario;
+          if (body.propietarioAnterior !== undefined) parcela.propietarioAnterior = body.propietarioAnterior;
+          if (body.condicion !== undefined) parcela.condicion = body.condicion;
+          if (body.fechaPasoConCasa !== undefined) parcela.fechaPasoConCasa = body.fechaPasoConCasa || null;
+          if (body.rolSii !== undefined) parcela.rolSii = body.rolSii;
+          if (body.telefonoContacto !== undefined) parcela.telefonoContacto = body.telefonoContacto;
+          if (body.telefonoSecundario !== undefined) parcela.telefonoSecundario = body.telefonoSecundario;
+          if (body.emailContacto !== undefined) parcela.emailContacto = body.emailContacto;
+          if (body.pinAcceso !== undefined) parcela.pinAcceso = body.pinAcceso;
+          if (body.rolAccesoSistema !== undefined) parcela.rolAccesoSistema = body.rolAccesoSistema;
+          if (!parcela.seguridadPorton) parcela.seguridadPorton = { controlesManualesCount: 2, controlesDetalle: [], telefonosPorton: [] };
+          if (body.controlesManualesCount !== undefined) {
+            const cant = Math.max(0, Number(body.controlesManualesCount));
+            parcela.seguridadPorton.controlesManualesCount = cant;
+            parcela.seguridadPorton.controlesDetalle = Array.from({ length: cant }, (_, i) => ({
+              codigo: `RF-P${parcela.numeroParcela.replace(/[^a-zA-Z0-9]/g, '')}-0${i + 1}`,
+              asignadoA: i === 0 ? `${parcela.propietarioActual} (Titular)` : `Familiar #${i + 1}`,
+              estado: 'ACTIVO'
+            }));
+          }
+          if (Array.isArray(body.telefonosPorton)) {
+            parcela.seguridadPorton.telefonosPorton = body.telefonosPorton;
+            parcela.seguridadPorton.telefonosConectadosCount = body.telefonosPorton.length;
+          }
+          if (body.accesosDuenoAnteriorRevocados !== undefined) {
+            parcela.seguridadPorton.accesosDuenoAnteriorRevocados = Boolean(body.accesosDuenoAnteriorRevocados);
+          }
+          guardarDBCloud(data);
+        }
+        return jsonResp({ ok: true, data });
+      }
+
+      return jsonResp({ ok: true, data });
+    }
+
+    window.fetch = async function(input, init) {
+      const urlStr = typeof input === 'string' ? input : (input.url || '');
+      if (urlStr.includes('/api/')) {
+        if (window.location.hostname.endsWith('github.io')) {
+          return procesarApiCloudFallback(urlStr, init);
+        }
+        try {
+          const resp = await NATIVE_FETCH(input, init);
+          if (resp.ok) return resp;
+          return procesarApiCloudFallback(urlStr, init);
+        } catch (err) {
+          return procesarApiCloudFallback(urlStr, init);
+        }
+      }
+      return NATIVE_FETCH(input, init);
+    };
+
     // ========================================================================
     // ESTADO GLOBAL Y MOTOR DE REGLAS FINANCIERAS (IDÉNTICO AL EXCEL)
     // ========================================================================

@@ -1,0 +1,5315 @@
+{
+  "configuracion": {
+    "nombreComunidad": "Loteo Los Mañíos",
+    "fechaRecepcionAdmin": "2026-06-07",
+    "saldoInicialCaja": 7253500,
+    "mesCorteActivo": "2026-10",
+    "ubicacion": "Lugar Quitacalzón, Comuna y Provincia de Valdivia, Región de Los Ríos",
+    "googleSheetUrl": "https://docs.google.com/spreadsheets/d/15jAQejpf0yzpKHNry4K6HK6XutTcg0VWj0cq5KncRyI/edit?usp=drivesdk",
+    "planoSubdivision": {
+      "titulo": "PLANO DE SUBDIVISIÓN PREDIOS RÚSTICOS — Lote A-1-1",
+      "numeroPlano": "Plano PPS-2018 · Archivo N° 995 (Registro de Propiedad 2018 CBR Valdivia)",
+      "inscripcionCBR": "Fojas 3278 Vta. N° 3527 del año 2014 — Conservador de Bienes Raíces de Valdivia",
+      "certificadoSAG": "N° 772191 — 09 AGO 2018 / SII Valdivia 24 AGO 2018",
+      "region": "De Los Ríos",
+      "provincia": "Valdivia",
+      "comuna": "Valdivia",
+      "lugar": "Quitacalzón (a 560 m de Ruta T-301, 2,0 km de Ruta 202 y 4,0 km de Valdivia)",
+      "rolSiiMatriz": "2475 - 175",
+      "superficiePredioHa": 27.25,
+      "superficiePredioM2": 272500,
+      "superficieServidumbreTotalM2": 5242,
+      "superficieRestoLoteA11M2": 194632,
+      "datum": "WGS 84 Huso 18 Sur (UTM Zona 18S)",
+      "propietarioOriginarioPlano": "Sergio Alejandro Becerra Brun (RUT 8.398.608-5)",
+      "arquitectoPatrocinante": "Pablo Latino Wunderlich (Arquitecto) · Control Terreno: José Miguel Fica Arias",
+      "centroMapaLatLng": [
+        -39.779671,
+        -73.161406
+      ],
+      "perimetroPredioLatLng": [
+        [
+          -39.77969,
+          -73.165434
+        ],
+        [
+          -39.778043,
+          -73.163843
+        ],
+        [
+          -39.778301,
+          -73.163078
+        ],
+        [
+          -39.779157,
+          -73.163113
+        ],
+        [
+          -39.779776,
+          -73.162338
+        ],
+        [
+          -39.780254,
+          -73.161274
+        ],
+        [
+          -39.780152,
+          -73.160518
+        ],
+        [
+          -39.777129,
+          -73.16019
+        ],
+        [
+          -39.779489,
+          -73.155631
+        ],
+        [
+          -39.782878,
+          -73.159102
+        ],
+        [
+          -39.782152,
+          -73.161632
+        ],
+        [
+          -39.77969,
+          -73.165434
+        ]
+      ],
+      "servidumbreTransitoLatLng": [
+        [
+          -39.778939,
+          -73.163551
+        ],
+        [
+          -39.779666,
+          -73.163952
+        ],
+        [
+          -39.780239,
+          -73.163166
+        ],
+        [
+          -39.780721,
+          -73.162313
+        ],
+        [
+          -39.781203,
+          -73.161459
+        ],
+        [
+          -39.780283,
+          -73.160222
+        ],
+        [
+          -39.77811,
+          -73.15958
+        ]
+      ]
+    }
+  },
+  "meses": [
+    "2022-04",
+    "2022-05",
+    "2022-06",
+    "2022-07",
+    "2022-08",
+    "2022-09",
+    "2022-10",
+    "2022-11",
+    "2022-12",
+    "2023-01",
+    "2023-02",
+    "2023-03",
+    "2023-04",
+    "2023-05",
+    "2023-06",
+    "2023-07",
+    "2023-08",
+    "2023-09",
+    "2023-10",
+    "2023-11",
+    "2023-12",
+    "2024-01",
+    "2024-02",
+    "2024-03",
+    "2024-04",
+    "2024-05",
+    "2024-06",
+    "2024-07",
+    "2024-08",
+    "2024-09",
+    "2024-10",
+    "2024-11",
+    "2024-12",
+    "2025-01",
+    "2025-02",
+    "2025-03",
+    "2025-04",
+    "2025-05",
+    "2025-06",
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10",
+    "2025-11",
+    "2025-12",
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05",
+    "2026-06",
+    "2026-07",
+    "2026-08",
+    "2026-09",
+    "2026-10",
+    "2026-11",
+    "2026-12"
+  ],
+  "baseHistorica": {
+    "2026-12": 100000,
+    "2025-07": 1010000,
+    "2024-06": 480000,
+    "2022-05": 375000,
+    "2024-05": 480000,
+    "2026-03": 740000,
+    "2024-08": 480000,
+    "2025-11": 840000,
+    "2022-06": 375000,
+    "2026-11": 100000,
+    "2026-08": 100000,
+    "2025-08": 990000,
+    "2026-10": 100000,
+    "2022-10": 345000,
+    "2023-12": 460000,
+    "2026-01": 870000,
+    "2025-02": 560000,
+    "2025-04": 660000,
+    "2024-04": 500000,
+    "2026-02": 840000,
+    "2023-07": 460000,
+    "2023-08": 460000,
+    "2023-11": 460000,
+    "2022-08": 375000,
+    "2026-04": 590000,
+    "2025-06": 1030000,
+    "2025-09": 960000,
+    "2023-04": 460000,
+    "2026-06": 280000,
+    "2022-11": 315000,
+    "2024-12": 480000,
+    "2025-03": 660000,
+    "2023-09": 450000,
+    "2025-10": 870000,
+    "2022-09": 360000,
+    "2025-01": 540000,
+    "2023-06": 460000,
+    "2022-04": 375000,
+    "2024-10": 480000,
+    "2024-11": 480000,
+    "2026-07": 140000,
+    "2024-01": 480000,
+    "2024-09": 480000,
+    "2024-03": 500000,
+    "2025-05": 640000,
+    "2023-05": 440000,
+    "2022-12": 315000,
+    "2022-07": 375000,
+    "2024-02": 480000,
+    "2023-02": 440000,
+    "2024-07": 480000,
+    "2023-01": 440000,
+    "2023-10": 460000,
+    "2026-09": 100000,
+    "2026-05": 420000,
+    "2025-12": 870000,
+    "2023-03": 440000
+  },
+  "parcelas": [
+    {
+      "id": "parc-1",
+      "ordenFila": 1,
+      "numeroParcela": "4",
+      "propietarioActual": "Gonzalo de la Cuadra",
+      "propietarioAnterior": "César (2022)",
+      "condicion": "Con Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 40000,
+      "observaciones": "Registro unificado (se eliminó duplicado de Fila 31 sin N° de parcela)",
+      "pagos": {
+        "2025-07": 40000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 40000,
+        "2024-08": 20000,
+        "2025-11": 40000,
+        "2022-06": 15000,
+        "2026-08": 40000,
+        "2025-08": 40000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 40000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 40000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 40000,
+        "2025-06": 40000,
+        "2025-09": 40000,
+        "2023-04": 20000,
+        "2026-06": 40000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 40000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 40000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-05": 40000,
+        "2025-12": 40000,
+        "2023-03": 20000
+      },
+      "sector": "Loteo 1 — Sector Poniente (Plano 995-2018)",
+      "superficieM2": 5486,
+      "latitud": -39.778417,
+      "longitud": -73.163565,
+      "poligono": [
+        [
+          -39.77847,
+          -73.164101
+        ],
+        [
+          -39.77807,
+          -73.163831
+        ],
+        [
+          -39.778292,
+          -73.163101
+        ],
+        [
+          -39.778844,
+          -73.163227
+        ],
+        [
+          -39.77847,
+          -73.164101
+        ]
+      ],
+      "telefonoContacto": "+56984112345",
+      "emailContacto": "gonzalo.de.la.cuadra@losmanios.cl",
+      "pinAcceso": "1011",
+      "telefonoSecundario": "+56993223456",
+      "rolAccesoSistema": "COMITE_ADMIN",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P4-01",
+            "asignadoA": "Gonzalo de la Cuadra (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P4-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984112345",
+            "titular": "Gonzalo de la Cuadra (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993223456",
+            "titular": "Contacto Familiar — Parc. 4",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": false
+      },
+      "codigoLotePlano": "Lote A1-4",
+      "rolSii": "2475-301",
+      "servidumbreM2": 96,
+      "utmEste": 657268,
+      "utmNorte": 5595223,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-2",
+      "ordenFila": 2,
+      "numeroParcela": "5",
+      "propietarioActual": "Elizabeth",
+      "propietarioAnterior": "Claudio (2022-2024)",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "Cambio propietario: antes Claudio (2022-2024) (arrastra deuda)",
+      "pagos": {
+        "2022-09": 15000,
+        "2022-08": 15000,
+        "2022-06": 15000,
+        "2022-05": 15000,
+        "2025-01": 20000,
+        "2025-02": 20000,
+        "2022-04": 15000,
+        "2025-03": 20000,
+        "2025-04": 20000,
+        "2022-07": 15000,
+        "2025-05": 20000,
+        "2025-06": 20000
+      },
+      "sector": "Loteo 1 — Sector Poniente (Plano 995-2018)",
+      "superficieM2": 5000,
+      "latitud": -39.778862,
+      "longitud": -73.163833,
+      "poligono": [
+        [
+          -39.778872,
+          -73.164464
+        ],
+        [
+          -39.77847,
+          -73.164101
+        ],
+        [
+          -39.778844,
+          -73.163227
+        ],
+        [
+          -39.779254,
+          -73.163543
+        ],
+        [
+          -39.778872,
+          -73.164464
+        ]
+      ],
+      "telefonoContacto": "+56984124690",
+      "emailContacto": "elizabeth@losmanios.cl",
+      "pinAcceso": "1022",
+      "telefonoSecundario": "+56993246912",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 1,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P5-01",
+            "asignadoA": "Elizabeth (Titular)",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 1,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984124690",
+            "titular": "Elizabeth (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Lote A1-5",
+      "rolSii": "2475-315",
+      "servidumbreM2": 33,
+      "utmEste": 657244,
+      "utmNorte": 5595174,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-3",
+      "ordenFila": 3,
+      "numeroParcela": "6",
+      "propietarioActual": "Joaquín",
+      "propietarioAnterior": "Felipe (2022-2024)",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "Cambio propietario: antes Felipe (2022-2024) (arrastra deuda)",
+      "pagos": {
+        "2026-12": 30000,
+        "2025-07": 30000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 30000,
+        "2024-08": 20000,
+        "2025-11": 30000,
+        "2022-06": 15000,
+        "2026-11": 30000,
+        "2026-08": 30000,
+        "2025-08": 30000,
+        "2026-10": 30000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 30000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 30000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 30000,
+        "2025-06": 30000,
+        "2025-09": 30000,
+        "2023-04": 20000,
+        "2026-06": 30000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 30000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 30000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-09": 30000,
+        "2026-05": 30000,
+        "2025-12": 30000,
+        "2023-03": 20000
+      },
+      "sector": "Loteo 1 — Sector Poniente (Plano 995-2018)",
+      "superficieM2": 5005,
+      "latitud": -39.779274,
+      "longitud": -73.164208,
+      "poligono": [
+        [
+          -39.779293,
+          -73.164873
+        ],
+        [
+          -39.778872,
+          -73.164464
+        ],
+        [
+          -39.779254,
+          -73.163543
+        ],
+        [
+          -39.779666,
+          -73.163952
+        ],
+        [
+          -39.779293,
+          -73.164873
+        ]
+      ],
+      "telefonoContacto": "+56984137035",
+      "emailContacto": "joaquin@losmanios.cl",
+      "pinAcceso": "1033",
+      "telefonoSecundario": "+56993270368",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P6-01",
+            "asignadoA": "Joaquín (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P6-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984137035",
+            "titular": "Joaquín (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993270368",
+            "titular": "Contacto Familiar — Parc. 6",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Lote A1-6",
+      "rolSii": "2475-314",
+      "servidumbreM2": 0,
+      "utmEste": 657211,
+      "utmNorte": 5595129,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-4",
+      "ordenFila": 4,
+      "numeroParcela": "7",
+      "propietarioActual": "Gonzálo Brito",
+      "propietarioAnterior": "-",
+      "condicion": "Con Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 40000,
+      "observaciones": "",
+      "pagos": {
+        "2026-12": 40000,
+        "2025-07": 40000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 40000,
+        "2024-08": 20000,
+        "2025-11": 40000,
+        "2022-06": 15000,
+        "2026-11": 40000,
+        "2026-08": 40000,
+        "2025-08": 40000,
+        "2026-10": 40000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 40000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 40000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 40000,
+        "2025-06": 40000,
+        "2025-09": 40000,
+        "2023-04": 20000,
+        "2026-06": 40000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 40000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 40000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-09": 40000,
+        "2026-05": 40000,
+        "2025-12": 40000,
+        "2023-03": 20000
+      },
+      "sector": "Loteo 1 — Sector Poniente (Plano 995-2018)",
+      "superficieM2": 5265,
+      "latitud": -39.779695,
+      "longitud": -73.164652,
+      "poligono": [
+        [
+          -39.779715,
+          -73.165352
+        ],
+        [
+          -39.779293,
+          -73.164873
+        ],
+        [
+          -39.779666,
+          -73.163952
+        ],
+        [
+          -39.780124,
+          -73.16443
+        ],
+        [
+          -39.779715,
+          -73.165352
+        ]
+      ],
+      "telefonoContacto": "+56984149380",
+      "emailContacto": "gonzalo.brito@losmanios.cl",
+      "pinAcceso": "1044",
+      "telefonoSecundario": "+56993293824",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P7-01",
+            "asignadoA": "Gonzálo Brito (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P7-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984149380",
+            "titular": "Gonzálo Brito (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993293824",
+            "titular": "Contacto Familiar — Parc. 7",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": false
+      },
+      "codigoLotePlano": "Lote A1-7",
+      "rolSii": "2475-313",
+      "servidumbreM2": 0,
+      "utmEste": 657172,
+      "utmNorte": 5595083,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-5",
+      "ordenFila": 5,
+      "numeroParcela": "8",
+      "propietarioActual": "Moíses",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "Abono parcial Ago-25: pagó $20.000 de $30.000 (faltan $10.000)",
+      "pagos": {
+        "2025-07": 30000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2024-08": 20000,
+        "2022-06": 15000,
+        "2025-08": 20000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2025-06": 30000,
+        "2023-04": 20000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2023-03": 20000
+      },
+      "sector": "Loteo 1 — Sector Poniente (Plano 995-2018)",
+      "superficieM2": 5021,
+      "latitud": -39.780089,
+      "longitud": -73.163941,
+      "poligono": [
+        [
+          -39.780124,
+          -73.16443
+        ],
+        [
+          -39.779666,
+          -73.163952
+        ],
+        [
+          -39.780046,
+          -73.163452
+        ],
+        [
+          -39.780522,
+          -73.163953
+        ],
+        [
+          -39.780124,
+          -73.16443
+        ]
+      ],
+      "telefonoContacto": "+56984161725",
+      "emailContacto": "moises@losmanios.cl",
+      "pinAcceso": "1055",
+      "telefonoSecundario": "+56993317280",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P8-01",
+            "asignadoA": "Moíses (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P8-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984161725",
+            "titular": "Moíses (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993317280",
+            "titular": "Contacto Familiar — Parc. 8",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Lote A1-8",
+      "rolSii": "2475-312",
+      "servidumbreM2": 266,
+      "utmEste": 657232,
+      "utmNorte": 5595038,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-6",
+      "ordenFila": 6,
+      "numeroParcela": "9",
+      "propietarioActual": "Carolina",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "",
+      "pagos": {
+        "2022-07": 15000,
+        "2023-12": 20000,
+        "2022-06": 15000,
+        "2022-12": 15000,
+        "2023-02": 20000,
+        "2022-04": 15000,
+        "2022-10": 15000,
+        "2023-03": 20000,
+        "2024-03": 20000,
+        "2023-08": 20000,
+        "2023-04": 20000,
+        "2023-09": 20000,
+        "2023-01": 20000,
+        "2022-11": 15000,
+        "2023-06": 20000,
+        "2022-05": 15000,
+        "2024-01": 20000,
+        "2023-07": 20000,
+        "2023-11": 20000,
+        "2022-09": 15000,
+        "2023-05": 20000,
+        "2024-02": 20000,
+        "2023-10": 20000,
+        "2022-08": 15000,
+        "2024-04": 20000
+      },
+      "sector": "Loteo 1 — Sector Poniente (Plano 995-2018)",
+      "superficieM2": 5713,
+      "latitud": -39.779676,
+      "longitud": -73.16345,
+      "poligono": [
+        [
+          -39.779666,
+          -73.163952
+        ],
+        [
+          -39.779208,
+          -73.163462
+        ],
+        [
+          -39.779785,
+          -73.162945
+        ],
+        [
+          -39.780046,
+          -73.163452
+        ],
+        [
+          -39.779666,
+          -73.163952
+        ]
+      ],
+      "telefonoContacto": "+56984174070",
+      "emailContacto": "carolina@losmanios.cl",
+      "pinAcceso": "1066",
+      "telefonoSecundario": "+56993340736",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 1,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P9-01",
+            "asignadoA": "Carolina (Titular)",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 1,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984174070",
+            "titular": "Carolina (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Lote A1-9",
+      "rolSii": "2475-303",
+      "servidumbreM2": 313,
+      "utmEste": 657275,
+      "utmNorte": 5595083,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-7",
+      "ordenFila": 7,
+      "numeroParcela": "10",
+      "propietarioActual": "Bárbara",
+      "propietarioAnterior": "-",
+      "condicion": "Con Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": "2026-08",
+      "cuotaActual": 40000,
+      "observaciones": "Paso a Con Casa desde Ago-26 ($40.000) | Abono parcial Jun-25 ($20.000) compensado en Feb-26 ($40.000)",
+      "pagos": {
+        "2026-12": 40000,
+        "2025-07": 30000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 30000,
+        "2024-08": 20000,
+        "2025-11": 30000,
+        "2022-06": 15000,
+        "2026-11": 40000,
+        "2026-08": 40000,
+        "2025-08": 30000,
+        "2026-10": 40000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 30000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 40000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 30000,
+        "2025-06": 20000,
+        "2025-09": 30000,
+        "2023-04": 20000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 30000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-09": 40000,
+        "2026-05": 30000,
+        "2025-12": 30000,
+        "2023-03": 20000
+      },
+      "sector": "Loteo 1 — Sector Poniente (Plano 995-2018)",
+      "superficieM2": 5031,
+      "latitud": -39.779399,
+      "longitud": -73.163013,
+      "poligono": [
+        [
+          -39.779208,
+          -73.163462
+        ],
+        [
+          -39.779022,
+          -73.163117
+        ],
+        [
+          -39.77958,
+          -73.162518
+        ],
+        [
+          -39.779785,
+          -73.162945
+        ],
+        [
+          -39.779208,
+          -73.163462
+        ]
+      ],
+      "telefonoContacto": "+56984186415",
+      "emailContacto": "barbara@losmanios.cl",
+      "pinAcceso": "1077",
+      "telefonoSecundario": "+56993364192",
+      "rolAccesoSistema": "COMITE_ADMIN",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P10-01",
+            "asignadoA": "Bárbara (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P10-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984186415",
+            "titular": "Bárbara (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993364192",
+            "titular": "Contacto Familiar — Parc. 10",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": false
+      },
+      "codigoLotePlano": "Lote A1-10",
+      "rolSii": "2475-302",
+      "servidumbreM2": 474,
+      "utmEste": 657313,
+      "utmNorte": 5595113,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-8",
+      "ordenFila": 8,
+      "numeroParcela": "11",
+      "propietarioActual": "Matías F",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "",
+      "pagos": {
+        "2026-12": 30000,
+        "2025-07": 30000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 30000,
+        "2024-08": 20000,
+        "2025-11": 30000,
+        "2022-06": 15000,
+        "2026-11": 30000,
+        "2026-08": 30000,
+        "2025-08": 30000,
+        "2026-10": 30000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 30000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 30000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 30000,
+        "2025-06": 30000,
+        "2025-09": 30000,
+        "2023-04": 20000,
+        "2026-06": 30000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 30000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 30000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-09": 30000,
+        "2026-05": 30000,
+        "2025-12": 30000,
+        "2023-03": 20000
+      },
+      "sector": "Loteo 1 — Sector Poniente (Plano 995-2018)",
+      "superficieM2": 5050,
+      "latitud": -39.779886,
+      "longitud": -73.162498,
+      "poligono": [
+        [
+          -39.779785,
+          -73.162945
+        ],
+        [
+          -39.77958,
+          -73.162518
+        ],
+        [
+          -39.779906,
+          -73.162007
+        ],
+        [
+          -39.780274,
+          -73.162535
+        ],
+        [
+          -39.779785,
+          -73.162945
+        ]
+      ],
+      "telefonoContacto": "+56984198760",
+      "emailContacto": "matias.f@losmanios.cl",
+      "pinAcceso": "1088",
+      "telefonoSecundario": "+56993387648",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 1,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P11-01",
+            "asignadoA": "Matías F (Titular)",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 1,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984198760",
+            "titular": "Matías F (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Lote A1-11",
+      "rolSii": "2475-304",
+      "servidumbreM2": 185,
+      "utmEste": 657356,
+      "utmNorte": 5595058,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-9",
+      "ordenFila": 9,
+      "numeroParcela": "12",
+      "propietarioActual": "Francisco P",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "",
+      "pagos": {
+        "2025-07": 30000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 30000,
+        "2024-08": 20000,
+        "2025-11": 30000,
+        "2022-06": 15000,
+        "2026-11": 30000,
+        "2026-08": 30000,
+        "2025-08": 30000,
+        "2026-10": 30000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 30000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 30000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 30000,
+        "2025-06": 30000,
+        "2025-09": 30000,
+        "2023-04": 20000,
+        "2026-06": 30000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 30000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 30000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-09": 30000,
+        "2026-05": 30000,
+        "2025-12": 30000,
+        "2023-03": 20000
+      },
+      "sector": "Loteo 1 — Sector Poniente (Plano 995-2018)",
+      "superficieM2": 5006,
+      "latitud": -39.780487,
+      "longitud": -73.163416,
+      "poligono": [
+        [
+          -39.780522,
+          -73.163953
+        ],
+        [
+          -39.780046,
+          -73.163452
+        ],
+        [
+          -39.780433,
+          -73.162881
+        ],
+        [
+          -39.780945,
+          -73.163381
+        ],
+        [
+          -39.780522,
+          -73.163953
+        ]
+      ],
+      "telefonoContacto": "+56984211105",
+      "emailContacto": "francisco.p@losmanios.cl",
+      "pinAcceso": "1099",
+      "telefonoSecundario": "+56993411104",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P12-01",
+            "asignadoA": "Francisco P (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P12-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984211105",
+            "titular": "Francisco P (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993411104",
+            "titular": "Contacto Familiar — Parc. 12",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Lote A1-12",
+      "rolSii": "2475-311",
+      "servidumbreM2": 230,
+      "utmEste": 657276,
+      "utmNorte": 5594993,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-10",
+      "ordenFila": 10,
+      "numeroParcela": "13",
+      "propietarioActual": "Patricio Copihues",
+      "propietarioAnterior": "-",
+      "condicion": "Con Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 40000,
+      "observaciones": "",
+      "pagos": {
+        "2025-07": 40000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 40000,
+        "2024-08": 20000,
+        "2025-11": 40000,
+        "2022-06": 15000,
+        "2026-08": 40000,
+        "2025-08": 40000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 40000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 40000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 40000,
+        "2025-06": 40000,
+        "2025-09": 40000,
+        "2023-04": 20000,
+        "2026-06": 40000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 40000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 40000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-05": 40000,
+        "2025-12": 40000,
+        "2023-03": 20000
+      },
+      "sector": "Loteo 1 — Sector Poniente (Plano 995-2018)",
+      "superficieM2": 5000,
+      "latitud": -39.780883,
+      "longitud": -73.162834,
+      "poligono": [
+        [
+          -39.780945,
+          -73.163381
+        ],
+        [
+          -39.780433,
+          -73.162881
+        ],
+        [
+          -39.780811,
+          -73.162287
+        ],
+        [
+          -39.781333,
+          -73.16281
+        ],
+        [
+          -39.780945,
+          -73.163381
+        ]
+      ],
+      "telefonoContacto": "+56984223450",
+      "emailContacto": "patricio.copihues@losmanios.cl",
+      "pinAcceso": "1110",
+      "telefonoSecundario": "+56993434560",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P13-01",
+            "asignadoA": "Patricio Copihues (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P13-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984223450",
+            "titular": "Patricio Copihues (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993434560",
+            "titular": "Contacto Familiar — Parc. 13",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": false
+      },
+      "codigoLotePlano": "Lote A1-13",
+      "rolSii": "2475-310",
+      "servidumbreM2": 198,
+      "utmEste": 657325,
+      "utmNorte": 5594948,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-11",
+      "ordenFila": 11,
+      "numeroParcela": "14",
+      "propietarioActual": "Franklin",
+      "propietarioAnterior": "-",
+      "condicion": "Con Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 40000,
+      "observaciones": "",
+      "pagos": {
+        "2025-07": 40000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 40000,
+        "2024-08": 20000,
+        "2022-06": 15000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 40000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 40000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 40000,
+        "2025-06": 40000,
+        "2023-04": 20000,
+        "2026-06": 40000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 40000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-05": 40000,
+        "2023-03": 20000
+      },
+      "sector": "Loteo 1 — Sector Poniente (Plano 995-2018)",
+      "superficieM2": 5003,
+      "latitud": -39.780257,
+      "longitud": -73.162021,
+      "poligono": [
+        [
+          -39.780274,
+          -73.162535
+        ],
+        [
+          -39.779906,
+          -73.162007
+        ],
+        [
+          -39.780213,
+          -73.161532
+        ],
+        [
+          -39.780654,
+          -73.162022
+        ],
+        [
+          -39.780274,
+          -73.162535
+        ]
+      ],
+      "telefonoContacto": "+56984235795",
+      "emailContacto": "franklin@losmanios.cl",
+      "pinAcceso": "1121",
+      "telefonoSecundario": "+56993458016",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P14-01",
+            "asignadoA": "Franklin (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P14-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984235795",
+            "titular": "Franklin (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993458016",
+            "titular": "Contacto Familiar — Parc. 14",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Lote A1-14",
+      "rolSii": "2475-305",
+      "servidumbreM2": 187,
+      "utmEste": 657396,
+      "utmNorte": 5595016,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-12",
+      "ordenFila": 12,
+      "numeroParcela": "15",
+      "propietarioActual": "Francisca",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "",
+      "pagos": {
+        "2025-07": 30000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 30000,
+        "2024-08": 20000,
+        "2025-11": 30000,
+        "2022-06": 15000,
+        "2026-08": 30000,
+        "2025-08": 30000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 30000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 30000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 30000,
+        "2025-06": 30000,
+        "2025-09": 30000,
+        "2023-04": 20000,
+        "2026-06": 30000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 30000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 30000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-05": 30000,
+        "2025-12": 30000,
+        "2023-03": 20000
+      },
+      "sector": "Loteo 1 — Sector Poniente (Plano 995-2018)",
+      "superficieM2": 5200,
+      "latitud": -39.780583,
+      "longitud": -73.161534,
+      "poligono": [
+        [
+          -39.780654,
+          -73.162022
+        ],
+        [
+          -39.780213,
+          -73.161532
+        ],
+        [
+          -39.780458,
+          -73.161059
+        ],
+        [
+          -39.781006,
+          -73.161534
+        ],
+        [
+          -39.780654,
+          -73.162022
+        ]
+      ],
+      "telefonoContacto": "+56984248140",
+      "emailContacto": "francisca@losmanios.cl",
+      "pinAcceso": "1132",
+      "telefonoSecundario": "+56993481472",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 1,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P15-01",
+            "asignadoA": "Francisca (Titular)",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 1,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984248140",
+            "titular": "Francisca (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Lote A1-15",
+      "rolSii": "2475-306",
+      "servidumbreM2": 195,
+      "utmEste": 657437,
+      "utmNorte": 5594979,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-13",
+      "ordenFila": 13,
+      "numeroParcela": "16",
+      "propietarioActual": "Francisca",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "",
+      "pagos": {
+        "2025-07": 30000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 30000,
+        "2024-08": 20000,
+        "2025-11": 30000,
+        "2022-06": 15000,
+        "2026-08": 30000,
+        "2025-08": 30000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 30000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 30000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 30000,
+        "2025-06": 30000,
+        "2025-09": 30000,
+        "2023-04": 20000,
+        "2026-06": 30000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 30000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 30000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-05": 30000,
+        "2025-12": 30000,
+        "2023-03": 20000
+      },
+      "sector": "Loteo 1 — Sector Poniente (Plano 995-2018)",
+      "superficieM2": 5000,
+      "latitud": -39.78127,
+      "longitud": -73.16224,
+      "poligono": [
+        [
+          -39.781333,
+          -73.16281
+        ],
+        [
+          -39.780811,
+          -73.162287
+        ],
+        [
+          -39.781189,
+          -73.161693
+        ],
+        [
+          -39.781737,
+          -73.162192
+        ],
+        [
+          -39.781333,
+          -73.16281
+        ]
+      ],
+      "telefonoContacto": "+56984260485",
+      "emailContacto": "francisca@losmanios.cl",
+      "pinAcceso": "1143",
+      "telefonoSecundario": "+56993504928",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P16-01",
+            "asignadoA": "Francisca (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P16-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984260485",
+            "titular": "Francisca (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993504928",
+            "titular": "Contacto Familiar — Parc. 16",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": false
+      },
+      "codigoLotePlano": "Lote A1-16",
+      "rolSii": "2475-309",
+      "servidumbreM2": 175,
+      "utmEste": 657375,
+      "utmNorte": 5594904,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-14",
+      "ordenFila": 14,
+      "numeroParcela": "17",
+      "propietarioActual": "Silvana Bustos Astudillo",
+      "propietarioAnterior": null,
+      "condicion": "Con Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 40000,
+      "observaciones": "Abono parcial Jun-25: pagó $20.000 de $40.000 (faltan $20.000)",
+      "pagos": {
+        "2025-07": 40000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 40000,
+        "2024-08": 20000,
+        "2025-11": 40000,
+        "2022-06": 15000,
+        "2026-08": 40000,
+        "2025-08": 40000,
+        "2026-10": 40000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 40000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 40000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 40000,
+        "2025-06": 40000,
+        "2025-09": 40000,
+        "2023-04": 20000,
+        "2026-06": 40000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 40000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 40000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-09": 40000,
+        "2026-05": 40000,
+        "2025-12": 40000,
+        "2023-03": 20000
+      },
+      "sector": "Loteo 1 — Sector Poniente (Plano 995-2018)",
+      "superficieM2": 5002,
+      "latitud": -39.781639,
+      "longitud": -73.161658,
+      "poligono": [
+        [
+          -39.781737,
+          -73.162192
+        ],
+        [
+          -39.781189,
+          -73.161693
+        ],
+        [
+          -39.78154,
+          -73.1611
+        ],
+        [
+          -39.782107,
+          -73.161633
+        ],
+        [
+          -39.781737,
+          -73.162192
+        ]
+      ],
+      "telefonoContacto": "+56975777711",
+      "emailContacto": "silvana.bustos@losmanios.cl",
+      "pinAcceso": "1154",
+      "telefonoSecundario": "+56993528384",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P17-01",
+            "asignadoA": "Silvana Bustos Astudillo (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P17-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 3,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984272830",
+            "titular": "Silvana Bustos Astudillo (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993528384",
+            "titular": "Contacto Familiar — Parc. 17",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          },
+          {
+            "numero": "+56975777711",
+            "titular": "Familiar Autorizado",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Lote A1-17",
+      "rolSii": "2475-308",
+      "servidumbreM2": 159,
+      "utmEste": 657424,
+      "utmNorte": 5594862,
+      "rutPropietario": null
+    },
+    {
+      "id": "parc-15",
+      "ordenFila": 15,
+      "numeroParcela": "18",
+      "propietarioActual": "Felipe Múñoz",
+      "propietarioAnterior": "Ricardo (2022-2024)",
+      "condicion": "Con Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 40000,
+      "observaciones": "Cambio propietario: antes Ricardo (2022-2024) (arrastra deuda)",
+      "pagos": {
+        "2026-12": 40000,
+        "2025-07": 40000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 40000,
+        "2024-08": 20000,
+        "2025-11": 40000,
+        "2022-06": 15000,
+        "2026-11": 40000,
+        "2026-08": 40000,
+        "2025-08": 40000,
+        "2026-10": 40000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 40000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 40000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 40000,
+        "2025-06": 40000,
+        "2025-09": 40000,
+        "2023-04": 20000,
+        "2026-06": 40000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 40000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 40000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-09": 40000,
+        "2026-05": 40000,
+        "2025-12": 40000,
+        "2023-03": 20000
+      },
+      "sector": "Loteo 1 — Sector Poniente (Plano 995-2018)",
+      "superficieM2": 6086,
+      "latitud": -39.780635,
+      "longitud": -73.160844,
+      "poligono": [
+        [
+          -39.781006,
+          -73.161534
+        ],
+        [
+          -39.780458,
+          -73.161059
+        ],
+        [
+          -39.780268,
+          -73.160433
+        ],
+        [
+          -39.780808,
+          -73.160372
+        ],
+        [
+          -39.781006,
+          -73.161534
+        ]
+      ],
+      "telefonoContacto": "+56984285175",
+      "emailContacto": "felipe.munoz@losmanios.cl",
+      "pinAcceso": "1165",
+      "telefonoSecundario": "+56993551840",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P18-01",
+            "asignadoA": "Felipe Múñoz (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P18-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984285175",
+            "titular": "Felipe Múñoz (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993551840",
+            "titular": "Contacto Familiar — Parc. 18",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Lote A1-18",
+      "rolSii": "2475-307",
+      "servidumbreM2": 0,
+      "utmEste": 657496,
+      "utmNorte": 5594972,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-16",
+      "ordenFila": 16,
+      "numeroParcela": "A-21",
+      "propietarioActual": "Diego Gutierrez",
+      "propietarioAnterior": "Gissele (2022-2025)",
+      "condicion": "Con Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": "2025-06",
+      "cuotaActual": 40000,
+      "observaciones": "Cambio propietario: antes Gissele (2022-2025) (arrastra deuda) | Paso a Con Casa desde Jun-25",
+      "pagos": {
+        "2023-03": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 40000,
+        "2024-08": 20000,
+        "2025-11": 40000,
+        "2022-06": 15000,
+        "2026-08": 40000,
+        "2025-08": 40000,
+        "2025-07": 40000,
+        "2022-10": 15000,
+        "2024-06": 20000,
+        "2026-01": 40000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 40000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 40000,
+        "2025-06": 40000,
+        "2025-09": 40000,
+        "2026-06": 40000,
+        "2023-04": 20000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 40000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 40000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2023-12": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-09": 40000,
+        "2026-05": 40000,
+        "2025-12": 40000,
+        "2024-07": 20000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.778313,
+      "longitud": -73.15989,
+      "poligono": [
+        [
+          -39.77803,
+          -73.160224
+        ],
+        [
+          -39.778109,
+          -73.159475
+        ],
+        [
+          -39.778596,
+          -73.159555
+        ],
+        [
+          -39.778518,
+          -73.160304
+        ],
+        [
+          -39.77803,
+          -73.160224
+        ]
+      ],
+      "telefonoContacto": "+56984297520",
+      "emailContacto": "diego.gutierrez@losmanios.cl",
+      "pinAcceso": "1176",
+      "telefonoSecundario": "+56993575296",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-PA21-01",
+            "asignadoA": "Diego Gutierrez (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-PA21-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984297520",
+            "titular": "Diego Gutierrez (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993575296",
+            "titular": "Contacto Familiar — Parc. A-21",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": false
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. A-21",
+      "rolSii": "2475-175 / Sub-Lote A-21",
+      "servidumbreM2": 180,
+      "utmEste": 657583,
+      "utmNorte": 5595228,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-17",
+      "ordenFila": 17,
+      "numeroParcela": "A2-2",
+      "propietarioActual": "Ándres S",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "",
+      "pagos": {
+        "2022-05": 15000,
+        "2022-04": 15000,
+        "2022-08": 15000,
+        "2022-06": 15000,
+        "2022-07": 15000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.778462,
+      "longitud": -73.159045,
+      "poligono": [
+        [
+          -39.778179,
+          -73.159379
+        ],
+        [
+          -39.778257,
+          -73.15863
+        ],
+        [
+          -39.778745,
+          -73.15871
+        ],
+        [
+          -39.778667,
+          -73.15946
+        ],
+        [
+          -39.778179,
+          -73.159379
+        ]
+      ],
+      "telefonoContacto": "+56984309865",
+      "emailContacto": "andres.s@losmanios.cl",
+      "pinAcceso": "1187",
+      "telefonoSecundario": "+56993598752",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-PA22-01",
+            "asignadoA": "Ándres S (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-PA22-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984309865",
+            "titular": "Ándres S (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993598752",
+            "titular": "Contacto Familiar — Parc. A2-2",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. A2-2",
+      "rolSii": "2475-175 / Sub-Lote A2-2",
+      "servidumbreM2": 180,
+      "utmEste": 657655,
+      "utmNorte": 5595210,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-18",
+      "ordenFila": 18,
+      "numeroParcela": "19",
+      "propietarioActual": "Rodrigo",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "",
+      "pagos": {
+        "2022-09": 15000,
+        "2022-08": 15000,
+        "2022-06": 15000,
+        "2022-05": 15000,
+        "2022-04": 15000,
+        "2022-10": 15000,
+        "2022-07": 15000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.778611,
+      "longitud": -73.1582,
+      "poligono": [
+        [
+          -39.778328,
+          -73.158535
+        ],
+        [
+          -39.778406,
+          -73.157785
+        ],
+        [
+          -39.778894,
+          -73.157866
+        ],
+        [
+          -39.778816,
+          -73.158615
+        ],
+        [
+          -39.778328,
+          -73.158535
+        ]
+      ],
+      "telefonoContacto": "+56984322210",
+      "emailContacto": "rodrigo@losmanios.cl",
+      "pinAcceso": "1198",
+      "telefonoSecundario": "+56993622208",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 1,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P19-01",
+            "asignadoA": "Rodrigo (Titular)",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 1,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984322210",
+            "titular": "Rodrigo (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. 19",
+      "rolSii": "2475-175 / Sub-Lote 19",
+      "servidumbreM2": 180,
+      "utmEste": 657727,
+      "utmNorte": 5595192,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-19",
+      "ordenFila": 19,
+      "numeroParcela": "20",
+      "propietarioActual": "Diego",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "",
+      "pagos": {
+        "2025-07": 30000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2024-08": 20000,
+        "2025-11": 30000,
+        "2022-06": 15000,
+        "2025-08": 30000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 30000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2025-06": 30000,
+        "2025-09": 30000,
+        "2023-04": 20000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 30000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2025-12": 30000,
+        "2023-03": 20000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.77876,
+      "longitud": -73.157356,
+      "poligono": [
+        [
+          -39.778477,
+          -73.15769
+        ],
+        [
+          -39.778555,
+          -73.156941
+        ],
+        [
+          -39.779043,
+          -73.157021
+        ],
+        [
+          -39.778965,
+          -73.15777
+        ],
+        [
+          -39.778477,
+          -73.15769
+        ]
+      ],
+      "telefonoContacto": "+56984334555",
+      "emailContacto": "diego@losmanios.cl",
+      "pinAcceso": "1209",
+      "telefonoSecundario": "+56993645664",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P20-01",
+            "asignadoA": "Diego (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P20-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984334555",
+            "titular": "Diego (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993645664",
+            "titular": "Contacto Familiar — Parc. 20",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": false
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. 20",
+      "rolSii": "2475-175 / Sub-Lote 20",
+      "servidumbreM2": 180,
+      "utmEste": 657799,
+      "utmNorte": 5595174,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-20",
+      "ordenFila": 20,
+      "numeroParcela": "21",
+      "propietarioActual": "Alejanda Fergadiott",
+      "propietarioAnterior": "-",
+      "condicion": "Con Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 40000,
+      "observaciones": "",
+      "pagos": {
+        "2025-07": 40000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 40000,
+        "2024-08": 20000,
+        "2025-11": 40000,
+        "2022-06": 15000,
+        "2026-08": 40000,
+        "2025-08": 40000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 40000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 40000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 40000,
+        "2025-06": 40000,
+        "2025-09": 40000,
+        "2023-04": 20000,
+        "2026-06": 40000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 40000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 40000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-09": 40000,
+        "2026-05": 40000,
+        "2025-12": 40000,
+        "2023-03": 20000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.778978,
+      "longitud": -73.159732,
+      "poligono": [
+        [
+          -39.778695,
+          -73.160066
+        ],
+        [
+          -39.778773,
+          -73.159317
+        ],
+        [
+          -39.779261,
+          -73.159397
+        ],
+        [
+          -39.779182,
+          -73.160147
+        ],
+        [
+          -39.778695,
+          -73.160066
+        ]
+      ],
+      "telefonoContacto": "+56984346900",
+      "emailContacto": "alejanda.fergadiott@losmanios.cl",
+      "pinAcceso": "1220",
+      "telefonoSecundario": "+56993669120",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P21-01",
+            "asignadoA": "Alejanda Fergadiott (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P21-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984346900",
+            "titular": "Alejanda Fergadiott (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993669120",
+            "titular": "Contacto Familiar — Parc. 21",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. 21",
+      "rolSii": "2475-175 / Sub-Lote 21",
+      "servidumbreM2": 180,
+      "utmEste": 657595,
+      "utmNorte": 5595154,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-21",
+      "ordenFila": 21,
+      "numeroParcela": "22",
+      "propietarioActual": "Angelica Massabo",
+      "propietarioAnterior": "-",
+      "condicion": "Con Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 40000,
+      "observaciones": "",
+      "pagos": {
+        "2025-07": 40000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 40000,
+        "2024-08": 20000,
+        "2025-11": 40000,
+        "2022-06": 15000,
+        "2026-08": 40000,
+        "2025-08": 40000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 40000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 40000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 40000,
+        "2025-06": 40000,
+        "2025-09": 40000,
+        "2023-04": 20000,
+        "2026-06": 40000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 40000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 40000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-05": 40000,
+        "2025-12": 40000,
+        "2023-03": 20000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.779126,
+      "longitud": -73.158887,
+      "poligono": [
+        [
+          -39.778843,
+          -73.159222
+        ],
+        [
+          -39.778922,
+          -73.158472
+        ],
+        [
+          -39.779409,
+          -73.158553
+        ],
+        [
+          -39.779331,
+          -73.159302
+        ],
+        [
+          -39.778843,
+          -73.159222
+        ]
+      ],
+      "telefonoContacto": "+56984359245",
+      "emailContacto": "angelica.massabo@losmanios.cl",
+      "pinAcceso": "1231",
+      "telefonoSecundario": "+56993692576",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P22-01",
+            "asignadoA": "Angelica Massabo (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P22-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984359245",
+            "titular": "Angelica Massabo (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993692576",
+            "titular": "Contacto Familiar — Parc. 22",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. 22",
+      "rolSii": "2475-175 / Sub-Lote 22",
+      "servidumbreM2": 180,
+      "utmEste": 657667,
+      "utmNorte": 5595136,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-22",
+      "ordenFila": 22,
+      "numeroParcela": "23",
+      "propietarioActual": "Fernando Mora",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2023-06",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "",
+      "pagos": {
+        "2026-12": 30000,
+        "2026-11": 30000,
+        "2024-05": 20000,
+        "2026-03": 30000,
+        "2026-08": 30000,
+        "2025-08": 30000,
+        "2026-10": 30000,
+        "2026-09": 30000,
+        "2024-06": 20000,
+        "2026-01": 30000,
+        "2025-02": 20000,
+        "2025-11": 30000,
+        "2024-04": 20000,
+        "2026-02": 30000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2024-01": 20000,
+        "2025-06": 30000,
+        "2025-09": 30000,
+        "2024-03": 20000,
+        "2026-06": 30000,
+        "2024-09": 20000,
+        "2024-12": 20000,
+        "2025-04": 20000,
+        "2023-09": 20000,
+        "2025-10": 30000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2026-04": 30000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 30000,
+        "2025-07": 30000,
+        "2025-03": 20000,
+        "2024-08": 20000,
+        "2025-05": 20000,
+        "2024-02": 20000,
+        "2023-12": 20000,
+        "2023-10": 20000,
+        "2026-05": 30000,
+        "2025-12": 30000,
+        "2024-07": 20000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.779275,
+      "longitud": -73.158042,
+      "poligono": [
+        [
+          -39.778992,
+          -73.158377
+        ],
+        [
+          -39.77907,
+          -73.157628
+        ],
+        [
+          -39.779558,
+          -73.157708
+        ],
+        [
+          -39.77948,
+          -73.158457
+        ],
+        [
+          -39.778992,
+          -73.158377
+        ]
+      ],
+      "telefonoContacto": "+56984371590",
+      "emailContacto": "fernando.mora@losmanios.cl",
+      "pinAcceso": "1242",
+      "telefonoSecundario": "+56993716032",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 1,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P23-01",
+            "asignadoA": "Fernando Mora (Titular)",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 1,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984371590",
+            "titular": "Fernando Mora (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": false
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. 23",
+      "rolSii": "2475-175 / Sub-Lote 23",
+      "servidumbreM2": 180,
+      "utmEste": 657739,
+      "utmNorte": 5595118,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-23",
+      "ordenFila": 23,
+      "numeroParcela": "26",
+      "propietarioActual": "Pedro y Jocelyne poblete",
+      "propietarioAnterior": "-",
+      "condicion": "Con Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 40000,
+      "observaciones": "",
+      "pagos": {
+        "2025-07": 40000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 40000,
+        "2024-08": 20000,
+        "2025-11": 40000,
+        "2022-06": 15000,
+        "2025-08": 40000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 40000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 40000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 40000,
+        "2025-06": 40000,
+        "2025-09": 40000,
+        "2023-04": 20000,
+        "2026-06": 40000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 40000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-05": 40000,
+        "2025-12": 40000,
+        "2023-03": 20000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.779424,
+      "longitud": -73.157198,
+      "poligono": [
+        [
+          -39.779141,
+          -73.157532
+        ],
+        [
+          -39.779219,
+          -73.156783
+        ],
+        [
+          -39.779707,
+          -73.156863
+        ],
+        [
+          -39.779629,
+          -73.157613
+        ],
+        [
+          -39.779141,
+          -73.157532
+        ]
+      ],
+      "telefonoContacto": "+56984383935",
+      "emailContacto": "pedro.y.jocelyne.poblete@losmanios.cl",
+      "pinAcceso": "1253",
+      "telefonoSecundario": "+56993739488",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P26-01",
+            "asignadoA": "Pedro y Jocelyne poblete (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P26-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984383935",
+            "titular": "Pedro y Jocelyne poblete (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993739488",
+            "titular": "Contacto Familiar — Parc. 26",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. 26",
+      "rolSii": "2475-175 / Sub-Lote 26",
+      "servidumbreM2": 180,
+      "utmEste": 657811,
+      "utmNorte": 5595100,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-24",
+      "ordenFila": 24,
+      "numeroParcela": "28",
+      "propietarioActual": "Ale G",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "",
+      "pagos": {
+        "2025-07": 30000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 30000,
+        "2024-08": 20000,
+        "2025-11": 30000,
+        "2022-06": 15000,
+        "2026-08": 30000,
+        "2025-08": 30000,
+        "2026-10": 30000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 30000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 30000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 30000,
+        "2025-06": 30000,
+        "2025-09": 30000,
+        "2023-04": 20000,
+        "2026-06": 30000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 30000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 30000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-09": 30000,
+        "2026-05": 30000,
+        "2025-12": 30000,
+        "2023-03": 20000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.779642,
+      "longitud": -73.159574,
+      "poligono": [
+        [
+          -39.779359,
+          -73.159908
+        ],
+        [
+          -39.779437,
+          -73.159159
+        ],
+        [
+          -39.779925,
+          -73.159239
+        ],
+        [
+          -39.779847,
+          -73.159989
+        ],
+        [
+          -39.779359,
+          -73.159908
+        ]
+      ],
+      "telefonoContacto": "+56984396280",
+      "emailContacto": "ale.g@losmanios.cl",
+      "pinAcceso": "1264",
+      "telefonoSecundario": "+56993762944",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 1,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P28-01",
+            "asignadoA": "Ale G (Titular)",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 1,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984396280",
+            "titular": "Ale G (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. 28",
+      "rolSii": "2475-175 / Sub-Lote 28",
+      "servidumbreM2": 180,
+      "utmEste": 657607,
+      "utmNorte": 5595080,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-25",
+      "ordenFila": 25,
+      "numeroParcela": "29",
+      "propietarioActual": "Pamela",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "",
+      "pagos": {
+        "2025-07": 30000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 30000,
+        "2024-08": 20000,
+        "2025-11": 30000,
+        "2022-06": 15000,
+        "2026-08": 30000,
+        "2025-08": 30000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 30000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 30000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 30000,
+        "2025-06": 30000,
+        "2025-09": 30000,
+        "2023-04": 20000,
+        "2026-06": 30000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 30000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 30000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-05": 30000,
+        "2025-12": 30000,
+        "2023-03": 20000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.779791,
+      "longitud": -73.158729,
+      "poligono": [
+        [
+          -39.779508,
+          -73.159064
+        ],
+        [
+          -39.779586,
+          -73.158314
+        ],
+        [
+          -39.780074,
+          -73.158395
+        ],
+        [
+          -39.779995,
+          -73.159144
+        ],
+        [
+          -39.779508,
+          -73.159064
+        ]
+      ],
+      "telefonoContacto": "+56984408625",
+      "emailContacto": "pamela@losmanios.cl",
+      "pinAcceso": "1275",
+      "telefonoSecundario": "+56993786400",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P29-01",
+            "asignadoA": "Pamela (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P29-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984408625",
+            "titular": "Pamela (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993786400",
+            "titular": "Contacto Familiar — Parc. 29",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": false
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. 29",
+      "rolSii": "2475-175 / Sub-Lote 29",
+      "servidumbreM2": 180,
+      "utmEste": 657679,
+      "utmNorte": 5595062,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-26",
+      "ordenFila": 26,
+      "numeroParcela": "S/N-26",
+      "propietarioActual": "Macarena",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "Falta completar N° de parcela manualmente",
+      "pagos": {
+        "2024-02": 20000,
+        "2025-02": 20000,
+        "2024-03": 20000,
+        "2024-10": 20000,
+        "2024-08": 20000,
+        "2024-04": 20000,
+        "2024-11": 20000,
+        "2024-05": 20000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-12": 20000,
+        "2025-01": 20000,
+        "2024-07": 20000,
+        "2024-06": 20000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.779939,
+      "longitud": -73.157885,
+      "poligono": [
+        [
+          -39.779656,
+          -73.158219
+        ],
+        [
+          -39.779735,
+          -73.15747
+        ],
+        [
+          -39.780222,
+          -73.15755
+        ],
+        [
+          -39.780144,
+          -73.1583
+        ],
+        [
+          -39.779656,
+          -73.158219
+        ]
+      ],
+      "telefonoContacto": "+56984420970",
+      "emailContacto": "macarena@losmanios.cl",
+      "pinAcceso": "1286",
+      "telefonoSecundario": "+56993809856",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 1,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-PSN26-01",
+            "asignadoA": "Macarena (Titular)",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 1,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984420970",
+            "titular": "Macarena (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 (S/N-26)",
+      "rolSii": "2475-175 / Sub-Lote S/N-26",
+      "servidumbreM2": 180,
+      "utmEste": 657751,
+      "utmNorte": 5595044,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-27",
+      "ordenFila": 27,
+      "numeroParcela": "63",
+      "propietarioActual": "Karín",
+      "propietarioAnterior": "-",
+      "condicion": "Con Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 40000,
+      "observaciones": "Abono parcial Sep-23: pagó $10.000 de $20.000 (faltan $10.000) | Abono parcial Nov-25: pagó $20.000 de $40.000 (faltan $20.000) | Falta completar N° de parcela manualmente",
+      "pagos": {
+        "2025-07": 40000,
+        "2024-06": 20000,
+        "2022-05": 15000,
+        "2024-05": 20000,
+        "2026-03": 40000,
+        "2024-08": 20000,
+        "2025-11": 20000,
+        "2022-06": 15000,
+        "2025-08": 40000,
+        "2022-10": 15000,
+        "2023-12": 20000,
+        "2026-01": 40000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 40000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2022-08": 15000,
+        "2026-04": 40000,
+        "2025-06": 40000,
+        "2025-09": 40000,
+        "2023-04": 20000,
+        "2026-06": 40000,
+        "2022-11": 15000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 10000,
+        "2025-10": 40000,
+        "2022-09": 15000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2022-04": 15000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 40000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2022-12": 15000,
+        "2022-07": 15000,
+        "2024-02": 20000,
+        "2023-02": 20000,
+        "2024-07": 20000,
+        "2023-01": 20000,
+        "2023-10": 20000,
+        "2026-05": 40000,
+        "2025-12": 40000,
+        "2023-03": 20000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.780088,
+      "longitud": -73.15704,
+      "poligono": [
+        [
+          -39.779805,
+          -73.157374
+        ],
+        [
+          -39.779883,
+          -73.156625
+        ],
+        [
+          -39.780371,
+          -73.156705
+        ],
+        [
+          -39.780293,
+          -73.157455
+        ],
+        [
+          -39.779805,
+          -73.157374
+        ]
+      ],
+      "telefonoContacto": "+56984433315",
+      "emailContacto": "karin@losmanios.cl",
+      "pinAcceso": "1297",
+      "telefonoSecundario": "+56993833312",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P63-01",
+            "asignadoA": "Karín (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P63-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984433315",
+            "titular": "Karín (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993833312",
+            "titular": "Contacto Familiar — Parc. 63",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. 63",
+      "rolSii": "2475-175 / Sub-Lote 63",
+      "servidumbreM2": 180,
+      "utmEste": 657823,
+      "utmNorte": 5595026,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-28",
+      "ordenFila": 28,
+      "numeroParcela": "S/N-28",
+      "propietarioActual": "Pablo Látino",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2022-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "Falta completar N° de parcela manualmente",
+      "pagos": {
+        "2025-05": 20000,
+        "2025-06": 30000,
+        "2025-03": 20000,
+        "2025-04": 20000,
+        "2025-07": 30000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.780306,
+      "longitud": -73.159416,
+      "poligono": [
+        [
+          -39.780023,
+          -73.159751
+        ],
+        [
+          -39.780101,
+          -73.159001
+        ],
+        [
+          -39.780589,
+          -73.159082
+        ],
+        [
+          -39.780511,
+          -73.159831
+        ],
+        [
+          -39.780023,
+          -73.159751
+        ]
+      ],
+      "telefonoContacto": "+56984445660",
+      "emailContacto": "pablo.latino@losmanios.cl",
+      "pinAcceso": "1308",
+      "telefonoSecundario": "+56993856768",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 1,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-PSN28-01",
+            "asignadoA": "Pablo Látino (Titular)",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 1,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984445660",
+            "titular": "Pablo Látino (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": false
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 (S/N-28)",
+      "rolSii": "2475-175 / Sub-Lote S/N-28",
+      "servidumbreM2": 180,
+      "utmEste": 657619,
+      "utmNorte": 5595006,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-29",
+      "ordenFila": 29,
+      "numeroParcela": "27",
+      "propietarioActual": "Rafael Hutchings",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2023-04",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "Falta completar N° de parcela manualmente",
+      "pagos": {
+        "2023-03": 0,
+        "2024-05": 20000,
+        "2026-03": 30000,
+        "2024-08": 20000,
+        "2025-11": 30000,
+        "2026-08": 30000,
+        "2025-08": 30000,
+        "2025-07": 30000,
+        "2026-09": 30000,
+        "2024-06": 20000,
+        "2026-01": 30000,
+        "2025-02": 20000,
+        "2025-04": 20000,
+        "2024-04": 20000,
+        "2026-02": 30000,
+        "2023-07": 20000,
+        "2023-08": 20000,
+        "2023-11": 20000,
+        "2026-04": 30000,
+        "2025-06": 30000,
+        "2025-09": 30000,
+        "2026-06": 30000,
+        "2023-04": 20000,
+        "2024-12": 20000,
+        "2025-03": 20000,
+        "2023-09": 20000,
+        "2025-10": 30000,
+        "2025-01": 20000,
+        "2023-06": 20000,
+        "2024-10": 20000,
+        "2024-11": 20000,
+        "2026-07": 30000,
+        "2024-01": 20000,
+        "2024-09": 20000,
+        "2024-03": 20000,
+        "2025-05": 20000,
+        "2023-05": 20000,
+        "2024-02": 20000,
+        "2023-02": 0,
+        "2023-12": 20000,
+        "2023-01": 0,
+        "2023-10": 20000,
+        "2026-05": 30000,
+        "2025-12": 30000,
+        "2024-07": 20000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.780455,
+      "longitud": -73.158571,
+      "poligono": [
+        [
+          -39.780172,
+          -73.158906
+        ],
+        [
+          -39.78025,
+          -73.158157
+        ],
+        [
+          -39.780738,
+          -73.158237
+        ],
+        [
+          -39.78066,
+          -73.158986
+        ],
+        [
+          -39.780172,
+          -73.158906
+        ]
+      ],
+      "telefonoContacto": "+56984458005",
+      "emailContacto": "rafael.hutchings@losmanios.cl",
+      "pinAcceso": "1319",
+      "telefonoSecundario": "+56993880224",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P27-01",
+            "asignadoA": "Rafael Hutchings (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P27-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984458005",
+            "titular": "Rafael Hutchings (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993880224",
+            "titular": "Contacto Familiar — Parc. 27",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. 27",
+      "rolSii": "2475-175 / Sub-Lote 27",
+      "servidumbreM2": 180,
+      "utmEste": 657691,
+      "utmNorte": 5594988,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-30",
+      "ordenFila": 30,
+      "numeroParcela": "A12-12",
+      "propietarioActual": "Daniel M",
+      "propietarioAnterior": "-",
+      "condicion": "Con Casa",
+      "inicioCobro": "2024-03",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 40000,
+      "observaciones": "",
+      "pagos": {
+        "2024-05": 20000,
+        "2026-03": 40000,
+        "2026-08": 40000,
+        "2025-08": 40000,
+        "2024-06": 20000,
+        "2026-01": 40000,
+        "2025-02": 20000,
+        "2025-11": 40000,
+        "2024-04": 20000,
+        "2026-02": 40000,
+        "2024-11": 20000,
+        "2024-02": 0,
+        "2025-09": 40000,
+        "2024-01": 0,
+        "2025-06": 40000,
+        "2026-06": 40000,
+        "2024-09": 20000,
+        "2024-12": 20000,
+        "2025-04": 20000,
+        "2026-09": 40000,
+        "2025-10": 40000,
+        "2025-01": 20000,
+        "2026-04": 40000,
+        "2024-10": 20000,
+        "2026-07": 40000,
+        "2025-07": 40000,
+        "2025-03": 20000,
+        "2024-08": 20000,
+        "2025-05": 20000,
+        "2024-03": 20000,
+        "2026-05": 40000,
+        "2025-12": 40000,
+        "2024-07": 20000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.780604,
+      "longitud": -73.157727,
+      "poligono": [
+        [
+          -39.780321,
+          -73.158061
+        ],
+        [
+          -39.780399,
+          -73.157312
+        ],
+        [
+          -39.780887,
+          -73.157392
+        ],
+        [
+          -39.780808,
+          -73.158142
+        ],
+        [
+          -39.780321,
+          -73.158061
+        ]
+      ],
+      "telefonoContacto": "+56984470350",
+      "emailContacto": "daniel.m@losmanios.cl",
+      "pinAcceso": "1330",
+      "telefonoSecundario": "+56993903680",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-PA1212-01",
+            "asignadoA": "Daniel M (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-PA1212-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984470350",
+            "titular": "Daniel M (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993903680",
+            "titular": "Contacto Familiar — Parc. A12-12",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. A12-12",
+      "rolSii": "2475-175 / Sub-Lote A12-12",
+      "servidumbreM2": 180,
+      "utmEste": 657763,
+      "utmNorte": 5594970,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-31",
+      "ordenFila": 31,
+      "numeroParcela": "A2-4",
+      "propietarioActual": "Nicolás y Valentina Soledad",
+      "propietarioAnterior": "-",
+      "condicion": "Con Casa",
+      "inicioCobro": "2025-01",
+      "fechaPasoConCasa": "2025-08",
+      "cuotaActual": 40000,
+      "observaciones": "Paso a Con Casa desde Ago-25 ($40.000; Jun-25 y Jul-25 pagados como Sin Casa $30.000)",
+      "pagos": {
+        "2025-06": 30000,
+        "2025-11": 40000,
+        "2026-08": 40000,
+        "2026-04": 40000,
+        "2025-12": 40000,
+        "2025-08": 40000,
+        "2026-06": 40000,
+        "2025-02": 20000,
+        "2025-03": 20000,
+        "2025-04": 20000,
+        "2026-01": 40000,
+        "2025-05": 20000,
+        "2026-02": 40000,
+        "2026-07": 40000,
+        "2026-05": 40000,
+        "2026-09": 40000,
+        "2025-07": 30000,
+        "2025-01": 20000,
+        "2025-09": 40000,
+        "2026-03": 40000,
+        "2025-10": 40000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.780752,
+      "longitud": -73.156882,
+      "poligono": [
+        [
+          -39.780469,
+          -73.157217
+        ],
+        [
+          -39.780547,
+          -73.156467
+        ],
+        [
+          -39.781035,
+          -73.156548
+        ],
+        [
+          -39.780957,
+          -73.157297
+        ],
+        [
+          -39.780469,
+          -73.157217
+        ]
+      ],
+      "telefonoContacto": "+56984482695",
+      "emailContacto": "nicolas.y.valentina.soledad@losmanios.cl",
+      "pinAcceso": "1341",
+      "telefonoSecundario": "+56993927136",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-PA24-01",
+            "asignadoA": "Nicolás y Valentina Soledad (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-PA24-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984482695",
+            "titular": "Nicolás y Valentina Soledad (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993927136",
+            "titular": "Contacto Familiar — Parc. A2-4",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": false
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. A2-4",
+      "rolSii": "2475-175 / Sub-Lote A2-4",
+      "servidumbreM2": 180,
+      "utmEste": 657835,
+      "utmNorte": 5594952,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-32",
+      "ordenFila": 32,
+      "numeroParcela": "A2-8",
+      "propietarioActual": "Hernán",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2025-03",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "",
+      "pagos": {
+        "2025-06": 30000,
+        "2025-11": 30000,
+        "2025-12": 30000,
+        "2025-08": 30000,
+        "2025-02": 0,
+        "2025-03": 20000,
+        "2025-04": 20000,
+        "2026-01": 30000,
+        "2025-05": 20000,
+        "2026-02": 30000,
+        "2025-07": 30000,
+        "2025-01": 0,
+        "2025-09": 30000,
+        "2025-10": 30000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.78097,
+      "longitud": -73.159258,
+      "poligono": [
+        [
+          -39.780687,
+          -73.159593
+        ],
+        [
+          -39.780765,
+          -73.158843
+        ],
+        [
+          -39.781253,
+          -73.158924
+        ],
+        [
+          -39.781175,
+          -73.159673
+        ],
+        [
+          -39.780687,
+          -73.159593
+        ]
+      ],
+      "telefonoContacto": "+56984495040",
+      "emailContacto": "hernan@losmanios.cl",
+      "pinAcceso": "1352",
+      "telefonoSecundario": "+56993950592",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 1,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-PA28-01",
+            "asignadoA": "Hernán (Titular)",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 1,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984495040",
+            "titular": "Hernán (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. A2-8",
+      "rolSii": "2475-175 / Sub-Lote A2-8",
+      "servidumbreM2": 180,
+      "utmEste": 657631,
+      "utmNorte": 5594932,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-33",
+      "ordenFila": 33,
+      "numeroParcela": "A2-6",
+      "propietarioActual": "Charlene",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2025-01",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "",
+      "pagos": {
+        "2025-06": 30000,
+        "2025-11": 30000,
+        "2025-12": 30000,
+        "2025-08": 30000,
+        "2025-02": 20000,
+        "2025-03": 20000,
+        "2025-04": 20000,
+        "2026-01": 30000,
+        "2025-05": 20000,
+        "2026-02": 30000,
+        "2025-07": 30000,
+        "2025-01": 20000,
+        "2025-09": 30000,
+        "2025-10": 30000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.781119,
+      "longitud": -73.158414,
+      "poligono": [
+        [
+          -39.780836,
+          -73.158748
+        ],
+        [
+          -39.780914,
+          -73.157999
+        ],
+        [
+          -39.781402,
+          -73.158079
+        ],
+        [
+          -39.781324,
+          -73.158829
+        ],
+        [
+          -39.780836,
+          -73.158748
+        ]
+      ],
+      "telefonoContacto": "+56984507385",
+      "emailContacto": "charlene@losmanios.cl",
+      "pinAcceso": "1363",
+      "telefonoSecundario": "+56993974048",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-PA26-01",
+            "asignadoA": "Charlene (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-PA26-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984507385",
+            "titular": "Charlene (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993974048",
+            "titular": "Contacto Familiar — Parc. A2-6",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. A2-6",
+      "rolSii": "2475-175 / Sub-Lote A2-6",
+      "servidumbreM2": 180,
+      "utmEste": 657703,
+      "utmNorte": 5594914,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-34",
+      "ordenFila": 34,
+      "numeroParcela": "S/N-34",
+      "propietarioActual": "Felipe Becerrra",
+      "propietarioAnterior": "-",
+      "condicion": "Con Casa",
+      "inicioCobro": "2025-03",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 40000,
+      "observaciones": "Abono parcial Jul-25: pagó $20.000 de $40.000 (faltan $20.000) | Abono parcial Sep-25: pagó $30.000 de $40.000 (faltan $10.000) | Falta completar N° de parcela manualmente",
+      "pagos": {
+        "2025-06": 40000,
+        "2025-11": 40000,
+        "2026-04": 40000,
+        "2025-12": 40000,
+        "2025-08": 40000,
+        "2026-06": 40000,
+        "2025-02": 0,
+        "2025-03": 20000,
+        "2025-04": 20000,
+        "2026-01": 40000,
+        "2025-05": 20000,
+        "2026-02": 40000,
+        "2026-07": 40000,
+        "2026-05": 40000,
+        "2025-07": 20000,
+        "2025-01": 0,
+        "2025-09": 30000,
+        "2026-03": 40000,
+        "2025-10": 40000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.781268,
+      "longitud": -73.157569,
+      "poligono": [
+        [
+          -39.780985,
+          -73.157903
+        ],
+        [
+          -39.781063,
+          -73.157154
+        ],
+        [
+          -39.781551,
+          -73.157234
+        ],
+        [
+          -39.781473,
+          -73.157984
+        ],
+        [
+          -39.780985,
+          -73.157903
+        ]
+      ],
+      "telefonoContacto": "+56984519730",
+      "emailContacto": "felipe.becerrra@losmanios.cl",
+      "pinAcceso": "1374",
+      "telefonoSecundario": "+56993997504",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-PSN34-01",
+            "asignadoA": "Felipe Becerrra (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-PSN34-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984519730",
+            "titular": "Felipe Becerrra (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56993997504",
+            "titular": "Contacto Familiar — Parc. S/N-34",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": false
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 (S/N-34)",
+      "rolSii": "2475-175 / Sub-Lote S/N-34",
+      "servidumbreM2": 180,
+      "utmEste": 657775,
+      "utmNorte": 5594896,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-35",
+      "ordenFila": 35,
+      "numeroParcela": "3 parcelas",
+      "propietarioActual": "Alejandro Becerra",
+      "propietarioAnterior": "-",
+      "condicion": "3 Parcelas",
+      "inicioCobro": "2025-03",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 100000,
+      "observaciones": "",
+      "pagos": {
+        "2025-06": 100000,
+        "2025-07": 100000,
+        "2026-05": 40000,
+        "2025-08": 100000,
+        "2026-06": 40000,
+        "2025-02": 0,
+        "2025-03": 60000,
+        "2025-04": 60000,
+        "2026-01": 40000,
+        "2025-05": 60000,
+        "2026-02": 40000,
+        "2026-04": 40000,
+        "2025-01": 0,
+        "2025-09": 100000,
+        "2026-03": 40000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 15000,
+      "latitud": -39.781549,
+      "longitud": -73.156534,
+      "poligono": [
+        [
+          -39.781133,
+          -73.157059
+        ],
+        [
+          -39.781206,
+          -73.155947
+        ],
+        [
+          -39.781973,
+          -73.15602
+        ],
+        [
+          -39.7819,
+          -73.157132
+        ],
+        [
+          -39.781133,
+          -73.157059
+        ]
+      ],
+      "telefonoContacto": "+56984532075",
+      "emailContacto": "alejandro.becerra@losmanios.cl",
+      "pinAcceso": "1385",
+      "telefonoSecundario": "+56994020960",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 4,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-P3parcelas-01",
+            "asignadoA": "Alejandro Becerra (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P3parcelas-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P3parcelas-03",
+            "asignadoA": "Vehículo Familiar #3",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-P3parcelas-04",
+            "asignadoA": "Vehículo Familiar #4",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 3,
+        "cupoMaximoTelefonos": 8,
+        "telefonosPorton": [
+          {
+            "numero": "+56984532075",
+            "titular": "Alejandro Becerra (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56994020960",
+            "titular": "Contacto Familiar — Parc. 3 parcelas",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          },
+          {
+            "numero": "+56975488885",
+            "titular": "Familiar Adicional — Parc. 3 parcelas",
+            "relacion": "Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 (3 Lotes Originarios)",
+      "rolSii": "2475-175 (Matriz)",
+      "servidumbreM2": 180,
+      "utmEste": 657863,
+      "utmNorte": 5594863,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-36",
+      "ordenFila": 36,
+      "numeroParcela": "A2-11",
+      "propietarioActual": "Juan Velasquez",
+      "propietarioAnterior": "-",
+      "condicion": "Sin Casa",
+      "inicioCobro": "2025-02",
+      "fechaPasoConCasa": null,
+      "cuotaActual": 30000,
+      "observaciones": "Abono parcial Nov-25: pagó $20.000 de $30.000 (faltan $10.000)",
+      "pagos": {
+        "2025-06": 30000,
+        "2025-11": 20000,
+        "2025-12": 30000,
+        "2025-08": 30000,
+        "2025-02": 20000,
+        "2025-03": 20000,
+        "2025-04": 20000,
+        "2026-01": 30000,
+        "2025-05": 20000,
+        "2026-02": 30000,
+        "2025-07": 30000,
+        "2025-01": 0,
+        "2025-09": 30000,
+        "2026-03": 30000,
+        "2025-10": 30000
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.781634,
+      "longitud": -73.1591,
+      "poligono": [
+        [
+          -39.781351,
+          -73.159435
+        ],
+        [
+          -39.78143,
+          -73.158686
+        ],
+        [
+          -39.781917,
+          -73.158766
+        ],
+        [
+          -39.781839,
+          -73.159515
+        ],
+        [
+          -39.781351,
+          -73.159435
+        ]
+      ],
+      "telefonoContacto": "+56984544420",
+      "emailContacto": "juan.velasquez@losmanios.cl",
+      "pinAcceso": "1396",
+      "telefonoSecundario": "+56994044416",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 1,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-PA211-01",
+            "asignadoA": "Juan Velasquez (Titular)",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 1,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984544420",
+            "titular": "Juan Velasquez (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": true
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. A2-11",
+      "rolSii": "2475-175 / Sub-Lote A2-11",
+      "servidumbreM2": 180,
+      "utmEste": 657643,
+      "utmNorte": 5594858,
+      "rutPropietario": ""
+    },
+    {
+      "id": "parc-37",
+      "ordenFila": 37,
+      "numeroParcela": "A2-13",
+      "propietarioActual": "Sixto",
+      "propietarioAnterior": "-",
+      "condicion": "Con Casa",
+      "inicioCobro": "2026-06",
+      "fechaPasoConCasa": "2026-06",
+      "cuotaActual": 40000,
+      "observaciones": "",
+      "pagos": {
+        "2026-08": 40000,
+        "2026-06": 40000,
+        "2026-09": 40000,
+        "2026-02": 0,
+        "2026-01": 0,
+        "2026-04": 0,
+        "2026-05": 0,
+        "2026-10": 40000,
+        "2026-07": 40000,
+        "2026-03": 0
+      },
+      "sector": "Resto Lote A-1-1 — Sector Oriente / Altos (Rol 2475-175)",
+      "superficieM2": 5000,
+      "latitud": -39.781783,
+      "longitud": -73.158256,
+      "poligono": [
+        [
+          -39.7815,
+          -73.15859
+        ],
+        [
+          -39.781578,
+          -73.157841
+        ],
+        [
+          -39.782066,
+          -73.157921
+        ],
+        [
+          -39.781988,
+          -73.158671
+        ],
+        [
+          -39.7815,
+          -73.15859
+        ]
+      ],
+      "telefonoContacto": "+56984556765",
+      "emailContacto": "sixto@losmanios.cl",
+      "pinAcceso": "1407",
+      "telefonoSecundario": "+56994067872",
+      "rolAccesoSistema": "COPROPIETARIO",
+      "notificacionesWhatsApp": true,
+      "notificacionesEmail": true,
+      "seguridadPorton": {
+        "controlesManualesCount": 2,
+        "controlesDetalle": [
+          {
+            "codigo": "RF-PA213-01",
+            "asignadoA": "Sixto (Titular)",
+            "estado": "ACTIVO"
+          },
+          {
+            "codigo": "RF-PA213-02",
+            "asignadoA": "Vehículo Familiar #2",
+            "estado": "ACTIVO"
+          }
+        ],
+        "telefonosConectadosCount": 2,
+        "cupoMaximoTelefonos": 4,
+        "telefonosPorton": [
+          {
+            "numero": "+56984556765",
+            "titular": "Sixto (Titular)",
+            "relacion": "Propietario",
+            "activo": true
+          },
+          {
+            "numero": "+56994067872",
+            "titular": "Contacto Familiar — Parc. A2-13",
+            "relacion": "Cónyuge / Familiar",
+            "activo": true
+          }
+        ],
+        "tieneCambioPropietario": true,
+        "accesosDuenoAnteriorRevocados": false
+      },
+      "codigoLotePlano": "Resto Lote A-1-1 · Parc. A2-13",
+      "rolSii": "2475-175 / Sub-Lote A2-13",
+      "servidumbreM2": 180,
+      "utmEste": 657715,
+      "utmNorte": 5594840,
+      "rutPropietario": ""
+    }
+  ],
+  "egresos": [
+    {
+      "id": "egr-1",
+      "item": "Pago Becerra-Don Jorge",
+      "fecha": "2026-07-04",
+      "destino": "Trabajo Don jorge",
+      "monto": 200000,
+      "observaciones": "",
+      "proyectoId": "proy-3",
+      "proyectoTitulo": "Programa Anual de Mantención de Caminos y Labores Don Jorge"
+    },
+    {
+      "id": "egr-2",
+      "item": "Pago Don Jorge",
+      "fecha": "2026-08-03",
+      "destino": "",
+      "monto": 200000,
+      "observaciones": "",
+      "proyectoId": "proy-3",
+      "proyectoTitulo": "Programa Anual de Mantención de Caminos y Labores Don Jorge"
+    },
+    {
+      "id": "egr-3",
+      "item": "Pago Becerra-Don Jorge",
+      "fecha": "2026-08-03",
+      "destino": "Trabajo Don jorge",
+      "monto": 200000,
+      "observaciones": "",
+      "proyectoId": "proy-3",
+      "proyectoTitulo": "Programa Anual de Mantención de Caminos y Labores Don Jorge"
+    },
+    {
+      "id": "egr-4",
+      "item": "Pago Don Jorge",
+      "fecha": "2026-08-28",
+      "destino": "",
+      "monto": 200000,
+      "observaciones": "",
+      "proyectoId": "proy-3",
+      "proyectoTitulo": "Programa Anual de Mantención de Caminos y Labores Don Jorge"
+    },
+    {
+      "id": "egr-5",
+      "item": "Pago Becerra-Don Jorge",
+      "fecha": "2026-09-01",
+      "destino": "Trabajo Don jorge",
+      "monto": 250000,
+      "observaciones": "",
+      "proyectoId": "proy-3",
+      "proyectoTitulo": "Programa Anual de Mantención de Caminos y Labores Don Jorge"
+    },
+    {
+      "id": "egr-6",
+      "item": "Pago Candado Porton",
+      "fecha": "2026-09-01",
+      "destino": "Pago a pablo Francois",
+      "monto": 14463,
+      "observaciones": "",
+      "proyectoId": "proy-2",
+      "proyectoTitulo": "Mejoramiento Iluminación y Cierre Portón Principal"
+    },
+    {
+      "id": "egr-7",
+      "item": "Pago Luces Porton",
+      "fecha": "2026-09-07",
+      "destino": "Pago Luces en porton",
+      "monto": 103800,
+      "observaciones": "",
+      "proyectoId": "proy-2",
+      "proyectoTitulo": "Mejoramiento Iluminación y Cierre Portón Principal"
+    },
+    {
+      "id": "egr-8",
+      "item": "Pago Don Jorge",
+      "fecha": "2026-10-01",
+      "destino": "",
+      "monto": 200000,
+      "observaciones": "",
+      "proyectoId": "proy-3",
+      "proyectoTitulo": "Programa Anual de Mantención de Caminos y Labores Don Jorge"
+    },
+    {
+      "id": "egr-9",
+      "item": "Pago Camaras",
+      "fecha": "2026-10-01",
+      "destino": "",
+      "monto": 1830275,
+      "observaciones": "",
+      "proyectoId": "proy-1",
+      "proyectoTitulo": "Sistema de Cámaras de Seguridad (Loteo 1 y Sector Altos)"
+    },
+    {
+      "id": "egr-10",
+      "item": "Pago Electricidad",
+      "fecha": "2026-10-18",
+      "destino": "3 boletas",
+      "monto": 489000,
+      "observaciones": "",
+      "proyectoId": "",
+      "proyectoTitulo": "Gasto Operativo General"
+    }
+  ],
+  "otrosIngresos": [
+    {
+      "id": "oing-1",
+      "item": "Camaras Loteo 1",
+      "fecha": "2026-08-24",
+      "destino": "",
+      "monto": 250000,
+      "observaciones": "",
+      "pagadoEnCaja": true,
+      "proyectoId": "proy-1",
+      "proyectoTitulo": "Sistema de Cámaras de Seguridad (Loteo 1 y Sector Altos)"
+    },
+    {
+      "id": "oing-2",
+      "item": "Camaras Loteo 1",
+      "fecha": "2026-08-24",
+      "destino": "",
+      "monto": 250000,
+      "observaciones": "",
+      "pagadoEnCaja": true,
+      "proyectoId": "proy-1",
+      "proyectoTitulo": "Sistema de Cámaras de Seguridad (Loteo 1 y Sector Altos)"
+    },
+    {
+      "id": "oing-3",
+      "item": "Camaras Altos",
+      "fecha": "2026-08-25",
+      "destino": "",
+      "monto": 348000,
+      "observaciones": "",
+      "pagadoEnCaja": true,
+      "proyectoId": "proy-1",
+      "proyectoTitulo": "Sistema de Cámaras de Seguridad (Loteo 1 y Sector Altos)"
+    },
+    {
+      "id": "oing-4",
+      "item": "Camara Altos",
+      "fecha": "2026-08-25",
+      "destino": "",
+      "monto": 348000,
+      "observaciones": "",
+      "pagadoEnCaja": true,
+      "proyectoId": "proy-1",
+      "proyectoTitulo": "Sistema de Cámaras de Seguridad (Loteo 1 y Sector Altos)"
+    }
+  ],
+  "proyectosComunitarios": [
+    {
+      "id": "proy-1",
+      "titulo": "Sistema de Cámaras de Seguridad (Loteo 1 y Sector Altos)",
+      "categoria": "Seguridad y Vigilancia",
+      "descripcion": "Instalación de cámaras de televigilancia comunitaria de alta resolución con respaldo solar y monitoreo en acceso principal, Loteo 1 y Sector Altos.",
+      "objetivoTecnico": "8 puntos de cámara IP + NVR comunitario + enlace inalámbrico en puntos críticos del loteo.",
+      "metaFinanciera": 1830275,
+      "montoRecaudadoExtra": 1196000,
+      "aporteFondoComun": 634275,
+      "montoEjecutado": 1830275,
+      "estado": "CONCLUIDO",
+      "fechaInicio": "2026-08-15",
+      "fechaTermino": "2026-10-05",
+      "responsable": "Comité de Seguridad y Administración",
+      "votosAprobacion": 31,
+      "votosTotales": 33
+    },
+    {
+      "id": "proy-2",
+      "titulo": "Mejoramiento Iluminación y Cierre Portón Principal",
+      "categoria": "Infraestructura Acceso",
+      "descripcion": "Instalación de luminarias LED en el portón de acceso principal, reposición de candado de seguridad y suministro eléctrico asociado.",
+      "objetivoTecnico": "Focos LED de alta eficiencia, fotocelda automática y refuerzo de herrajes en portón.",
+      "metaFinanciera": 150000,
+      "montoRecaudadoExtra": 0,
+      "aporteFondoComun": 118263,
+      "montoEjecutado": 118263,
+      "estado": "CONCLUIDO",
+      "fechaInicio": "2026-08-25",
+      "fechaTermino": "2026-09-10",
+      "responsable": "Pablo Francois / Comité de Administración",
+      "votosAprobacion": 34,
+      "votosTotales": 35
+    },
+    {
+      "id": "proy-3",
+      "titulo": "Programa Anual de Mantención de Caminos y Labores Don Jorge",
+      "categoria": "Vialidad y Mantención",
+      "descripcion": "Trabajos permanentes de despeje de cunetas, bacheo, control de vegetación en servidumbres y mantención operativa del loteo ejecutados por Don Jorge.",
+      "objetivoTecnico": "Jornadas mensuales de mantención preventiva de red vial interior y áreas comunes.",
+      "metaFinanciera": 1800000,
+      "montoRecaudadoExtra": 0,
+      "aporteFondoComun": 1250000,
+      "montoEjecutado": 1250000,
+      "estado": "EN_EJECUCION",
+      "fechaInicio": "2026-07-01",
+      "fechaTermino": "2026-12-31",
+      "responsable": "Comité de Mantención / Don Jorge",
+      "votosAprobacion": 35,
+      "votosTotales": 36
+    },
+    {
+      "id": "proy-4",
+      "titulo": "Telemetría y Automatización Estanque Red de Agua Común",
+      "categoria": "Agua Potable Rural",
+      "descripcion": "Sensor ultrasónico de nivel de estanque, alerta temprana de fugas y respaldo energético para bombas de impulsión de la red de agua común.",
+      "objetivoTecnico": "Control automático de presión y monitoreo en tiempo real para las parcelas conectadas a la red de agua.",
+      "metaFinanciera": 2400000,
+      "montoRecaudadoExtra": 0,
+      "aporteFondoComun": 450000,
+      "montoEjecutado": 0,
+      "estado": "EN_VOTACION",
+      "fechaInicio": "2026-11-15",
+      "fechaTermino": "2027-02-28",
+      "responsable": "Comisión de Agua Loteo Los Mañíos",
+      "votosAprobacion": 19,
+      "votosTotales": 22
+    }
+  ],
+  "actasAsamblea": [
+    {
+      "id": "acta-1792722400291",
+      "numeroActa": "Acta N° 03/2026",
+      "titulo": "ewewew",
+      "tipo": "ORDINARIA",
+      "modalidad": "HIBRIDA",
+      "fecha": "2026-10-22",
+      "horaInicio": "19:00",
+      "horaCierre": "21:00",
+      "parcelasPresentes": 31,
+      "totalParcelas": 37,
+      "quorumPorcentaje": 83.8,
+      "resumenDeliberacion": "wewe",
+      "ordenDelDia": [
+        "sdsd"
+      ],
+      "acuerdos": [
+        {
+          "codigo": "AC-032026-1",
+          "texto": "ewew",
+          "responsable": "Comité de Administración",
+          "estado": "VIGENTE"
+        }
+      ],
+      "documentoPdfUrl": "",
+      "documentoPdfNombre": "",
+      "firmantesComite": [
+        "Presidente Comité",
+        "Tesorero",
+        "Secretario"
+      ],
+      "firmadoComite": true
+    },
+    {
+      "id": "acta-1",
+      "numeroActa": "Acta N° 01/2025",
+      "titulo": "Asamblea Extraordinaria: Actualización de Cuotas Tramo Jun-2025 y Diferenciación Con Casa / Sin Casa",
+      "tipo": "EXTRAORDINARIA",
+      "modalidad": "HIBRIDA",
+      "fecha": "2025-05-24",
+      "horaInicio": "19:00",
+      "horaCierre": "21:10",
+      "quorumPorcentaje": 84.2,
+      "parcelasPresentes": 31,
+      "totalParcelas": 37,
+      "resumenDeliberacion": "Se revisó el alza de costos de electricidad de bombas de agua y mantención de caminos interiores. La Asamblea aprobó fijar desde Junio 2025 una tarifa diferenciada según uso efectivo de infraestructura y agua común: $30.000/mes para parcelas Sin Casa o Sin Agua común, y $40.000/mes para parcelas Con Casa conectadas a la red.",
+      "ordenDelDia": [
+        "1. Rendición de gastos operativos 2024 - Mayo 2025.",
+        "2. Aprobación de nueva estructura tarifaria diferenciada desde Junio 2025 ($30.000 vs $40.000).",
+        "3. Regla de transición por \"Fecha de Paso a Con Casa\" para propietarios en construcción."
+      ],
+      "acuerdos": [
+        {
+          "codigo": "AC-01/2025",
+          "texto": "Fijar cuota mensual de $30.000 para condición Sin Casa / Sin Agua y $40.000 para condición Con Casa a contar de Junio 2025.",
+          "responsable": "Tesorería",
+          "plazo": "2025-06-01",
+          "estado": "CUMPLIDO"
+        },
+        {
+          "codigo": "AC-02/2025",
+          "texto": "Aplicar cobro de $40.000 desde el mes registrado en \"Fecha Paso a Con Casa\" para parcelas que finalicen su vivienda.",
+          "responsable": "Administración",
+          "plazo": "Permanente",
+          "estado": "CUMPLIDO"
+        }
+      ],
+      "firmadoComite": true
+    },
+    {
+      "id": "acta-2",
+      "numeroActa": "Acta N° 01/2026",
+      "titulo": "Asamblea Ordinaria: Recepción de Nueva Administración y Entrega de Saldo Inicial en Caja",
+      "tipo": "ORDINARIA",
+      "modalidad": "PRESENCIAL",
+      "fecha": "2026-06-07",
+      "horaInicio": "11:00",
+      "horaCierre": "13:30",
+      "quorumPorcentaje": 89.5,
+      "parcelasPresentes": 33,
+      "totalParcelas": 37,
+      "resumenDeliberacion": "Con fecha 07 de junio de 2026 se formaliza el traspaso de la administración comunitaria, certificando una recaudación histórica base de $28.450.000 y un Saldo Inicial recibido en Caja de $7.253.500. Se aprueba plan de inversión en cámaras de seguridad, iluminación de portón y mantención permanente con Don Jorge.",
+      "ordenDelDia": [
+        "1. Arqueo y recepción conforme del Saldo Inicial en Caja ($7.253.500 al 07-06-2026).",
+        "2. Contratación de labores periódicas de mantención (Don Jorge).",
+        "3. Proyecto de Cámaras de Seguridad para Loteo 1 y Sector Altos con aportes extraordinarios."
+      ],
+      "acuerdos": [
+        {
+          "codigo": "AC-01/2026",
+          "texto": "Ratificar Saldo Inicial en Caja por $7.253.500 al 07-06-2026 como línea base del flujo de caja.",
+          "responsable": "Comité Administración",
+          "plazo": "2026-06-07",
+          "estado": "CUMPLIDO"
+        },
+        {
+          "codigo": "AC-02/2026",
+          "texto": "Ejecutar proyecto de Cámaras de Seguridad ($1.830.275) cofinanciado con aportes extraordinarios registrados en Otros Ingresos.",
+          "responsable": "Comité Seguridad",
+          "plazo": "2026-10-05",
+          "estado": "CUMPLIDO"
+        }
+      ],
+      "firmadoComite": true
+    }
+  ],
+  "votacionesAcuerdos": [
+    {
+      "id": "vot-1792723508078",
+      "actaId": "",
+      "titulo": "Consulta Test",
+      "descripcion": "Desc",
+      "materiaExtraordinaria": true,
+      "restringirMorosos": true,
+      "fechaCierre": "2026-12-01",
+      "estado": "ABIERTA",
+      "votosEmitidos": []
+    },
+    {
+      "id": "vot-1792721009059",
+      "actaId": "",
+      "titulo": "Cuota extra ",
+      "descripcion": "sdsds",
+      "materiaExtraordinaria": true,
+      "restringirMorosos": true,
+      "fechaCierre": "2026-11-30",
+      "estado": "ABIERTA",
+      "votosEmitidos": [
+        {
+          "parcelaId": "parc-14",
+          "numeroParcela": "17",
+          "propietario": "Silvana Bustos Astudillo",
+          "opcion": "APRUEBO",
+          "fecha": "2026-10-23"
+        }
+      ]
+    },
+    {
+      "id": "vot-1",
+      "actaId": "acta-2",
+      "titulo": "Aprobación Proyecto Telemetría y Automatización de Estanque de Agua Común",
+      "descripcion": "Autorizar el uso de hasta $1.200.000 del fondo de reserva en caja para instalar sensores de nivel, telemetría y respaldo automático en el estanque de agua del loteo.",
+      "materiaExtraordinaria": true,
+      "restringirMorosos": true,
+      "fechaCierre": "2026-11-30",
+      "estado": "ABIERTA",
+      "votosEmitidos": [
+        {
+          "parcelaId": "parc-1",
+          "numeroParcela": "4",
+          "propietario": "Gonzalo de la Cuadra",
+          "opcion": "APRUEBO",
+          "fecha": "2026-10-18"
+        },
+        {
+          "parcelaId": "parc-3",
+          "numeroParcela": "6",
+          "propietario": "Joaquín",
+          "opcion": "APRUEBO",
+          "fecha": "2026-10-18"
+        },
+        {
+          "parcelaId": "parc-5",
+          "numeroParcela": "8",
+          "propietario": "Nibaldo",
+          "opcion": "APRUEBO",
+          "fecha": "2026-10-19"
+        },
+        {
+          "parcelaId": "parc-6",
+          "numeroParcela": "9",
+          "propietario": "Camila",
+          "opcion": "APRUEBO",
+          "fecha": "2026-10-19"
+        },
+        {
+          "parcelaId": "parc-7",
+          "numeroParcela": "10",
+          "propietario": "Bárbara",
+          "opcion": "APRUEBO",
+          "fecha": "2026-10-20"
+        },
+        {
+          "parcelaId": "parc-8",
+          "numeroParcela": "11",
+          "propietario": "Cristian / Ximena",
+          "opcion": "APRUEBO",
+          "fecha": "2026-10-20"
+        },
+        {
+          "parcelaId": "parc-12",
+          "numeroParcela": "15",
+          "propietario": "Karina",
+          "opcion": "ABSTENCION",
+          "fecha": "2026-10-21"
+        },
+        {
+          "parcelaId": "parc-16",
+          "numeroParcela": "19",
+          "propietario": "Diego Gutierrez",
+          "opcion": "APRUEBO",
+          "fecha": "2026-10-21"
+        },
+        {
+          "parcelaId": "parc-14",
+          "numeroParcela": "17",
+          "propietario": "Silvana Bustos Astudillo",
+          "opcion": "APRUEBO",
+          "fecha": "2026-10-23"
+        }
+      ]
+    },
+    {
+      "id": "vot-2",
+      "actaId": "acta-2",
+      "titulo": "Actualización Reglamento de Convivencia: Velocidad Máxima 20 km/h y Control de Mascotas",
+      "descripcion": "Ratificar el protocolo de seguridad vial interior (máximo 20 km/h) y tenencia responsable de mascotas dentro de los límites de cada parcela, con multa de 1 cuota mensual ($30.000) en caso de reincidencia.",
+      "materiaExtraordinaria": false,
+      "restringirMorosos": false,
+      "fechaCierre": "2026-11-15",
+      "estado": "CERRADA",
+      "votosEmitidos": [
+        {
+          "parcelaId": "parc-1",
+          "numeroParcela": "4",
+          "propietario": "Gonzalo de la Cuadra",
+          "opcion": "APRUEBO",
+          "fecha": "2026-10-15"
+        },
+        {
+          "parcelaId": "parc-4",
+          "numeroParcela": "7",
+          "propietario": "Ignacio",
+          "opcion": "APRUEBO",
+          "fecha": "2026-10-16"
+        },
+        {
+          "parcelaId": "parc-7",
+          "numeroParcela": "10",
+          "propietario": "Bárbara",
+          "opcion": "APRUEBO",
+          "fecha": "2026-10-17"
+        },
+        {
+          "parcelaId": "parc-29",
+          "numeroParcela": "35",
+          "propietario": "Pablo Francois",
+          "opcion": "APRUEBO",
+          "fecha": "2026-10-18"
+        },
+        {
+          "parcelaId": "parc-14",
+          "numeroParcela": "17",
+          "propietario": "Silvana Bustos Astudillo",
+          "opcion": "APRUEBO",
+          "fecha": "2026-10-23"
+        }
+      ]
+    }
+  ],
+  "normasConvivencia": [
+    {
+      "id": "norma-1",
+      "codigo": "ART-01",
+      "categoria": "Vialidad y Caminos Interiores",
+      "titulo": "Velocidad Máxima 20 km/h y Cuidado de Caminos",
+      "descripcion": "La velocidad máxima de circulación dentro de todo el Loteo Los Mañíos es de 20 km/h para proteger a peatones, fauna nativa y evitar el deterioro de la carpeta de ripio. Camiones de alto tonelaje por obras deben coordinar su ingreso y reparar eventuales daños en cunetas.",
+      "sancionSugerida": 30000
+    },
+    {
+      "id": "norma-2",
+      "codigo": "ART-02",
+      "categoria": "Tenencia Responsable de Mascotas",
+      "titulo": "Control Perimetral y Circulación con Correa",
+      "descripcion": "Toda mascota debe permanecer dentro del cierre perimetral de su respectiva parcela. Los paseos por caminos comunes deben realizarse siempre con correa para resguardar la seguridad de los vecinos y la fauna silvestre.",
+      "sancionSugerida": 30000
+    },
+    {
+      "id": "norma-3",
+      "codigo": "ART-03",
+      "categoria": "Ruidos Molestos y Obras de Construcción",
+      "titulo": "Horarios de Faenas Constructivas y Silencio Nocturno",
+      "descripcion": "Los trabajos de construcción y uso de maquinaria ruidosa están permitidos de Lunes a Viernes de 08:30 a 18:30 hrs y Sábados de 09:00 a 14:00 hrs. Domingos y festivos quedan prohibidas las faenas ruidosas.",
+      "sancionSugerida": 40000
+    },
+    {
+      "id": "norma-4",
+      "codigo": "ART-04",
+      "categoria": "Prevención de Incendios Forestales",
+      "titulo": "Prohibición Estricta de Quemas de Basura y Desechos Vegetales",
+      "descripcion": "Queda estrictamente prohibida la quema de ramas, pastizales o basura en cualquier época del año. Cada parcela debe mantener una franja cortafuego limpia alrededor de sus edificaciones.",
+      "sancionSugerida": 60000
+    },
+    {
+      "id": "norma-5",
+      "codigo": "ART-05",
+      "categoria": "Uso de Agua Comunitaria",
+      "titulo": "Uso Doméstico Racional y Condición \"Sin Agua\"",
+      "descripcion": "El agua de la red común está destinada exclusivamente al consumo doméstico de las parcelas con conexión autorizada (Condición \"Con Casa\"). Se prohíbe el llenado de piscinas desde la red común en temporada estival sin autorización expresa del Comité.",
+      "sancionSugerida": 50000
+    },
+    {
+      "id": "norma-1792725417693",
+      "codigo": "ART-06",
+      "categoria": "Aseo y Ornato ",
+      "titulo": "Basura ",
+      "descripcion": "El manejo de la basura domiciliaria es responsabilidad de cada propietario o usufructuario de la parcela, su disposicion en el contenedor comunitario debe ser siempre en bolsa cerrada. No esta permitido depositar escombros (estos deben desecharse via Minucipalidad) y se deben depositar las bolsas dentro de los contenedores, dejando siempre cerrado el acceso y limpio el suelo. ",
+      "sancionSugerida": 30000
+    }
+  ],
+  "reportesConvivencia": [
+    {
+      "id": "rep-1",
+      "fechaIncidente": "2026-10-12",
+      "categoria": "Vialidad y Caminos Interiores",
+      "parcelaReportante": "Parcela 4 (Gonzalo de la Cuadra)",
+      "parcelaInfractoraId": "parc-14",
+      "parcelaInfractoraTexto": "Parcela 17 (Silvana Bustos Astudillo)",
+      "descripcion": "Ingreso de camión de materiales a exceso de velocidad por el camino principal, desplazando ripio en la curva de acceso.",
+      "estado": "EN_MEDIACION",
+      "resolucionComite": "Se notificó al propietario para recordar límite de 20 km/h a proveedores externos.",
+      "montoMulta": 0,
+      "pagadoEnCaja": false
+    }
+  ],
+  "comprobantesInformados": [
+    {
+      "id": "comp-1",
+      "parcelaId": "parc-2",
+      "numeroParcela": "5",
+      "propietario": "Elizabeth",
+      "fechaTransferencia": "2026-10-20",
+      "monto": 40000,
+      "bancoOrigen": "Banco de Chile",
+      "numeroOperacion": "88492014",
+      "periodosCubiertos": "2025-05 ($20.000), 2025-06 ($20.000)",
+      "periodoDestino": "2025-05",
+      "estado": "VALIDADO",
+      "observacionesVecino": "Envío abono de transferencia realizada hoy para regularizar mayo 2025.",
+      "desgloseImputacion": [
+        {
+          "periodo": "2025-05",
+          "monto": 20000
+        },
+        {
+          "periodo": "2025-06",
+          "monto": 20000
+        }
+      ]
+    }
+  ],
+  "citacionesAsamblea": [
+    {
+      "id": "cit-1",
+      "numeroCitacion": "Citación N° 02/2026",
+      "tipo": "ORDINARIA",
+      "titulo": "Asamblea Ordinaria de Copropietarios: Balance 2026 y Plan de Inversiones 2027",
+      "fecha": "2026-11-14",
+      "horaPrimeraCitacion": "19:00",
+      "horaSegundaCitacion": "19:30",
+      "modalidad": "HIBRIDA",
+      "lugarEnlace": "Acceso Principal Loteo Los Mañíos (Quitacalzón) + Sala Google Meet",
+      "tablaTemas": [
+        "1. Revisión de cuenta corriente comunitaria, ingresos extraordinarios y gastos al corte de Octubre 2026.",
+        "2. Evaluación del proyecto de Telemetría y Automatización del Estanque de Agua Común.",
+        "3. Actualización del registro de controles remotos RF y números GSM del Portón Principal.",
+        "4. Varios y acuerdos de convivencia."
+      ],
+      "estado": "CONVOCADA",
+      "creadoPor": "Comité de Administración",
+      "fechaReunion": "2026-11-14",
+      "lugarOEnlace": "Acceso Principal Loteo Los Mañíos (Quitacalzón) + Sala Google Meet"
+    }
+  ]
+}
