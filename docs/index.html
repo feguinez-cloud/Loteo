@@ -58,11 +58,11 @@
         <div>
           <div class="px-3 mb-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-400/70">Finanzas y Transparencia</div>
           <div class="space-y-1">
-            <button data-tab="RESUMEN" onclick="cambiarTab('RESUMEN')" class="tab-btn solo-admin w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition bg-emerald-600 text-white shadow-sm">
+            <button data-tab="RESUMEN" onclick="cambiarTab('RESUMEN')" class="tab-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-bold transition bg-emerald-600 text-white shadow-sm">
               <span class="text-sm">📊</span>
               <span>Resumen de Pagos</span>
             </button>
-            <button data-tab="MATRIZ" onclick="cambiarTab('MATRIZ')" class="tab-btn solo-admin w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium transition text-emerald-100/80 hover:bg-emerald-900/60 hover:text-white">
+            <button data-tab="MATRIZ" onclick="cambiarTab('MATRIZ')" class="tab-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium transition text-emerald-100/80 hover:bg-emerald-900/60 hover:text-white">
               <span class="text-sm">🗓️</span>
               <span>Matriz Mensual</span>
             </button>
@@ -224,8 +224,11 @@
               <option value="CON DEUDA">🔴 Solo Con Deuda</option>
             </select>
           </div>
-          <div class="text-[11px] text-stone-400">
+          <div class="solo-admin text-[11px] text-stone-400">
             Haz clic en <strong>✏️</strong> para editar dueño o pago, o en <strong>📄</strong> para abrir su cartola.
+          </div>
+          <div id="badge-lectura-resumen" class="hidden text-[11px] font-bold text-emerald-900 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-xl">
+            👁️ Planilla global de transparencia comunitaria (solo lectura)
           </div>
         </div>
 
@@ -243,7 +246,7 @@
                   <th class="p-3.5 text-center">Meses Pend.</th>
                   <th class="p-3.5 text-right">Saldo Deuda</th>
                   <th class="p-3.5 text-center">Estado</th>
-                  <th class="p-3.5 text-center">Acciones</th>
+                  <th id="th-acciones-resumen" class="solo-admin p-3.5 text-center">Acciones</th>
                 </tr>
               </thead>
               <tbody id="tabla-resumen-body" class="divide-y divide-stone-100"></tbody>
@@ -783,7 +786,27 @@
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                 <div>
                   <label class="block font-semibold text-stone-700 mb-1">Banco Origen</label>
-                  <input id="comp-banco" type="text" required placeholder="Ej. Banco Estado" class="w-full border border-stone-300 rounded-xl px-3 py-2" />
+                  <select id="comp-banco" required class="w-full border border-stone-300 rounded-xl px-3 py-2 bg-white font-semibold text-stone-800">
+                    <option value="" disabled selected>Seleccionar banco...</option>
+                    <option value="BancoEstado">BancoEstado (CuentaRUT / Vista / Corriente)</option>
+                    <option value="Banco de Chile / Edwards">Banco de Chile / Banco Edwards</option>
+                    <option value="Banco Santander">Banco Santander</option>
+                    <option value="Banco BCI / MACH">Banco BCI / MACH</option>
+                    <option value="Scotiabank Chile">Scotiabank Chile</option>
+                    <option value="Banco Itaú">Banco Itaú</option>
+                    <option value="Banco BICE">Banco BICE</option>
+                    <option value="Banco Security">Banco Security</option>
+                    <option value="Banco Falabella">Banco Falabella</option>
+                    <option value="Banco Ripley">Banco Ripley</option>
+                    <option value="Banco Consorcio">Banco Consorcio</option>
+                    <option value="Banco Internacional">Banco Internacional</option>
+                    <option value="Mercado Pago">Mercado Pago</option>
+                    <option value="Tenpo">Tenpo</option>
+                    <option value="Coopeuch">Coopeuch</option>
+                    <option value="Copec Pay / Los Héroes / Tapp">Copec Pay / Los Héroes / Tapp</option>
+                    <option value="HSBC Bank Chile">HSBC Bank Chile</option>
+                    <option value="Otro Banco Nacional">Otro Banco Nacional</option>
+                  </select>
                 </div>
                 <div>
                   <label class="block font-semibold text-stone-700 mb-1">N° Operación</label>
@@ -1556,11 +1579,21 @@
           }
         });
       }
+      if (Array.isArray(data.egresos)) {
+        for (const eg of data.egresos) {
+          if (typeof eg.item === 'string' && /Becerra.*Don Jorge/i.test(eg.item)) {
+            eg.item = 'Don Jorge';
+          }
+        }
+      }
       if (Array.isArray(data.proyectosComunitarios)) {
         data.proyectosComunitarios = data.proyectosComunitarios.filter(
           p => p.id !== 'proy-4' && !/telemetr[ií]a/i.test((p.titulo || '') + ' ' + (p.nombre || ''))
         );
         for (const pr of data.proyectosComunitarios) {
+          if (pr.id === 'proy-1' && typeof pr.objetivoTecnico === 'string' && pr.objetivoTecnico.includes('8')) {
+            pr.objetivoTecnico = '3 cámaras IP + NVR comunitario + enlace inalámbrico en puntos críticos del loteo.';
+          }
           pr.montoEjecutado = (data.egresos || [])
             .filter(e => e.proyectoId === pr.id)
             .reduce((acc, e) => acc + Number(e.monto || 0), 0);
@@ -3048,6 +3081,9 @@
         el.classList.toggle('hidden', ROL_ACTIVO !== 'ADMIN');
       });
 
+      const badgeLectura = document.getElementById('badge-lectura-resumen');
+      if (badgeLectura) badgeLectura.classList.toggle('hidden', ROL_ACTIVO === 'ADMIN');
+
       if (ROL_ACTIVO === 'ADMIN') {
         btnAdmin.className = 'px-3 py-1 rounded-lg text-xs font-bold transition bg-[#143326] text-white shadow-sm';
         btnVecino.className = 'px-3 py-1 rounded-lg text-xs font-bold transition text-stone-600 hover:text-stone-900';
@@ -3076,7 +3112,7 @@
           compSelect.disabled = true; // El vecino solo puede informar pagos de su propia parcela
         }
         cambiarSubtabCaja('EG_ING'); // Oculta la bandeja de conciliación privada
-        if (['RESUMEN', 'MATRIZ', 'SEGURIDAD'].includes(TAB_ACTIVA)) {
+        if (['SEGURIDAD'].includes(TAB_ACTIVA)) {
           cambiarTab('PORTAL_VECINO');
         } else {
           cambiarTab(TAB_ACTIVA);
@@ -3086,7 +3122,7 @@
     }
 
     function cambiarTab(tabId) {
-      if (ROL_ACTIVO === 'VECINO' && ['RESUMEN', 'MATRIZ', 'SEGURIDAD'].includes(tabId)) {
+      if (ROL_ACTIVO === 'VECINO' && ['SEGURIDAD'].includes(tabId)) {
         tabId = 'PORTAL_VECINO';
       }
       TAB_ACTIVA = tabId;
@@ -3209,7 +3245,7 @@
           </div>
           <div class="text-2xl font-extrabold text-white mt-1.5">${fmtCLP(tot.saldoCaja)}</div>
           <div class="text-[11px] text-emerald-200/80 mt-1">
-            ${pendientesConciliacion > 0 ? `<span class="text-amber-300 font-bold">🔔 ${pendientesConciliacion} pago(s) pendiente(s) por validar</span>` : `Incluye Otros Ingresos (${fmtCLP(tot.otrosIngresosTotal)})`}
+            ${(ROL_ACTIVO === 'ADMIN' && pendientesConciliacion > 0) ? `<span class="text-amber-300 font-bold">🔔 ${pendientesConciliacion} pago(s) pendiente(s) por validar</span>` : `Incluye Otros Ingresos (${fmtCLP(tot.otrosIngresosTotal)})`}
           </div>
         </div>
 
@@ -3326,11 +3362,12 @@
             <td class="p-3 text-right">
               <div class="font-bold text-emerald-800">${fmtCLP(res.pagadoCorte)}</div>
               ${res.adelantado > 0 ? `<div class="text-[10px] text-sky-700 font-semibold">+${fmtCLP(res.adelantado)} adel. (Total: ${fmtCLP(res.totalHistorico)})</div>` : ''}
-              ${compsPendientesParc.length > 0 ? `<button type="button" onclick="verCartolaParcela('${p.id}')" class="mt-0.5 px-2 py-0.5 rounded bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 text-[10px] font-extrabold transition">⏳ ${compsPendientesParc.length} por validar →</button>` : ''}
+              ${(ROL_ACTIVO === 'ADMIN' && compsPendientesParc.length > 0) ? `<button type="button" onclick="verCartolaParcela('${p.id}')" class="mt-0.5 px-2 py-0.5 rounded bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 text-[10px] font-extrabold transition">⏳ ${compsPendientesParc.length} por validar →</button>` : ''}
             </td>
             <td class="p-3 text-center">${resumenMora}</td>
             <td class="p-3 text-right font-extrabold text-sm ${res.deuda > 0 ? 'text-rose-700' : 'text-emerald-800'}">${fmtCLP(res.deuda)}</td>
             <td class="p-3 text-center">${celdaEstado}</td>
+            ${ROL_ACTIVO === 'ADMIN' ? `
             <td class="p-3 text-center">
               <div class="flex items-center justify-center gap-1">
                 <button onclick="abrirModalPago('${p.id}', '${mesCorte}')" title="Editar propietario, condición o pago"
@@ -3341,9 +3378,15 @@
                    class="px-2.5 py-1.5 rounded-lg bg-green-100 hover:bg-green-200 text-green-900 font-semibold transition">💬</a>
               </div>
             </td>
+            ` : ''}
           </tr>
         `);
       });
+
+      const thAcciones = document.getElementById('th-acciones-resumen');
+      if (thAcciones) thAcciones.classList.toggle('hidden', ROL_ACTIVO !== 'ADMIN');
+      const badgeLectura = document.getElementById('badge-lectura-resumen');
+      if (badgeLectura) badgeLectura.classList.toggle('hidden', ROL_ACTIVO === 'ADMIN');
 
       tbody.innerHTML = rowsHtml.join('');
       tfoot.innerHTML = `
@@ -3354,7 +3397,7 @@
           <td class="p-3 text-right text-emerald-300">${fmtCLP(sumPag)}</td>
           <td class="p-3 text-center text-rose-300">${sumImp} imp. / ${sumPar} parc.</td>
           <td class="p-3 text-right text-rose-300">${fmtCLP(sumDeuda)}</td>
-          <td colspan="2" class="p-3 text-center text-emerald-300">Cuadratura Exacta</td>
+          <td colspan="${ROL_ACTIVO === 'ADMIN' ? 2 : 1}" class="p-3 text-center text-emerald-300">Cuadratura Exacta</td>
         </tr>
       `;
     }
@@ -3416,8 +3459,12 @@
             }
           }
 
-          return `<td onclick="abrirModalPago('${p.id}', '${m}')" title="Parcela ${p.numeroParcela} (${p.propietarioActual}) · ${m} · Exigido: ${fmtCLP(exigido)} · Pagado: ${fmtCLP(pagado)}"
-                      class="p-2 text-center border-l border-stone-200/70 cursor-pointer transition ${clase}">${texto}</td>`;
+          if (ROL_ACTIVO === 'ADMIN') {
+            return `<td onclick="abrirModalPago('${p.id}', '${m}')" title="Parcela ${p.numeroParcela} (${p.propietarioActual}) · ${m} · Exigido: ${fmtCLP(exigido)} · Pagado: ${fmtCLP(pagado)}"
+                        class="p-2 text-center border-l border-stone-200/70 cursor-pointer transition ${clase}">${texto}</td>`;
+          }
+          return `<td title="Parcela ${p.numeroParcela} (${p.propietarioActual}) · ${m} · Exigido: ${fmtCLP(exigido)} · Pagado: ${fmtCLP(pagado)}"
+                      class="p-2 text-center border-l border-stone-200/70 ${clase}">${texto}</td>`;
         }).join('');
 
         rows.push(`
@@ -4990,24 +5037,6 @@
             `}
           </div>
 
-          <!-- Datos Oficiales de Transferencia Bancaria (Visibles en Cartola Web e Impresión PDF) -->
-          <div class="p-4 rounded-2xl bg-stone-100/90 border border-stone-300 flex flex-wrap items-center justify-between gap-3 text-xs">
-            <div class="space-y-1">
-              <div class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-900">🏦 Datos Oficiales para Transferencia de Gastos Comunes — Loteo Los Mañíos</div>
-              <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-stone-800">
-                <span><strong>Titular:</strong> Felipe Guíñez Contreras</span>
-                <span><strong>RUT:</strong> <span class="font-mono font-bold">17614306-1</span></span>
-                <span><strong>Banco:</strong> Mercado Pago</span>
-                <span><strong>Tipo:</strong> Cuenta Vista</span>
-                <span><strong>N° Cuenta:</strong> <span class="font-mono font-extrabold text-emerald-950">1020030758</span></span>
-                <span><strong>Correo:</strong> <span class="font-mono">administracion.manios@gmail.com</span></span>
-              </div>
-            </div>
-            <button type="button" onclick="copiarDatosBancariosLoteo(this)" class="no-print px-3 py-1.5 rounded-xl bg-[#143326] hover:bg-emerald-900 text-white font-extrabold text-[11px] shadow-sm transition">
-              📋 Copiar Datos Bancarios
-            </button>
-          </div>
-
           <!-- Tarjeta de Perfil de Propietario y Seguridad de Portón en Portal del Vecino -->
           <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-3 text-xs no-print">
             <div class="flex flex-wrap items-center justify-between gap-2 border-b border-stone-200 pb-2.5">
@@ -5046,8 +5075,22 @@
         </div>
       `;
 
+      const htmlTransferPrint = `
+        <div class="mt-4 p-4 rounded-2xl bg-stone-100 border border-stone-300 text-xs">
+          <div class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-900 mb-1">🏦 Datos Oficiales para Transferencia de Gastos Comunes — Loteo Los Mañíos</div>
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-stone-800">
+            <span><strong>Titular:</strong> Felipe Guíñez Contreras</span>
+            <span><strong>RUT:</strong> 17614306-1</span>
+            <span><strong>Banco:</strong> Mercado Pago</span>
+            <span><strong>Tipo:</strong> Cuenta Vista</span>
+            <span><strong>N° Cuenta:</strong> 1020030758</span>
+            <span><strong>Correo:</strong> administracion.manios@gmail.com</span>
+          </div>
+        </div>
+      `;
+
       document.getElementById('contenedor-cartola-vecino').innerHTML = htmlCartola;
-      document.getElementById('printable-cartola').innerHTML = htmlCartola;
+      document.getElementById('printable-cartola').innerHTML = htmlCartola + htmlTransferPrint;
     }
 
     function imprimirCartola() {
@@ -5061,6 +5104,7 @@
     // ACCIONES INTERACTIVAS Y PERSISTENCIA API
     // ========================================================================
     function abrirModalPago(parcelaId, periodo) {
+      if (ROL_ACTIVO !== 'ADMIN') return;
       const p = STATE.parcelas.find(x => x.id === parcelaId);
       if (!p) return;
       document.getElementById('modal-parcela-id').value = p.id;

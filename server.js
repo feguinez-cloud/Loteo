@@ -128,11 +128,21 @@ function imputarPagoEnParcela(parcela, montoTotal, periodoPreferido, mesCorte, l
 }
 
 function recalcularProyectos(data) {
+  if (Array.isArray(data.egresos)) {
+    for (const eg of data.egresos) {
+      if (typeof eg.item === 'string' && /Becerra.*Don Jorge/i.test(eg.item)) {
+        eg.item = 'Don Jorge';
+      }
+    }
+  }
   if (Array.isArray(data.proyectosComunitarios)) {
     data.proyectosComunitarios = data.proyectosComunitarios.filter(
       (p) => p.id !== 'proy-4' && !/telemetr[ií]a/i.test(p.titulo || p.nombre || '')
     );
     for (const pr of data.proyectosComunitarios) {
+      if (pr.id === 'proy-1' && typeof pr.objetivoTecnico === 'string' && pr.objetivoTecnico.includes('8')) {
+        pr.objetivoTecnico = '3 cámaras IP + NVR comunitario + enlace inalámbrico en puntos críticos del loteo.';
+      }
       const gastosVinculados = (data.egresos || [])
         .filter((e) => e.proyectoId === pr.id)
         .reduce((acc, e) => acc + Number(e.monto || 0), 0);

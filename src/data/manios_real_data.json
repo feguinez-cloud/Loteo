@@ -4724,7 +4724,7 @@
   "egresos": [
     {
       "id": "egr-1",
-      "item": "Pago Becerra-Don Jorge",
+      "item": "Don Jorge",
       "fecha": "2026-07-04",
       "destino": "Trabajo Don jorge",
       "monto": 200000,
@@ -4744,7 +4744,7 @@
     },
     {
       "id": "egr-3",
-      "item": "Pago Becerra-Don Jorge",
+      "item": "Don Jorge",
       "fecha": "2026-08-03",
       "destino": "Trabajo Don jorge",
       "monto": 200000,
@@ -4764,7 +4764,7 @@
     },
     {
       "id": "egr-5",
-      "item": "Pago Becerra-Don Jorge",
+      "item": "Don Jorge",
       "fecha": "2026-09-01",
       "destino": "Trabajo Don jorge",
       "monto": 250000,
@@ -4875,7 +4875,7 @@
       "titulo": "Sistema de Cámaras de Seguridad (Loteo 1 y Sector Altos)",
       "categoria": "Seguridad y Vigilancia",
       "descripcion": "Instalación de cámaras de televigilancia comunitaria de alta resolución con respaldo solar y monitoreo en acceso principal, Loteo 1 y Sector Altos.",
-      "objetivoTecnico": "8 puntos de cámara IP + NVR comunitario + enlace inalámbrico en puntos críticos del loteo.",
+      "objetivoTecnico": "3 cámaras IP + NVR comunitario + enlace inalámbrico en puntos críticos del loteo.",
       "metaFinanciera": 1830275,
       "montoRecaudadoExtra": 1196000,
       "aporteFondoComun": 634275,
