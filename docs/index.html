@@ -1484,6 +1484,7 @@
     const STORAGE_KEY_MANIOS = 'LOTEO_LOS_MANIOS_DB_V2';
     const STORAGE_KEY_FIREBASE = 'MANIOS_FIREBASE_DB_URL';
     const SESSION_KEY_MANIOS = 'MANIOS_SESION_ACTIVA_V1';
+    const DEFAULT_FIREBASE_CLOUD_URL = 'https://firestore.googleapis.com/v1/projects/loteo-los-manios-valdivia/databases/(default)/documents/loteo_manios/estado_comunidad';
 
     function obtenerFirebaseUrl() {
       const params = new URLSearchParams(window.location.search);
@@ -1491,7 +1492,9 @@
       if (fbParam && fbParam.startsWith('https://')) {
         localStorage.setItem(STORAGE_KEY_FIREBASE, fbParam.replace(/\/+$/, ''));
       }
-      return (localStorage.getItem(STORAGE_KEY_FIREBASE) || '').replace(/\/+$/, '');
+      const guardada = (localStorage.getItem(STORAGE_KEY_FIREBASE) || '').replace(/\/+$/, '');
+      if (guardada === 'OFFLINE_LOCAL') return '';
+      return guardada || DEFAULT_FIREBASE_CLOUD_URL;
     }
 
     function recalcularEstadoCloud(data) {
@@ -1603,13 +1606,29 @@
       const fbUrl = obtenerFirebaseUrl();
       if (fbUrl) {
         try {
-          const rFb = await NATIVE_FETCH(`${fbUrl}/manios_db.json`);
-          if (rFb.ok) {
-            const fbData = await rFb.json();
-            if (fbData && Array.isArray(fbData.parcelas)) {
-              recalcularEstadoCloud(fbData);
-              localStorage.setItem(STORAGE_KEY_MANIOS, JSON.stringify(fbData));
-              return fbData;
+          if (fbUrl.includes('firestore.googleapis.com')) {
+            const rFs = await NATIVE_FETCH(fbUrl);
+            if (rFs.ok) {
+              const doc = await rFs.json();
+              const rawJson = doc?.fields?.jsonPayload?.stringValue;
+              if (rawJson) {
+                const fsData = JSON.parse(rawJson);
+                if (fsData && Array.isArray(fsData.parcelas)) {
+                  recalcularEstadoCloud(fsData);
+                  localStorage.setItem(STORAGE_KEY_MANIOS, JSON.stringify(fsData));
+                  return fsData;
+                }
+              }
+            }
+          } else {
+            const rFb = await NATIVE_FETCH(`${fbUrl}/manios_db.json`);
+            if (rFb.ok) {
+              const fbData = await rFb.json();
+              if (fbData && Array.isArray(fbData.parcelas)) {
+                recalcularEstadoCloud(fbData);
+                localStorage.setItem(STORAGE_KEY_MANIOS, JSON.stringify(fbData));
+                return fbData;
+              }
             }
           }
         } catch (e) {}
@@ -1631,14 +1650,28 @@
 
     function guardarDBCloud(data) {
       recalcularEstadoCloud(data);
-      localStorage.setItem(STORAGE_KEY_MANIOS, JSON.stringify(data));
+      const serialized = JSON.stringify(data);
+      localStorage.setItem(STORAGE_KEY_MANIOS, serialized);
       const fbUrl = obtenerFirebaseUrl();
       if (fbUrl) {
-        NATIVE_FETCH(`${fbUrl}/manios_db.json`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        }).catch(() => {});
+        if (fbUrl.includes('firestore.googleapis.com')) {
+          NATIVE_FETCH(fbUrl, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              fields: {
+                jsonPayload: { stringValue: serialized },
+                updatedAt: { stringValue: new Date().toISOString() }
+              }
+            })
+          }).catch(() => {});
+        } else {
+          NATIVE_FETCH(`${fbUrl}/manios_db.json`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: serialized
+          }).catch(() => {});
+        }
       }
     }
 
@@ -2487,49 +2520,56 @@
     }
 
     async function guardarYConectarFirebase() {
-      const rawUrl = (document.getElementById('input-firebase-url').value || '').trim().replace(/\/+$/, '').replace(/\/manios_db\.json$/, '');
+      const rawUrl = ((document.getElementById('input-firebase-url').value || '').trim() || DEFAULT_FIREBASE_CLOUD_URL).replace(/\/+$/, '').replace(/\/manios_db\.json$/, '');
       const fbBox = document.getElementById('feedback-cloud-backup');
-      if (!rawUrl || !rawUrl.startsWith('https://')) {
-        if (fbBox) {
-          fbBox.textContent = '⚠️ Ingresa una URL válida de Firebase Realtime Database que comience con https://';
-          fbBox.classList.remove('hidden');
-        }
-        return;
-      }
       localStorage.setItem(STORAGE_KEY_FIREBASE, rawUrl);
       try {
-        const r = await NATIVE_FETCH(`${rawUrl}/manios_db.json`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(STATE)
-        });
+        let r;
+        if (rawUrl.includes('firestore.googleapis.com')) {
+          r = await NATIVE_FETCH(rawUrl, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              fields: {
+                jsonPayload: { stringValue: JSON.stringify(STATE) },
+                updatedAt: { stringValue: new Date().toISOString() }
+              }
+            })
+          });
+        } else {
+          r = await NATIVE_FETCH(`${rawUrl}/manios_db.json`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(STATE)
+          });
+        }
         if (r.ok) {
           actualizarIndicadorNube();
           if (fbBox) {
-            fbBox.textContent = '✅ ¡Conectado exitosamente! Los datos de las 37 parcelas ya están sincronizados en tiempo real en Firebase.';
+            fbBox.textContent = '✅ ¡Conectado exitosamente a Firebase Cloud (loteo-los-manios-valdivia)! Las 37 parcelas están sincronizadas en tiempo real.';
             fbBox.classList.remove('hidden');
           }
         } else {
           if (fbBox) {
-            fbBox.textContent = '⚠️ Se guardó la URL, pero Firebase respondió con restricción de permisos. Asegúrate de activar Reglas de lectura/escritura en Firebase.';
+            fbBox.textContent = '⚠️ Se guardó la URL, pero Firebase respondió con restricción de permisos.';
             fbBox.classList.remove('hidden');
           }
         }
       } catch (err) {
         if (fbBox) {
-          fbBox.textContent = '⚠️ No se pudo conectar a esa URL. Verifica que sea la URL de Realtime Database (.firebaseio.com).';
+          fbBox.textContent = '⚠️ No se pudo conectar a esa URL de Firebase.';
           fbBox.classList.remove('hidden');
         }
       }
     }
 
     function desconectarFirebase() {
-      localStorage.removeItem(STORAGE_KEY_FIREBASE);
+      localStorage.setItem(STORAGE_KEY_FIREBASE, 'OFFLINE_LOCAL');
       document.getElementById('input-firebase-url').value = '';
       actualizarIndicadorNube();
       const fbBox = document.getElementById('feedback-cloud-backup');
       if (fbBox) {
-        fbBox.textContent = 'ℹ️ Desconectado de Firebase. Operando con almacenamiento local y servidor.';
+        fbBox.textContent = 'ℹ️ Modo Local activado. Haz clic en "Conectar y Subir Datos Actuales" para volver a conectar a Firebase (loteo-los-manios-valdivia).';
         fbBox.classList.remove('hidden');
       }
     }
@@ -4266,13 +4306,13 @@
     }
 
     function obtenerUrlPublicaPortal(parcelaId) {
-      const base = window.location.hostname.endsWith('github.io')
+      const base = (window.location.hostname.endsWith('github.io') || window.location.hostname.endsWith('web.app') || window.location.hostname.endsWith('firebaseapp.com'))
         ? `${window.location.origin}${window.location.pathname}`
-        : 'https://feguinez-cloud.github.io/Loteo/';
+        : 'https://loteo-los-manios-valdivia.web.app/';
       const fb = obtenerFirebaseUrl();
       const params = new URLSearchParams();
       if (parcelaId) params.set('parcela', parcelaId);
-      if (fb) params.set('fb', fb);
+      if (fb && fb !== DEFAULT_FIREBASE_CLOUD_URL) params.set('fb', fb);
       return `${base}?${params.toString()}`;
     }
 
