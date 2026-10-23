@@ -142,9 +142,17 @@
       </div>
 
       <div class="flex flex-wrap items-center gap-2.5">
-        <!-- Selector de vecino (solo visible cuando se simula modo Vecino) -->
+        <!-- Insignia de Sesión Vecino Autenticado (con botón Cambiar mi PIN) -->
+        <div id="badge-sesion-vecino" class="hidden items-center gap-2 bg-emerald-50 border border-emerald-300 rounded-xl px-3 py-1.5">
+          <span id="texto-sesion-vecino" class="text-xs font-extrabold text-emerald-950">🏡 Mi Parcela</span>
+          <button type="button" onclick="abrirModalCambiarPinVecino()" class="px-2 py-0.5 rounded-lg bg-white border border-emerald-300 hover:bg-emerald-100 text-[11px] font-bold text-emerald-900 transition" title="Cambiar mi código PIN personal">
+            🔑 Mi PIN
+          </button>
+        </div>
+
+        <!-- Selector de vecino (solo visible cuando el Admin simula modo Vecino) -->
         <div id="selector-vecino-wrapper" class="hidden items-center gap-1.5 bg-amber-50 border border-amber-300 rounded-xl px-3 py-1.5">
-          <span class="text-[11px] text-amber-800 font-semibold">Vecino:</span>
+          <span class="text-[11px] text-amber-800 font-semibold">Simulando Vecino:</span>
           <select id="select-parcela-vecino" class="bg-transparent text-xs font-bold text-stone-900 focus:outline-none cursor-pointer"></select>
         </div>
 
@@ -154,15 +162,26 @@
           <select id="select-mes-corte" class="bg-transparent text-xs font-extrabold text-stone-900 focus:outline-none cursor-pointer"></select>
         </div>
 
-        <!-- Selector limpio de Rol -->
-        <div class="inline-flex rounded-xl bg-stone-100 p-1 border border-stone-200">
+        <!-- Botón Nube / Respaldo (Solo Admin) -->
+        <button id="btn-cloud-backup" type="button" onclick="abrirModalCloudBackup()" class="solo-admin px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-950 text-xs font-extrabold transition flex items-center gap-1.5 shadow-sm" title="Configurar Base de Datos en la Nube (Firebase) o Descargar Respaldo">
+          <span>☁️</span>
+          <span id="lbl-estado-nube">Nube / Respaldo</span>
+        </button>
+
+        <!-- Selector limpio de Rol (Visible únicamente para sesión ADMIN) -->
+        <div id="contenedor-switch-rol" class="inline-flex rounded-xl bg-stone-100 p-1 border border-stone-200">
           <button id="btn-rol-admin" onclick="cambiarRol('ADMIN')" class="px-3 py-1 rounded-lg text-xs font-bold transition bg-[#143326] text-white shadow-sm">
             🛡️ Admin
           </button>
           <button id="btn-rol-vecino" onclick="cambiarRol('VECINO')" class="px-3 py-1 rounded-lg text-xs font-bold transition text-stone-600 hover:text-stone-900">
-            🏡 Vecino
+            🏡 Vista Vecino
           </button>
         </div>
+
+        <!-- Botón Cerrar Sesión / Cambiar Usuario -->
+        <button id="btn-cerrar-sesion" type="button" onclick="cerrarSesionPortal()" class="px-3 py-1.5 rounded-xl bg-stone-200/80 hover:bg-rose-100 hover:text-rose-900 border border-stone-300 text-stone-700 text-xs font-bold transition flex items-center gap-1" title="Cerrar sesión o cambiar de cuenta">
+          🚪 Salir
+        </button>
       </div>
     </header>
 
@@ -622,6 +641,22 @@
       <section id="tab-SEGURIDAD" class="hidden space-y-5">
         <div id="kpi-seguridad-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
 
+        <!-- Banner de Envío de Accesos 1 a 1 a Propietarios -->
+        <div class="bg-emerald-950 text-stone-100 rounded-2xl p-4 shadow-sm flex flex-wrap items-center justify-between gap-4 border border-emerald-800">
+          <div class="space-y-0.5">
+            <div class="text-xs font-extrabold text-amber-300 uppercase tracking-wider">📲 Credenciales de Acceso 1 a 1 por Parcela (Portal del Vecino)</div>
+            <p class="text-xs text-emerald-100/90">
+              Cada parcela tiene su propio enlace directo y PIN privado de 4 dígitos. Haz clic en <strong>📲 Enviar Acceso</strong> en cualquier fila para enviárselo por WhatsApp a su propietario, o en <strong>📋 Copiar</strong> para enviarlo por correo.
+              <span class="text-emerald-300 font-semibold">(Acceso Admin: clave <code>manios2026</code> o código <code>9999</code>)</span>
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="exportarCredencialesVecinosCSV()" class="px-3.5 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 text-xs font-extrabold shadow-sm transition">
+              🔑 Descargar Nómina de Accesos y PINs (CSV)
+            </button>
+          </div>
+        </div>
+
         <div class="bg-white rounded-2xl border border-stone-200 p-4 shadow-sm flex flex-wrap items-center justify-between gap-3">
           <div class="flex flex-wrap items-center gap-2 flex-1">
             <input id="filtro-seguridad-texto" oninput="renderSeguridadPorton()" type="text" placeholder="🔍 Buscar propietario, parcela, teléfono o correo..."
@@ -645,11 +680,11 @@
                   <th class="p-3 text-left">Parcela</th>
                   <th class="p-3 text-left">Propietario y Rol</th>
                   <th class="p-3 text-left">Contacto</th>
-                  <th class="p-3 text-center">PIN App</th>
+                  <th class="p-3 text-center">PIN Acceso App</th>
                   <th class="p-3 text-center">Controles RF</th>
                   <th class="p-3 text-left">Teléfonos Portón (GSM)</th>
                   <th class="p-3 text-center">Auditoría Ex-Dueño</th>
-                  <th class="p-3 text-center">Acción</th>
+                  <th class="p-3 text-center">Acceso 1 a 1 y Ficha</th>
                 </tr>
               </thead>
               <tbody id="tabla-seguridad-body" class="divide-y divide-stone-100"></tbody>
@@ -1277,6 +1312,167 @@
     </div>
   </div>
 
+  <!-- ==================================================================== -->
+  <!-- MODAL DE CONTROL DE ACCESO E INICIO DE SESIÓN (VECINOS 1 A 1 / ADMIN) -->
+  <!-- ==================================================================== -->
+  <div id="modal-login-portal" class="fixed inset-0 bg-[#0c1f17]/95 backdrop-blur-md hidden items-center justify-center z-50 p-4 no-print">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl border border-emerald-900/20 space-y-5">
+      <!-- Encabezado Identidad Loteo -->
+      <div class="flex items-center gap-3.5 border-b border-stone-200 pb-4">
+        <div class="w-12 h-12 rounded-2xl bg-[#143326] text-white flex items-center justify-center text-2xl shadow-md">
+          🌲
+        </div>
+        <div>
+          <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-800">Comunidad Quitacalzón · Valdivia</span>
+          <h3 class="text-lg font-extrabold text-stone-900 leading-tight">Portal Loteo Los Mañíos</h3>
+          <p class="text-xs text-stone-500">Acceso privado para Propietarios y Administración</p>
+        </div>
+      </div>
+
+      <!-- Conmutador de Tipo de Acceso -->
+      <div class="grid grid-cols-2 gap-1.5 bg-stone-100 p-1.5 rounded-2xl border border-stone-200 text-xs font-bold">
+        <button type="button" id="tab-login-vecino" onclick="cambiarTabLogin('VECINO')" class="py-2 px-3 rounded-xl transition bg-[#143326] text-white shadow-sm">
+          🏡 Soy Propietario / Vecino
+        </button>
+        <button type="button" id="tab-login-admin" onclick="cambiarTabLogin('ADMIN')" class="py-2 px-3 rounded-xl transition text-stone-600 hover:text-stone-900">
+          🛡️ Directiva / Admin
+        </button>
+      </div>
+
+      <!-- Mensaje de error si falla el PIN -->
+      <div id="login-error-box" class="hidden p-3 rounded-xl bg-rose-50 border border-rose-300 text-rose-900 text-xs font-bold"></div>
+
+      <!-- FORMULARIO 1: ACCESO VECINO (ASOCIADO A PARCELA 1 A 1) -->
+      <form id="form-login-vecino" onsubmit="iniciarSesionVecino(event)" class="space-y-4 text-xs">
+        <div id="banner-enlace-directo-parcela" class="hidden p-3 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-950 text-[11px] font-semibold"></div>
+        <div>
+          <label class="block font-bold text-stone-700 mb-1.5">1. Selecciona tu Parcela</label>
+          <select id="login-select-parcela" required class="w-full border border-stone-300 rounded-xl px-3.5 py-2.5 bg-stone-50 font-extrabold text-stone-900 focus:outline-none focus:border-emerald-700"></select>
+        </div>
+        <div>
+          <label class="block font-bold text-stone-700 mb-1.5">2. Código PIN Personal de tu Parcela</label>
+          <input id="login-pin-vecino" type="password" inputmode="numeric" maxlength="8" required placeholder="Ingresa tu código de 4 dígitos"
+                 class="w-full border border-stone-300 rounded-xl px-3.5 py-2.5 font-mono text-base font-extrabold tracking-widest text-center bg-white focus:outline-none focus:border-emerald-700" />
+          <p class="text-[11px] text-stone-500 mt-1.5">
+            🔒 Este código es enviado 1 a 1 por la Administración a cada propietario y te permite ver tu estado de cuenta, informar pagos y votar en consultas.
+          </p>
+        </div>
+        <button type="submit" class="w-full py-3 rounded-xl bg-[#143326] hover:bg-emerald-900 text-white font-extrabold text-xs shadow-lg transition">
+          🏡 Ingresar a Mi Parcela
+        </button>
+      </form>
+
+      <!-- FORMULARIO 2: ACCESO ADMINISTRADOR / DIRECTIVA -->
+      <form id="form-login-admin" onsubmit="iniciarSesionAdmin(event)" class="hidden space-y-4 text-xs">
+        <div>
+          <label class="block font-bold text-stone-700 mb-1.5">Clave Maestra o Código de Administración</label>
+          <input id="login-clave-admin" type="password" required placeholder="Ingresa tu clave o código de administrador"
+                 class="w-full border border-stone-300 rounded-xl px-3.5 py-2.5 font-mono text-sm font-extrabold text-center bg-white focus:outline-none focus:border-emerald-700" />
+          <p class="text-[11px] text-stone-500 mt-1.5">
+            🛡️ Acceso exclusivo para Tesorería y Comité de Administración (edición de matriz, validación de pagos, actas y envío de accesos 1 a 1).
+          </p>
+        </div>
+        <button type="submit" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-extrabold text-xs shadow-lg transition">
+          🛡️ Ingresar como Administrador
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- MODAL PARA QUE EL VECINO CAMBIE SU PROPIO PIN PERSONAL               -->
+  <!-- ==================================================================== -->
+  <div id="modal-cambiar-pin-vecino" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50 p-4 no-print">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-stone-200 pb-3">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800">Seguridad Personal</span>
+          <h3 class="text-base font-extrabold text-stone-900">🔑 Cambiar mi Código PIN</h3>
+        </div>
+        <button type="button" onclick="cerrarModalCambiarPinVecino()" class="text-stone-400 hover:text-stone-700 text-lg font-bold">✕</button>
+      </div>
+      <form onsubmit="guardarNuevoPinVecino(event)" class="space-y-3 text-xs">
+        <p class="text-stone-600">Elige un nuevo código privado (de 4 a 6 dígitos o letras) para el acceso de tu parcela:</p>
+        <div>
+          <label class="block font-bold text-stone-700 mb-1">Nuevo Código PIN Personal</label>
+          <input id="input-nuevo-pin-vecino" type="text" minlength="4" maxlength="8" required placeholder="Ej. 5820"
+                 class="w-full border border-stone-300 rounded-xl px-3.5 py-2 font-mono text-base font-extrabold text-center" />
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="cerrarModalCambiarPinVecino()" class="px-4 py-2 rounded-xl border border-stone-300 font-semibold">Cancelar</button>
+          <button type="submit" class="px-4 py-2 rounded-xl bg-[#143326] hover:bg-emerald-900 text-white font-bold shadow">💾 Guardar Nuevo PIN</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================================================================== -->
+  <!-- MODAL DE BASE DE DATOS EN LA NUBE (FIREBASE) Y RESPALDOS JSON        -->
+  <!-- ==================================================================== -->
+  <div id="modal-cloud-backup" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50 p-4 no-print">
+    <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl space-y-4 max-h-[92vh] overflow-y-auto text-xs">
+      <div class="flex items-center justify-between border-b border-stone-200 pb-3">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-800">Infraestructura, Seguridad y Respaldos</span>
+          <h3 class="text-base font-extrabold text-stone-900">☁️ Sincronización en la Nube (Firebase) y Copias de Seguridad</h3>
+        </div>
+        <button type="button" onclick="cerrarModalCloudBackup()" class="text-stone-400 hover:text-stone-700 text-lg font-bold">✕</button>
+      </div>
+
+      <!-- Bloque 1: Conexión en Tiempo Real con Google Firebase Realtime Database -->
+      <div class="p-4 rounded-2xl bg-emerald-50/80 border border-emerald-200 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="font-extrabold text-emerald-950 text-sm">🔥 1. Base de Datos en Tiempo Real (Google Firebase)</span>
+          <span id="badge-firebase-status" class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-stone-200 text-stone-700">Modo Local / Servidor</span>
+        </div>
+        <p class="text-stone-700 leading-relaxed">
+          Al conectar una URL de <strong>Firebase Realtime Database</strong> (100% gratuita en el plan Spark de Google), cualquier pago informado o voto emitido por un vecino desde su celular se sincronizará instantáneamente con tu computador de Administrador.
+        </p>
+        <div>
+          <label class="block font-bold text-emerald-950 mb-1">URL de tu Firebase Realtime Database</label>
+          <input id="input-firebase-url" type="url" placeholder="https://loteo-los-manios-default-rtdb.firebaseio.com"
+                 class="w-full border border-emerald-300 rounded-xl px-3 py-2 font-mono text-xs bg-white" />
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" onclick="guardarYConectarFirebase()" class="px-4 py-2 rounded-xl bg-[#143326] hover:bg-emerald-900 text-white font-extrabold shadow transition">
+            🔗 Conectar y Subir Datos Actuales a Firebase
+          </button>
+          <button type="button" onclick="desconectarFirebase()" class="px-3 py-2 rounded-xl bg-white border border-stone-300 hover:bg-stone-100 text-stone-700 font-bold transition">
+            Desconectar
+          </button>
+        </div>
+        <details class="bg-white/90 rounded-xl p-3 border border-emerald-200 text-[11px] text-stone-600 space-y-1">
+          <summary class="cursor-pointer font-bold text-emerald-900">📘 ¿Cómo crear tu URL de Firebase gratis en 2 minutos?</summary>
+          <ol class="list-decimal list-inside space-y-1 pt-2">
+            <li>Entra a <strong>console.firebase.google.com</strong> con tu cuenta Google y haz clic en <strong>"Crear un proyecto"</strong> (ej. <code>loteo-los-manios</code>).</li>
+            <li>En el menú izquierdo ve a <strong>Compilación → Realtime Database</strong> y haz clic en <strong>"Crear base de datos"</strong>.</li>
+            <li>Elige comenzar en <strong>Modo de prueba</strong> (o habilita lectura/escritura) y copia el enlace que termina en <code>.firebaseio.com</code>.</li>
+            <li>Pégalo arriba y presiona <strong>"Conectar y Subir Datos Actuales"</strong>. ¡Listo!</li>
+          </ol>
+        </details>
+      </div>
+
+      <!-- Bloque 2: Respaldo Local Descargable (.JSON) -->
+      <div class="p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-3">
+        <div class="font-extrabold text-stone-900 text-sm">💾 2. Respaldo Completo de Seguridad (Archivo .JSON)</div>
+        <p class="text-stone-600">
+          Descarga una copia íntegra de las 37 parcelas, pagos históricos (2022–2026), caja, comprobantes, proyectos, actas y votaciones en tu computador, o restaura desde un respaldo previo.
+        </p>
+        <div class="flex flex-wrap items-center gap-2.5">
+          <button type="button" onclick="descargarRespaldoJSON()" class="px-4 py-2 rounded-xl bg-emerald-800 hover:bg-emerald-900 text-white font-extrabold shadow transition">
+            📥 Descargar Respaldo Completo (.JSON)
+          </button>
+          <label class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-extrabold shadow transition cursor-pointer">
+            📤 Restaurar desde Archivo (.JSON)
+            <input type="file" accept=".json" onchange="restaurarRespaldoJSON(event)" class="hidden" />
+          </label>
+        </div>
+      </div>
+
+      <div id="feedback-cloud-backup" class="hidden p-3 rounded-xl bg-emerald-100 border border-emerald-300 text-emerald-950 font-bold"></div>
+    </div>
+  </div>
+
   <!-- CONTENEDOR IMPRIMIBLE PARA CARTOLA PDF -->
   <div id="printable-cartola" class="hidden p-8 bg-white text-stone-900"></div>
 
@@ -1286,8 +1482,27 @@
     // ========================================================================
     const NATIVE_FETCH = window.fetch.bind(window);
     const STORAGE_KEY_MANIOS = 'LOTEO_LOS_MANIOS_DB_V2';
+    const STORAGE_KEY_FIREBASE = 'MANIOS_FIREBASE_DB_URL';
+    const SESSION_KEY_MANIOS = 'MANIOS_SESION_ACTIVA_V1';
+
+    function obtenerFirebaseUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const fbParam = params.get('fb');
+      if (fbParam && fbParam.startsWith('https://')) {
+        localStorage.setItem(STORAGE_KEY_FIREBASE, fbParam.replace(/\/+$/, ''));
+      }
+      return (localStorage.getItem(STORAGE_KEY_FIREBASE) || '').replace(/\/+$/, '');
+    }
 
     function recalcularEstadoCloud(data) {
+      if (Array.isArray(data.parcelas)) {
+        data.parcelas.forEach((p, idx) => {
+          const num = Number(p.numeroParcela || (idx + 1));
+          if (!p.pinAcceso || p.pinAcceso === '1234') {
+            p.pinAcceso = String(4100 + num); // Ej: Parcela 1 -> 4101, Parcela 14 -> 4114
+          }
+        });
+      }
       if (Array.isArray(data.proyectosComunitarios)) {
         for (const pr of data.proyectosComunitarios) {
           pr.montoEjecutado = (data.egresos || [])
@@ -1385,6 +1600,20 @@
     }
 
     async function obtenerDBCloud() {
+      const fbUrl = obtenerFirebaseUrl();
+      if (fbUrl) {
+        try {
+          const rFb = await NATIVE_FETCH(`${fbUrl}/manios_db.json`);
+          if (rFb.ok) {
+            const fbData = await rFb.json();
+            if (fbData && Array.isArray(fbData.parcelas)) {
+              recalcularEstadoCloud(fbData);
+              localStorage.setItem(STORAGE_KEY_MANIOS, JSON.stringify(fbData));
+              return fbData;
+            }
+          }
+        } catch (e) {}
+      }
       const guardado = localStorage.getItem(STORAGE_KEY_MANIOS);
       if (guardado) {
         try {
@@ -1403,6 +1632,14 @@
     function guardarDBCloud(data) {
       recalcularEstadoCloud(data);
       localStorage.setItem(STORAGE_KEY_MANIOS, JSON.stringify(data));
+      const fbUrl = obtenerFirebaseUrl();
+      if (fbUrl) {
+        NATIVE_FETCH(`${fbUrl}/manios_db.json`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        }).catch(() => {});
+      }
     }
 
     async function procesarApiCloudFallback(urlStr, options = {}) {
@@ -1788,12 +2025,22 @@
     window.fetch = async function(input, init) {
       const urlStr = typeof input === 'string' ? input : (input.url || '');
       if (urlStr.includes('/api/')) {
-        if (window.location.hostname.endsWith('github.io')) {
+        if (window.location.hostname.endsWith('github.io') || obtenerFirebaseUrl()) {
+          if (!window.location.hostname.endsWith('github.io')) {
+            NATIVE_FETCH(input, init).catch(() => {});
+          }
           return procesarApiCloudFallback(urlStr, init);
         }
         try {
           const resp = await NATIVE_FETCH(input, init);
-          if (resp.ok) return resp;
+          if (resp.ok) {
+            const clone = resp.clone();
+            clone.json().then(d => {
+              const payload = d.data || (d.parcelas ? d : null);
+              if (payload) guardarDBCloud(payload);
+            }).catch(() => {});
+            return resp;
+          }
           return procesarApiCloudFallback(urlStr, init);
         } catch (err) {
           return procesarApiCloudFallback(urlStr, init);
@@ -1807,6 +2054,7 @@
     // ========================================================================
     let STATE = null;
     let ROL_ACTIVO = 'ADMIN'; // 'ADMIN' | 'VECINO'
+    let SESION_AUTENTICADA = null; // { tipo: 'ADMIN' } | { tipo: 'VECINO', parcelaId: 'parc-14' }
     let TAB_ACTIVA = 'RESUMEN';
     let ANIO_MATRIZ = '2026';
     let PARCELA_SELECCIONADA_ID = 'parc-1';
@@ -1942,13 +2190,386 @@
     }
 
     // ========================================================================
-    // INICIALIZACIÓN Y CARGA DESDE EL SERVIDOR
+    // INICIALIZACIÓN, CONTROL DE SESIONES (1 A 1 VECINOS Y ADMIN) Y NUBE
     // ========================================================================
+    function asegurarPinsUnicosPorParcela() {
+      if (!STATE || !Array.isArray(STATE.parcelas)) return;
+      STATE.parcelas.forEach((p, idx) => {
+        const num = Number(p.numeroParcela || (idx + 1));
+        if (!p.pinAcceso || p.pinAcceso === '1234') {
+          p.pinAcceso = String(4100 + num);
+        }
+      });
+    }
+
+    function actualizarIndicadorNube() {
+      const fb = obtenerFirebaseUrl();
+      const lbl = document.getElementById('lbl-estado-nube');
+      const badge = document.getElementById('badge-firebase-status');
+      if (fb) {
+        if (lbl) lbl.textContent = 'Nube Activa';
+        if (badge) {
+          badge.textContent = '🟢 Conectado a Firebase en Vivo';
+          badge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-900 border border-emerald-300';
+        }
+      } else {
+        if (lbl) lbl.textContent = 'Nube / Respaldo';
+        if (badge) {
+          badge.textContent = 'Modo Local / Respaldo JSON';
+          badge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-stone-200 text-stone-700';
+        }
+      }
+    }
+
     async function cargarDatos() {
       const resp = await fetch('/api/data');
       STATE = await resp.json();
+      asegurarPinsUnicosPorParcela();
+      actualizarIndicadorNube();
       inicializarControles();
+      inicializarSesionPortal();
       renderTodo();
+    }
+
+    function obtenerParcelaDesdeUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const pParam = params.get('parcela') || params.get('p');
+      if (!pParam || !STATE) return null;
+      return STATE.parcelas.find(x =>
+        x.id === pParam ||
+        String(x.numeroParcela) === String(pParam) ||
+        `parc-${x.numeroParcela}` === pParam
+      ) || null;
+    }
+
+    function inicializarSesionPortal() {
+      const selLogin = document.getElementById('login-select-parcela');
+      if (selLogin && STATE) {
+        selLogin.innerHTML = STATE.parcelas.map(p =>
+          `<option value="${p.id}">Parcela ${p.numeroParcela} — ${p.propietarioActual}</option>`
+        ).join('');
+      }
+
+      const parcelaUrl = obtenerParcelaDesdeUrl();
+      const bannerUrl = document.getElementById('banner-enlace-directo-parcela');
+      if (parcelaUrl && selLogin) {
+        selLogin.value = parcelaUrl.id;
+        if (bannerUrl) {
+          bannerUrl.classList.remove('hidden');
+          bannerUrl.innerHTML = `🔗 <strong>Acceso directo Parcela ${parcelaUrl.numeroParcela} (${parcelaUrl.propietarioActual})</strong>: ingresa tu código PIN personal de 4 dígitos para entrar.`;
+        }
+      }
+
+      try {
+        const guardada = sessionStorage.getItem(SESSION_KEY_MANIOS);
+        if (guardada) {
+          const parsed = JSON.parse(guardada);
+          if (parsed && (parsed.tipo === 'ADMIN' || parsed.tipo === 'VECINO')) {
+            if (parcelaUrl && parsed.tipo === 'VECINO' && parsed.parcelaId !== parcelaUrl.id) {
+              sessionStorage.removeItem(SESSION_KEY_MANIOS);
+            } else {
+              SESION_AUTENTICADA = parsed;
+              aplicarRestriccionesSesion();
+              return;
+            }
+          }
+        }
+      } catch (e) {}
+
+      abrirModalLoginPortal();
+    }
+
+    function abrirModalLoginPortal() {
+      const modal = document.getElementById('modal-login-portal');
+      const errBox = document.getElementById('login-error-box');
+      if (errBox) errBox.classList.add('hidden');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+      setTimeout(() => {
+        const inputPin = document.getElementById('login-pin-vecino');
+        if (inputPin && !document.getElementById('form-login-vecino').classList.contains('hidden')) {
+          inputPin.focus();
+        }
+      }, 80);
+    }
+
+    function cambiarTabLogin(modo) {
+      const btnVec = document.getElementById('tab-login-vecino');
+      const btnAdm = document.getElementById('tab-login-admin');
+      const formVec = document.getElementById('form-login-vecino');
+      const formAdm = document.getElementById('form-login-admin');
+      const errBox = document.getElementById('login-error-box');
+      if (errBox) errBox.classList.add('hidden');
+
+      if (modo === 'VECINO') {
+        btnVec.className = 'py-2 px-3 rounded-xl transition bg-[#143326] text-white shadow-sm';
+        btnAdm.className = 'py-2 px-3 rounded-xl transition text-stone-600 hover:text-stone-900';
+        formVec.classList.remove('hidden');
+        formAdm.classList.add('hidden');
+        setTimeout(() => document.getElementById('login-pin-vecino')?.focus(), 50);
+      } else {
+        btnAdm.className = 'py-2 px-3 rounded-xl transition bg-amber-500 text-stone-950 shadow-sm font-extrabold';
+        btnVec.className = 'py-2 px-3 rounded-xl transition text-stone-600 hover:text-stone-900';
+        formAdm.classList.remove('hidden');
+        formVec.classList.add('hidden');
+        setTimeout(() => document.getElementById('login-clave-admin')?.focus(), 50);
+      }
+    }
+
+    function mostrarErrorLogin(msg) {
+      const errBox = document.getElementById('login-error-box');
+      if (errBox) {
+        errBox.textContent = msg;
+        errBox.classList.remove('hidden');
+      }
+    }
+
+    function iniciarSesionVecino(e) {
+      e.preventDefault();
+      const parcelaId = document.getElementById('login-select-parcela').value;
+      const pinIngresado = (document.getElementById('login-pin-vecino').value || '').trim();
+      const p = STATE.parcelas.find(x => x.id === parcelaId);
+      if (!p) return;
+
+      // Si el usuario escribe la clave maestra o 9999 en el campo de PIN, también entra como Admin o desbloquea
+      if (pinIngresado.toLowerCase() === 'manios2026' || pinIngresado === '9999') {
+        SESION_AUTENTICADA = { tipo: 'ADMIN' };
+        sessionStorage.setItem(SESSION_KEY_MANIOS, JSON.stringify(SESION_AUTENTICADA));
+        document.getElementById('login-pin-vecino').value = '';
+        document.getElementById('modal-login-portal').classList.add('hidden');
+        document.getElementById('modal-login-portal').classList.remove('flex');
+        aplicarRestriccionesSesion();
+        return;
+      }
+
+      const pinCorrecto = String(p.pinAcceso || (4100 + Number(p.numeroParcela))).trim();
+      if (pinIngresado !== pinCorrecto) {
+        mostrarErrorLogin(`❌ Código PIN incorrecto para la Parcela ${p.numeroParcela}. Verifica el código enviado por la Administración.`);
+        return;
+      }
+
+      SESION_AUTENTICADA = {
+        tipo: 'VECINO',
+        parcelaId: p.id,
+        numeroParcela: p.numeroParcela,
+        propietario: p.propietarioActual
+      };
+      sessionStorage.setItem(SESSION_KEY_MANIOS, JSON.stringify(SESION_AUTENTICADA));
+      document.getElementById('login-pin-vecino').value = '';
+      document.getElementById('modal-login-portal').classList.add('hidden');
+      document.getElementById('modal-login-portal').classList.remove('flex');
+      aplicarRestriccionesSesion();
+    }
+
+    function iniciarSesionAdmin(e) {
+      e.preventDefault();
+      const clave = (document.getElementById('login-clave-admin').value || '').trim();
+      if (clave.toLowerCase() !== 'manios2026' && clave !== '9999') {
+        mostrarErrorLogin('❌ Clave o código de Administrador incorrecto. Usa tu clave maestra o código autorizado.');
+        return;
+      }
+      SESION_AUTENTICADA = { tipo: 'ADMIN' };
+      sessionStorage.setItem(SESSION_KEY_MANIOS, JSON.stringify(SESION_AUTENTICADA));
+      document.getElementById('login-clave-admin').value = '';
+      document.getElementById('modal-login-portal').classList.add('hidden');
+      document.getElementById('modal-login-portal').classList.remove('flex');
+      aplicarRestriccionesSesion();
+    }
+
+    function cerrarSesionPortal() {
+      SESION_AUTENTICADA = null;
+      sessionStorage.removeItem(SESSION_KEY_MANIOS);
+      abrirModalLoginPortal();
+    }
+
+    function aplicarRestriccionesSesion() {
+      const switchRol = document.getElementById('contenedor-switch-rol');
+      const badgeVecino = document.getElementById('badge-sesion-vecino');
+      const txtVecino = document.getElementById('texto-sesion-vecino');
+      const btnCloud = document.getElementById('btn-cloud-backup');
+      const selCorte = document.getElementById('select-mes-corte');
+
+      if (SESION_AUTENTICADA && SESION_AUTENTICADA.tipo === 'VECINO') {
+        const miParcela = STATE.parcelas.find(x => x.id === SESION_AUTENTICADA.parcelaId) || STATE.parcelas[0];
+        PARCELA_SELECCIONADA_ID = miParcela.id;
+
+        if (switchRol) switchRol.classList.add('hidden');
+        if (btnCloud) btnCloud.classList.add('hidden');
+        if (selCorte) selCorte.disabled = true;
+        if (badgeVecino) {
+          badgeVecino.classList.remove('hidden');
+          badgeVecino.classList.add('flex');
+        }
+        if (txtVecino) {
+          txtVecino.textContent = `🏡 Parcela ${miParcela.numeroParcela} · ${miParcela.propietarioActual}`;
+        }
+
+        // Bloquear selectores de parcela para que el vecino solo vea y opere su propia parcela
+        ['select-parcela-vecino', 'select-parcela-portal', 'comp-parcela-id', 'select-parcela-votante'].forEach(id => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          el.innerHTML = `<option value="${miParcela.id}" selected>Parcela ${miParcela.numeroParcela} — ${miParcela.propietarioActual} (${miParcela.condicion})</option>`;
+          el.value = miParcela.id;
+          el.disabled = true;
+        });
+
+        cambiarRol('VECINO');
+        cambiarTab('PORTAL_VECINO');
+      } else {
+        // Sesión ADMIN
+        if (switchRol) switchRol.classList.remove('hidden');
+        if (btnCloud) btnCloud.classList.remove('hidden');
+        if (selCorte) selCorte.disabled = false;
+        if (badgeVecino) {
+          badgeVecino.classList.add('hidden');
+          badgeVecino.classList.remove('flex');
+        }
+        // Restaurar todas las parcelas en los selectores para el Admin
+        inicializarControles();
+        cambiarRol('ADMIN');
+      }
+    }
+
+    function abrirModalCambiarPinVecino() {
+      if (!SESION_AUTENTICADA || SESION_AUTENTICADA.tipo !== 'VECINO') return;
+      const p = STATE.parcelas.find(x => x.id === SESION_AUTENTICADA.parcelaId);
+      if (!p) return;
+      document.getElementById('input-nuevo-pin-vecino').value = p.pinAcceso || '';
+      const modal = document.getElementById('modal-cambiar-pin-vecino');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function cerrarModalCambiarPinVecino() {
+      const modal = document.getElementById('modal-cambiar-pin-vecino');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    async function guardarNuevoPinVecino(e) {
+      e.preventDefault();
+      if (!SESION_AUTENTICADA || SESION_AUTENTICADA.tipo !== 'VECINO') return;
+      const nuevoPin = (document.getElementById('input-nuevo-pin-vecino').value || '').trim();
+      if (nuevoPin.length < 4) return;
+      const resp = await fetch('/api/perfil-seguridad', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          parcelaId: SESION_AUTENTICADA.parcelaId,
+          pinAcceso: nuevoPin
+        })
+      });
+      const res = await resp.json();
+      if (res.ok) {
+        STATE = res.data;
+        cerrarModalCambiarPinVecino();
+        renderTodo();
+      }
+    }
+
+    function abrirModalCloudBackup() {
+      const modal = document.getElementById('modal-cloud-backup');
+      const inputFb = document.getElementById('input-firebase-url');
+      const fbBox = document.getElementById('feedback-cloud-backup');
+      if (fbBox) fbBox.classList.add('hidden');
+      if (inputFb) inputFb.value = obtenerFirebaseUrl();
+      actualizarIndicadorNube();
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function cerrarModalCloudBackup() {
+      const modal = document.getElementById('modal-cloud-backup');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    async function guardarYConectarFirebase() {
+      const rawUrl = (document.getElementById('input-firebase-url').value || '').trim().replace(/\/+$/, '').replace(/\/manios_db\.json$/, '');
+      const fbBox = document.getElementById('feedback-cloud-backup');
+      if (!rawUrl || !rawUrl.startsWith('https://')) {
+        if (fbBox) {
+          fbBox.textContent = '⚠️ Ingresa una URL válida de Firebase Realtime Database que comience con https://';
+          fbBox.classList.remove('hidden');
+        }
+        return;
+      }
+      localStorage.setItem(STORAGE_KEY_FIREBASE, rawUrl);
+      try {
+        const r = await NATIVE_FETCH(`${rawUrl}/manios_db.json`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(STATE)
+        });
+        if (r.ok) {
+          actualizarIndicadorNube();
+          if (fbBox) {
+            fbBox.textContent = '✅ ¡Conectado exitosamente! Los datos de las 37 parcelas ya están sincronizados en tiempo real en Firebase.';
+            fbBox.classList.remove('hidden');
+          }
+        } else {
+          if (fbBox) {
+            fbBox.textContent = '⚠️ Se guardó la URL, pero Firebase respondió con restricción de permisos. Asegúrate de activar Reglas de lectura/escritura en Firebase.';
+            fbBox.classList.remove('hidden');
+          }
+        }
+      } catch (err) {
+        if (fbBox) {
+          fbBox.textContent = '⚠️ No se pudo conectar a esa URL. Verifica que sea la URL de Realtime Database (.firebaseio.com).';
+          fbBox.classList.remove('hidden');
+        }
+      }
+    }
+
+    function desconectarFirebase() {
+      localStorage.removeItem(STORAGE_KEY_FIREBASE);
+      document.getElementById('input-firebase-url').value = '';
+      actualizarIndicadorNube();
+      const fbBox = document.getElementById('feedback-cloud-backup');
+      if (fbBox) {
+        fbBox.textContent = 'ℹ️ Desconectado de Firebase. Operando con almacenamiento local y servidor.';
+        fbBox.classList.remove('hidden');
+      }
+    }
+
+    function descargarRespaldoJSON() {
+      if (!STATE) return;
+      const fecha = new Date().toISOString().slice(0, 10);
+      const blob = new Blob([JSON.stringify(STATE, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Respaldo_Loteo_Los_Manios_${fecha}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function restaurarRespaldoJSON(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (parsed && Array.isArray(parsed.parcelas)) {
+            STATE = parsed;
+            asegurarPinsUnicosPorParcela();
+            guardarDBCloud(STATE);
+            inicializarControles();
+            renderTodo();
+            const fbBox = document.getElementById('feedback-cloud-backup');
+            if (fbBox) {
+              fbBox.textContent = '✅ Respaldo restaurado exitosamente y actualizado en todas las vistas.';
+              fbBox.classList.remove('hidden');
+            }
+          }
+        } catch (err) {}
+      };
+      reader.readAsText(file);
     }
 
     function actualizarPeriodosDestinoComprobante(parcelaId) {
@@ -1988,6 +2609,9 @@
 
     function seleccionarParcelaActiva(parcelaId) {
       if (!parcelaId) return;
+      if (SESION_AUTENTICADA && SESION_AUTENTICADA.tipo === 'VECINO') {
+        parcelaId = SESION_AUTENTICADA.parcelaId;
+      }
       PARCELA_SELECCIONADA_ID = parcelaId;
       ['select-parcela-vecino', 'select-parcela-portal', 'comp-parcela-id', 'select-parcela-votante'].forEach(id => {
         const el = document.getElementById(id);
@@ -2025,15 +2649,21 @@
       selectoresParcela.forEach(id => {
         const el = document.getElementById(id);
         if (!el) return;
-        const valPrev = el.value || PARCELA_SELECCIONADA_ID;
+        const valPrev = (SESION_AUTENTICADA && SESION_AUTENTICADA.tipo === 'VECINO')
+          ? SESION_AUTENTICADA.parcelaId
+          : (el.value || PARCELA_SELECCIONADA_ID);
         el.innerHTML = '';
-        STATE.parcelas.forEach(p => {
+        const lista = (SESION_AUTENTICADA && SESION_AUTENTICADA.tipo === 'VECINO' && id !== 'rep-parcela-infractora')
+          ? STATE.parcelas.filter(p => p.id === SESION_AUTENTICADA.parcelaId)
+          : STATE.parcelas;
+        lista.forEach(p => {
           const opt = document.createElement('option');
           opt.value = p.id;
           opt.textContent = `Parcela ${p.numeroParcela} — ${p.propietarioActual} (${p.condicion})`;
           if (p.id === valPrev) opt.selected = true;
           el.appendChild(opt);
         });
+        el.disabled = Boolean(SESION_AUTENTICADA && SESION_AUTENTICADA.tipo === 'VECINO' && id !== 'rep-parcela-infractora');
       });
 
       document.getElementById('select-parcela-vecino').onchange = (e) => {
@@ -2097,16 +2727,23 @@
     };
 
     function obtenerMiParcelaVecinoId() {
+      if (SESION_AUTENTICADA && SESION_AUTENTICADA.tipo === 'VECINO') {
+        return SESION_AUTENTICADA.parcelaId;
+      }
       return document.getElementById('select-parcela-vecino')?.value || PARCELA_SELECCIONADA_ID || 'parc-1';
     }
 
     function cambiarRol(nuevoRol) {
+      if (SESION_AUTENTICADA && SESION_AUTENTICADA.tipo === 'VECINO') {
+        nuevoRol = 'VECINO'; // Un vecino autenticado jamás puede pasar a modo ADMIN
+      }
       ROL_ACTIVO = nuevoRol;
       const btnAdmin = document.getElementById('btn-rol-admin');
       const btnVecino = document.getElementById('btn-rol-vecino');
       const wrapperVecino = document.getElementById('selector-vecino-wrapper');
       const lblCaja = document.getElementById('label-nav-caja');
       const compSelect = document.getElementById('comp-parcela-id');
+      const portalSelect = document.getElementById('select-parcela-portal');
 
       // Mostrar u ocultar todos los bloques y botones exclusivos del Administrador
       document.querySelectorAll('.solo-admin').forEach(el => {
@@ -2120,11 +2757,20 @@
         wrapperVecino.classList.remove('flex');
         if (lblCaja) lblCaja.textContent = 'Tesorería y Caja';
         if (compSelect) compSelect.disabled = false;
+        if (portalSelect) portalSelect.disabled = false;
       } else {
         btnVecino.className = 'px-3 py-1 rounded-lg text-xs font-bold transition bg-[#143326] text-white shadow-sm';
         btnAdmin.className = 'px-3 py-1 rounded-lg text-xs font-bold transition text-stone-600 hover:text-stone-900';
-        wrapperVecino.classList.remove('hidden');
-        wrapperVecino.classList.add('flex');
+        const esSimulacionAdmin = !SESION_AUTENTICADA || SESION_AUTENTICADA.tipo === 'ADMIN';
+        if (esSimulacionAdmin) {
+          wrapperVecino.classList.remove('hidden');
+          wrapperVecino.classList.add('flex');
+          if (portalSelect) portalSelect.disabled = false;
+        } else {
+          wrapperVecino.classList.add('hidden');
+          wrapperVecino.classList.remove('flex');
+          if (portalSelect) portalSelect.disabled = true;
+        }
         if (lblCaja) lblCaja.textContent = 'Transparencia de Caja';
         PARCELA_SELECCIONADA_ID = obtenerMiParcelaVecinoId();
         if (compSelect) {
@@ -3584,7 +4230,7 @@
               <div class="text-stone-500">${p.emailContacto || '—'}</div>
             </td>
             <td class="p-3 text-center">
-              <span class="px-2 py-1 rounded-lg bg-stone-100 border border-stone-200 font-mono font-bold text-stone-800">${p.pinAcceso || '1234'}</span>
+              <span class="px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-300 font-mono font-extrabold text-emerald-950 text-xs">${p.pinAcceso || (4100 + Number(p.numeroParcela))}</span>
             </td>
             <td class="p-3 text-center">
               <div class="text-xs font-extrabold text-emerald-900">🎛️ ${seg.controlesManualesCount} controles</div>
@@ -3600,15 +4246,107 @@
             </td>
             <td class="p-3 text-center">${estadoAuditoria}</td>
             <td class="p-3 text-center">
-              <button onclick="abrirModalPerfilSeguridad('${p.id}')" class="px-3 py-1.5 rounded-xl bg-[#143326] hover:bg-emerald-900 text-white font-bold text-xs shadow-sm transition">
-                🔐 Editar
-              </button>
+              <div class="flex flex-wrap items-center justify-center gap-1.5">
+                <button type="button" onclick="enviarAccesoParcelaWhatsApp('${p.id}')" class="px-2.5 py-1.5 rounded-xl bg-green-700 hover:bg-green-800 text-white font-extrabold text-[11px] shadow-sm transition" title="Enviar enlace personal y PIN por WhatsApp al propietario">
+                  📲 Enviar Acceso
+                </button>
+                <button type="button" onclick="copiarAccesoParcelaPortapapeles('${p.id}', this)" class="px-2 py-1.5 rounded-xl bg-stone-100 hover:bg-stone-200 border border-stone-300 text-stone-800 font-bold text-[11px] transition" title="Copiar mensaje de invitación al portapapeles">
+                  📋 Copiar
+                </button>
+                <button type="button" onclick="abrirModalPerfilSeguridad('${p.id}')" class="px-2.5 py-1.5 rounded-xl bg-[#143326] hover:bg-emerald-900 text-white font-bold text-[11px] shadow-sm transition">
+                  🔐 Editar
+                </button>
+              </div>
             </td>
           </tr>
         `);
       });
 
       tbody.innerHTML = rows.join('');
+    }
+
+    function obtenerUrlPublicaPortal(parcelaId) {
+      const base = window.location.hostname.endsWith('github.io')
+        ? `${window.location.origin}${window.location.pathname}`
+        : 'https://feguinez-cloud.github.io/Loteo/';
+      const fb = obtenerFirebaseUrl();
+      const params = new URLSearchParams();
+      if (parcelaId) params.set('parcela', parcelaId);
+      if (fb) params.set('fb', fb);
+      return `${base}?${params.toString()}`;
+    }
+
+    function generarTextoCredencialParcela(p) {
+      const pin = p.pinAcceso || String(4100 + Number(p.numeroParcela));
+      const urlDirecta = obtenerUrlPublicaPortal(p.id);
+      return [
+        `🌲 *PORTAL COMUNITARIO — LOTEO LOS MAÑÍOS (VALDIVIA)*`,
+        `Hola *${p.propietarioActual}*, te compartimos tu acceso personal y privado asociado a tu *Parcela ${p.numeroParcela}*:`,
+        ``,
+        `🔗 *Enlace directo a tu Parcela:*`,
+        `${urlDirecta}`,
+        ``,
+        `🏡 *Parcela:* Parcela ${p.numeroParcela} (${p.codigoLotePlano || 'Lote ' + p.numeroParcela})`,
+        `🔑 *Código PIN Personal:* *${pin}*`,
+        ``,
+        `Desde tu portal podrás revisar tu cartola histórica al día, informar tus transferencias de gastos comunes, revisar el avance de los proyectos del loteo y votar en las consultas de la comunidad. (Una vez dentro puedes cambiar tu PIN en el botón "🔑 Mi PIN").`
+      ].join('\n');
+    }
+
+    function enviarAccesoParcelaWhatsApp(parcelaId) {
+      const p = STATE.parcelas.find(x => x.id === parcelaId);
+      if (!p) return;
+      const fono = (p.telefonoContacto || '').replace(/[^0-9]/g, '');
+      const texto = generarTextoCredencialParcela(p);
+      const waUrl = fono
+        ? `https://wa.me/${fono}?text=${encodeURIComponent(texto)}`
+        : `https://wa.me/?text=${encodeURIComponent(texto)}`;
+      window.open(waUrl, '_blank');
+    }
+
+    function copiarAccesoParcelaPortapapeles(parcelaId, btnEl) {
+      const p = STATE.parcelas.find(x => x.id === parcelaId);
+      if (!p) return;
+      const texto = generarTextoCredencialParcela(p);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texto).then(() => {
+          if (btnEl) {
+            const orig = btnEl.textContent;
+            btnEl.textContent = '✅ Copiado';
+            setTimeout(() => { btnEl.textContent = orig; }, 1800);
+          }
+        });
+      }
+    }
+
+    function exportarCredencialesVecinosCSV() {
+      if (!STATE || !Array.isArray(STATE.parcelas)) return;
+      const sep = ';';
+      const headers = ['Parcela', 'Lote Plano', 'Propietario Actual', 'Condicion', 'Telefono WhatsApp', 'Email', 'PIN Acceso App', 'Enlace Directo Personalizado'];
+      const filas = STATE.parcelas.map(p => {
+        const pin = p.pinAcceso || String(4100 + Number(p.numeroParcela));
+        const link = obtenerUrlPublicaPortal(p.id);
+        return [
+          `Parcela ${p.numeroParcela}`,
+          p.codigoLotePlano || '',
+          `"${(p.propietarioActual || '').replace(/"/g, '""')}"`,
+          p.condicion || '',
+          p.telefonoContacto || '',
+          p.emailContacto || '',
+          pin,
+          link
+        ].join(sep);
+      });
+      const csvContent = '\uFEFF' + [headers.join(sep), ...filas].join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Accesos_1a1_Propietarios_Los_Manios.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
     }
 
     function abrirModalPerfilSeguridad(parcelaId) {
