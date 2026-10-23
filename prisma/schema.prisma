@@ -1,0 +1,367 @@
+// ============================================================================
+// PRISMA SCHEMA - SISTEMA DE GESTIÓN COMUNITARIA "LOTEO LOS MAÑÍOS"
+// Stack: PostgreSQL (Supabase) + Prisma ORM + Next.js 14+ (App Router)
+// ============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ----------------------------------------------------------------------------
+// 1. NÚCLEO CATASTRAL Y PROPIETARIOS
+// ----------------------------------------------------------------------------
+
+enum CondicionParcela {
+  CON_CASA     // $40.000 desde Jun-2025
+  SIN_CASA     // $30.000 desde Jun-2025
+  SIN_AGUA     // $30.000 desde Jun-2025 (Tiene casa pero sin conexión a red de agua común)
+  TRES_PARCELAS // Caso especial fila 41 (Alejandro Becerra)
+}
+
+model Parcela {
+  id                  String           @id @default(cuid())
+  ordenFila           Int              @unique // 1..37 (Orden exacto en matriz oficial)
+  numeroParcela       String           // Ej: "4", "10", "S/N-1"
+  condicion           CondicionParcela @default(SIN_CASA)
+  inicioCobro         String           // Formato "YYYY-MM", ej: "2022-04"
+  fechaPasoConCasa    String?          // Formato "YYYY-MM", ej: "2025-06", "2025-08", "2026-06", "2026-08"
+  superficieM2        Int              @default(5000)
+  latitud             Float?
+  longitud            Float?
+  poligonoGeoJson     Json?            // Coordenadas del lote para Mapa GIS
+  observaciones       String?
+
+  // Relaciones de propiedad, perfil de contacto y accesos al sistema
+  propietarioActual       String
+  propietarioAnterior     String?
+  rutPropietario          String?
+  telefonoContacto        String?
+  telefonoSecundario      String?
+  emailContacto           String?
+  emailSecundario         String?
+  rolAccesoSistema        String                 @default("COPROPIETARIO") // "COPROPIETARIO" | "COMITE_ADMIN"
+  pinAccesoVecino         String                 @default("1234")
+  notificacionesWhatsApp  Boolean                @default(true)
+  notificacionesEmail     Boolean                @default(true)
+
+  // Perfil de Seguridad de Portón (Controles Manuales RF + Acceso Telefónico GSM)
+  controlesManualesCount  Int                    @default(2)
+  cupoMaximoTelefonos     Int                    @default(4)
+  accesosAnteriorRevocados Boolean               @default(true)
+  controlesPorton         ControlPortonManual[]
+  telefonosPorton         TelefonoAccesoPorton[]
+
+  // Relaciones financieras y comunitarias
+  historialPropietarios PropietarioHistorico[]
+  pagosMensuales        PagoMensual[]
+  comprobantes          ComprobanteInformado[]
+  otrosIngresos         OtroIngreso[]
+  asistencias           AsistenciaAsamblea[]
+  votosProyectos        VotoProyecto[]
+  votosAcuerdos         VotoEmitido[]
+  reportesEmitidos      ReporteConvivencia[]   @relation("Reportante")
+  reportesRecibidos     ReporteConvivencia[]   @relation("ParcelaInfractora")
+
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  @@index([numeroParcela])
+}
+
+model PropietarioHistorico {
+  id            String    @id @default(cuid())
+  parcelaId     String
+  parcela       Parcela   @relation(fields: [parcelaId], references: [id], onDelete: Cascade)
+  nombre        String
+  rut           String?
+  email         String?
+  telefono      String?
+  esActual      Boolean   @default(true)
+  periodoTexto  String?   // Ej: "Claudio (2022-2024)"
+  createdAt     DateTime  @default(now())
+}
+
+// ----------------------------------------------------------------------------
+// 2. REGLAS FINANCIERAS, PAGOS MENSUALES Y FLUJO DE CAJA
+// ----------------------------------------------------------------------------
+
+model TarifaTramo {
+  id              String           @id @default(cuid())
+  nombreTramo     String           // Ej: "Tramo 1 (Abr-Dic 2022)", "Tramo 2 (Ene 2023-May 2025)", "Tramo 3 (Jun 2025+)"
+  periodoDesde    String           // "YYYY-MM"
+  periodoHasta    String?          // "YYYY-MM" (null = vigente indefinidamente)
+  condicion       CondicionParcela
+  montoMensual    Int              // En CLP ($15.000, $20.000, $30.000, $40.000, $100.000)
+}
+
+model BaseHistoricaMes {
+  periodo         String           @id // "YYYY-MM" (2022-04 a 2026-12)
+  montoCongelado  Int              // Monto base congelado en fila 44 de Hoja 2 (Suma $28.450.000)
+}
+
+model PagoMensual {
+  id              String           @id @default(cuid())
+  parcelaId       String
+  parcela         Parcela          @relation(fields: [parcelaId], references: [id], onDelete: Cascade)
+  periodo         String           // "YYYY-MM", ej: "2025-12"
+  montoDevengado  Int              // Cuota exigida según tramo y fechaPasoConCasa
+  montoPagado     Int              @default(0)
+  fechaPago       DateTime?
+  comprobanteId   String?
+  observacion     String?
+
+  @@unique([parcelaId, periodo])
+  @@index([periodo])
+}
+
+enum EstadoComprobante {
+  PENDIENTE
+  VALIDADO
+  RECHAZADO
+}
+
+model ComprobanteInformado {
+  id                  String            @id @default(cuid())
+  parcelaId           String
+  parcela             Parcela           @relation(fields: [parcelaId], references: [id], onDelete: Cascade)
+  fechaTransferencia  String            // "YYYY-MM-DD"
+  monto               Int
+  bancoOrigen         String?
+  numeroOperacion     String?
+  periodosCubiertos   String            // Ej: "2026-09, 2026-10"
+  archivoUrl          String?
+  observacionesVecino String?
+  estado              EstadoComprobante @default(PENDIENTE)
+  revisadoPor         String?
+  fechaRevision       DateTime?
+  motivoRechazo       String?
+  createdAt           DateTime          @default(now())
+}
+
+model Egreso {
+  id              String   @id @default(cuid())
+  item            String   // Ej: "Pago Becerra-Don Jorge", "Pago Camaras"
+  fecha           String   // "YYYY-MM-DD"
+  categoria       String   @default("Operación y Mantención")
+  destino         String?  // Proveedor / Beneficiario
+  monto           Int      // CLP
+  observaciones   String?
+  comprobanteUrl  String?
+  proyectoId      String?
+  proyecto        ProyectoComunitario? @relation(fields: [proyectoId], references: [id])
+  createdAt       DateTime @default(now())
+}
+
+enum TipoOtroIngreso {
+  APORTE_EXTRAORDINARIO
+  PROYECTO_CAMARAS
+  MULTA_CONVIVENCIA
+  EVENTO_COMUNITARIO
+  OTRO
+}
+
+model OtroIngreso {
+  id              String          @id @default(cuid())
+  item            String          // Ej: "Camaras Loteo 1", "Multa Reg. Convivencia"
+  fecha           String          // "YYYY-MM-DD"
+  tipo            TipoOtroIngreso @default(PROYECTO_CAMARAS)
+  destino         String?
+  monto           Int             // CLP
+  observaciones   String?
+  pagadoEnCaja    Boolean         @default(true) // true = suma al Saldo Disponible en Caja
+  parcelaId       String?
+  parcela         Parcela?        @relation(fields: [parcelaId], references: [id])
+  proyectoId      String?
+  proyecto        ProyectoComunitario? @relation(fields: [proyectoId], references: [id])
+  reporteId       String?         @unique
+  reporte         ReporteConvivencia?  @relation(fields: [reporteId], references: [id])
+  createdAt       DateTime        @default(now())
+}
+
+// ----------------------------------------------------------------------------
+// 3. MÓDULO B: PROYECTOS COMUNITARIOS Y PRESUPUESTO PARTICIPATIVO
+// ----------------------------------------------------------------------------
+
+enum EstadoProyecto {
+  IDEA
+  EN_VOTACION
+  FINANCIADO
+  EN_EJECUCION
+  CONCLUIDO
+}
+
+model ProyectoComunitario {
+  id                String         @id @default(cuid())
+  titulo            String
+  descripcion       String
+  objetivoTecnico   String?
+  metaFinanciera    Int            // CLP
+  montoRecaudado    Int            @default(0)
+  montoEjecutado    Int            @default(0)
+  estado            EstadoProyecto @default(EN_EJECUCION)
+  fechaInicio       String?
+  fechaTermino      String?
+  egresos           Egreso[]
+  aportes           OtroIngreso[]
+  votos             VotoProyecto[]
+  createdAt         DateTime       @default(now())
+}
+
+model VotoProyecto {
+  id          String              @id @default(cuid())
+  proyectoId  String
+  proyecto    ProyectoComunitario @relation(fields: [proyectoId], references: [id], onDelete: Cascade)
+  parcelaId   String
+  parcela     Parcela             @relation(fields: [parcelaId], references: [id], onDelete: Cascade)
+  aprobado    Boolean             @default(true)
+  comentario  String?
+  createdAt   DateTime            @default(now())
+
+  @@unique([proyectoId, parcelaId])
+}
+
+// ----------------------------------------------------------------------------
+// 4. MÓDULO D: GOBERNANZA, LIBRO DE ACTAS, VOTACIONES Y CONVIVENCIA
+// ----------------------------------------------------------------------------
+
+enum TipoAsamblea {
+  ORDINARIA
+  EXTRAORDINARIA
+}
+
+enum ModalidadAsamblea {
+  PRESENCIAL
+  ONLINE
+  HIBRIDA
+}
+
+model ActaAsamblea {
+  id                  String               @id @default(cuid())
+  numeroActa          String               // Ej: "Acta N° 01/2026"
+  titulo              String
+  tipo                TipoAsamblea         @default(ORDINARIA)
+  modalidad           ModalidadAsamblea    @default(HIBRIDA)
+  fecha               String               // "YYYY-MM-DD"
+  horaInicio          String               // "19:30"
+  horaCierre          String               // "21:15"
+  quorumPorcentaje    Float                // % de parcelas presentes/representadas
+  ordenDelDia         Json                 // Array de temas tratados
+  acuerdos            Json                 // Array de { acuerdo, responsable, plazo, estado }
+  resumenDeliberacion String
+  firmadoComite       Boolean              @default(true)
+  documentoPdfUrl     String?
+  asistencias         AsistenciaAsamblea[]
+  votaciones          VotacionAcuerdo[]
+  createdAt           DateTime             @default(now())
+}
+
+model AsistenciaAsamblea {
+  id              String       @id @default(cuid())
+  actaId          String
+  acta            ActaAsamblea @relation(fields: [actaId], references: [id], onDelete: Cascade)
+  parcelaId       String
+  parcela         Parcela      @relation(fields: [parcelaId], references: [id], onDelete: Cascade)
+  presente        Boolean      @default(true)
+  mediantePoder   Boolean      @default(false)
+  apoderadoNombre String?
+  ratificadoFirma Boolean      @default(false)
+
+  @@unique([actaId, parcelaId])
+}
+
+model VotacionAcuerdo {
+  id                        String        @id @default(cuid())
+  actaId                    String?
+  acta                      ActaAsamblea? @relation(fields: [actaId], references: [id])
+  titulo                    String
+  descripcion               String
+  materiaExtraordinaria     Boolean       @default(true)
+  restringirMorosos         Boolean       @default(true) // Inhabilita voto si Deuda > $0 (solo derecho a voz)
+  ponderadoPorDerechos      Boolean       @default(false)
+  fechaCierre               String
+  estado                    String        @default("ABIERTA") // ABIERTA | CERRADA
+  votos                     VotoEmitido[]
+  createdAt                 DateTime      @default(now())
+}
+
+model VotoEmitido {
+  id              String          @id @default(cuid())
+  votacionId      String
+  votacion        VotacionAcuerdo @relation(fields: [votacionId], references: [id], onDelete: Cascade)
+  parcelaId       String
+  parcela         Parcela         @relation(fields: [parcelaId], references: [id], onDelete: Cascade)
+  opcion          String          // "APRUEBO" | "RECHAZO" | "ABSTENCION"
+  ponderacion     Int             @default(1) // 1 para parcela normal, 3 para "3 Parcelas"
+  alDiaAlVotar    Boolean         @default(true)
+  certificadoHash String?
+  createdAt       DateTime        @default(now())
+
+  @@unique([votacionId, parcelaId])
+}
+
+model NormaConvivencia {
+  id              String   @id @default(cuid())
+  codigo          String   // Ej: "ART-01", "ART-02"
+  categoria       String   // "Vialidad y Caminos" | "Mascotas" | "Ruidos y Obras" | "Prevención de Incendios" | "Agua Comunitaria"
+  titulo          String
+  descripcion     String
+  sancionSugerida Int      @default(30000) // Monto multa referencial CLP
+  icono           String?
+}
+
+enum EstadoReporteConvivencia {
+  RECIBIDO
+  EN_MEDIACION
+  RESUELTO_SIN_MULTA
+  MULTA_CURSADA
+}
+
+model ReporteConvivencia {
+  id                  String                   @id @default(cuid())
+  categoria           String
+  fechaIncidente      String
+  descripcion         String
+  evidenciaUrl        String?
+  parcelaReportanteId String?
+  parcelaReportante   Parcela?                 @relation("Reportante", fields: [parcelaReportanteId], references: [id])
+  parcelaInfractoraId String
+  parcelaInfractora   Parcela                  @relation("ParcelaInfractora", fields: [parcelaInfractoraId], references: [id])
+  estado              EstadoReporteConvivencia @default(RECIBIDO)
+  resolucionComite    String?
+  montoMulta          Int                      @default(0)
+  multaPagadaEnCaja   Boolean                  @default(false)
+  otroIngreso         OtroIngreso?
+  createdAt           DateTime                 @default(now())
+}
+
+// ----------------------------------------------------------------------------
+// 5. MÓDULO E: PERFIL DE PROPIETARIO Y SEGURIDAD DE PORTÓN (RF + GSM)
+// ----------------------------------------------------------------------------
+
+model ControlPortonManual {
+  id              String   @id @default(cuid())
+  parcelaId       String
+  parcela         Parcela  @relation(fields: [parcelaId], references: [id], onDelete: Cascade)
+  codigoSerie     String   // Ej: "RF-004A", "RF-004B"
+  asignadoA       String   // Ej: "Titular", "Cónyuge"
+  estado          String   @default("ACTIVO") // "ACTIVO" | "EXTRAVIADO_BLOQUEADO"
+  fechaEntrega    String?
+  createdAt       DateTime @default(now())
+}
+
+model TelefonoAccesoPorton {
+  id              String   @id @default(cuid())
+  parcelaId       String
+  parcela         Parcela  @relation(fields: [parcelaId], references: [id], onDelete: Cascade)
+  numero          String   // "+569..." conectado al módulo GSM del portón
+  nombreUsuario   String   // Ej: "Gonzalo de la Cuadra (Titular)", "Familiar"
+  relacion        String   @default("Titular") // "Titular" | "Cónyuge/Familiar" | "Residente"
+  activoEnPorton  Boolean  @default(true)
+  createdAt       DateTime @default(now())
+}

@@ -1,0 +1,15 @@
+{
+  "name": "app-loteo-los-manios",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistema Integral de Gestión de Gastos Comunes, GIS, Proyectos, Seguridad Portón y Gobernanza — Loteo Los Mañíos (Valdivia)",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {}
+}

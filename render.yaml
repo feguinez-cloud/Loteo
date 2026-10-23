@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: loteo-los-manios-valdivia
+    runtime: node
+    plan: free
+    buildCommand: echo "Listo para ejecutar"
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
