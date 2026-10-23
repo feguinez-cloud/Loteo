@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>Loteo Los Mañíos — Plataforma de Gestión Comunitaria y Gastos Comunes</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -161,6 +164,12 @@
           <span class="text-[11px] text-stone-500 font-semibold">Corte:</span>
           <select id="select-mes-corte" class="bg-transparent text-xs font-extrabold text-stone-900 focus:outline-none cursor-pointer"></select>
         </div>
+
+        <!-- Botón Sincronizar en Vivo (Visible para Vecino y Admin) -->
+        <button id="btn-sync-now" type="button" onclick="sincronizarAhoraManual(this)" class="px-2.5 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-900 text-xs font-extrabold transition flex items-center gap-1 shadow-sm" title="Sincronizar datos en tiempo real con la nube">
+          <span id="icon-sync-now">🔄</span>
+          <span id="lbl-sync-now" class="hidden sm:inline">Sincronizado</span>
+        </button>
 
         <!-- Botón Nube / Respaldo (Solo Admin) -->
         <button id="btn-cloud-backup" type="button" onclick="abrirModalCloudBackup()" class="solo-admin px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-950 text-xs font-extrabold transition flex items-center gap-1.5 shadow-sm" title="Configurar Base de Datos en la Nube (Firebase) o Descargar Respaldo">
@@ -1521,6 +1530,8 @@
     const STORAGE_KEY_FIREBASE = 'MANIOS_FIREBASE_DB_URL';
     const SESSION_KEY_MANIOS = 'MANIOS_SESION_ACTIVA_V1';
     const DEFAULT_FIREBASE_CLOUD_URL = 'https://firestore.googleapis.com/v1/projects/loteo-los-manios-valdivia/databases/(default)/documents/loteo_manios/estado_comunidad';
+    let LAST_CLOUD_UPDATED_AT = '';
+    let IS_SAVING_CLOUD = false;
 
     function obtenerFirebaseUrl() {
       const params = new URLSearchParams(window.location.search);
@@ -1529,8 +1540,11 @@
         localStorage.setItem(STORAGE_KEY_FIREBASE, fbParam.replace(/\/+$/, ''));
       }
       const guardada = (localStorage.getItem(STORAGE_KEY_FIREBASE) || '').replace(/\/+$/, '');
-      if (guardada === 'OFFLINE_LOCAL') return '';
-      return guardada || DEFAULT_FIREBASE_CLOUD_URL;
+      if (!guardada || guardada === 'OFFLINE_LOCAL' || !guardada.includes('loteo-los-manios-valdivia')) {
+        localStorage.setItem(STORAGE_KEY_FIREBASE, DEFAULT_FIREBASE_CLOUD_URL);
+        return DEFAULT_FIREBASE_CLOUD_URL;
+      }
+      return guardada;
     }
 
     function recalcularEstadoCloud(data) {
@@ -1543,7 +1557,9 @@
         });
       }
       if (Array.isArray(data.proyectosComunitarios)) {
-        data.proyectosComunitarios = data.proyectosComunitarios.filter(p => p.id !== 'proy-4' && !/telemetr[ií]a/i.test(p.nombre || ''));
+        data.proyectosComunitarios = data.proyectosComunitarios.filter(
+          p => p.id !== 'proy-4' && !/telemetr[ií]a/i.test((p.titulo || '') + ' ' + (p.nombre || ''))
+        );
         for (const pr of data.proyectosComunitarios) {
           pr.montoEjecutado = (data.egresos || [])
             .filter(e => e.proyectoId === pr.id)
@@ -1652,21 +1668,26 @@
       if (fbUrl) {
         try {
           if (fbUrl.includes('firestore.googleapis.com')) {
-            const rFs = await NATIVE_FETCH(fbUrl);
+            const rFs = await NATIVE_FETCH(fbUrl, {
+              cache: 'no-store',
+              headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+            });
             if (rFs.ok) {
               const doc = await rFs.json();
-              const rawJson = doc?.fields?.jsonPayload?.stringValue;
+              const rawJson = doc?.fields?.jsonPayload?.stringValue || doc?.fields?.payload?.stringValue;
+              const cloudTs = doc?.fields?.updatedAt?.stringValue || doc?.updateTime || '';
               if (rawJson) {
                 const fsData = JSON.parse(rawJson);
                 if (fsData && Array.isArray(fsData.parcelas)) {
                   recalcularEstadoCloud(fsData);
+                  if (cloudTs) LAST_CLOUD_UPDATED_AT = cloudTs;
                   localStorage.setItem(STORAGE_KEY_MANIOS, JSON.stringify(fsData));
                   return fsData;
                 }
               }
             }
           } else {
-            const rFb = await NATIVE_FETCH(`${fbUrl}/manios_db.json`);
+            const rFb = await NATIVE_FETCH(`${fbUrl}/manios_db.json`, { cache: 'no-store' });
             if (rFb.ok) {
               const fbData = await rFb.json();
               if (fbData && Array.isArray(fbData.parcelas)) {
@@ -1686,36 +1707,50 @@
           return parsed;
         } catch (e) {}
       }
-      const r = await NATIVE_FETCH('manios_real_data.json');
+      const r = await NATIVE_FETCH('manios_real_data.json', { cache: 'no-store' });
       const inicial = await r.json();
       recalcularEstadoCloud(inicial);
       localStorage.setItem(STORAGE_KEY_MANIOS, JSON.stringify(inicial));
       return inicial;
     }
 
-    function guardarDBCloud(data) {
+    async function guardarDBCloud(data) {
       recalcularEstadoCloud(data);
+      const nowIso = new Date().toISOString();
+      LAST_CLOUD_UPDATED_AT = nowIso;
       const serialized = JSON.stringify(data);
       localStorage.setItem(STORAGE_KEY_MANIOS, serialized);
       const fbUrl = obtenerFirebaseUrl();
       if (fbUrl) {
-        if (fbUrl.includes('firestore.googleapis.com')) {
-          NATIVE_FETCH(fbUrl, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              fields: {
-                jsonPayload: { stringValue: serialized },
-                updatedAt: { stringValue: new Date().toISOString() }
-              }
-            })
-          }).catch(() => {});
-        } else {
-          NATIVE_FETCH(`${fbUrl}/manios_db.json`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: serialized
-          }).catch(() => {});
+        IS_SAVING_CLOUD = true;
+        const lblSync = document.getElementById('lbl-sync-now');
+        if (lblSync) lblSync.textContent = 'Guardando...';
+        try {
+          if (fbUrl.includes('firestore.googleapis.com')) {
+            await NATIVE_FETCH(fbUrl, {
+              method: 'PATCH',
+              cache: 'no-store',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                fields: {
+                  jsonPayload: { stringValue: serialized },
+                  updatedAt: { stringValue: nowIso }
+                }
+              })
+            });
+          } else {
+            await NATIVE_FETCH(`${fbUrl}/manios_db.json`, {
+              method: 'PUT',
+              cache: 'no-store',
+              headers: { 'Content-Type': 'application/json' },
+              body: serialized
+            });
+          }
+          if (lblSync) lblSync.textContent = 'Sincronizado';
+        } catch (e) {
+          if (lblSync) lblSync.textContent = 'Reintentar Sync';
+        } finally {
+          IS_SAVING_CLOUD = false;
         }
       }
     }
@@ -1727,6 +1762,13 @@
       const jsonResp = (obj) => new Response(JSON.stringify(obj), { status: 200, headers: { 'Content-Type': 'application/json' } });
 
       if (path === '/api/data') return jsonResp(data);
+
+      if (path === '/api/configuracion') {
+        if (!data.configuracion) data.configuracion = {};
+        if (body.mesCorteActivo) data.configuracion.mesCorteActivo = body.mesCorteActivo;
+        await guardarDBCloud(data);
+        return jsonResp({ ok: true, data });
+      }
 
       if (path === '/api/pago') {
         const parcela = data.parcelas.find(p => p.id === body.parcelaId);
@@ -1742,7 +1784,7 @@
           if (body.inicioCobro) parcela.inicioCobro = body.inicioCobro;
           if (body.fechaPasoConCasa !== undefined) parcela.fechaPasoConCasa = body.fechaPasoConCasa || null;
           if (body.observaciones !== undefined) parcela.observaciones = body.observaciones;
-          guardarDBCloud(data);
+          await guardarDBCloud(data);
         }
         return jsonResp({ ok: true, data });
       }
@@ -1776,7 +1818,7 @@
             }
           }
           data.comprobantesInformados.unshift(nuevo);
-          guardarDBCloud(data);
+          await guardarDBCloud(data);
           return jsonResp({ ok: true, data, comprobante: nuevo });
         }
         if (body.accion === 'ELIMINAR') {
@@ -1785,7 +1827,7 @@
             const parcela = data.parcelas.find(p => p.id === comp.parcelaId);
             if (comp.estado === 'VALIDADO' && parcela) revertirImputacionCloud(parcela, comp);
             data.comprobantesInformados = data.comprobantesInformados.filter(c => c.id !== body.comprobanteId);
-            guardarDBCloud(data);
+            await guardarDBCloud(data);
           }
           return jsonResp({ ok: true, data });
         }
@@ -1806,7 +1848,7 @@
                 comp.periodosCubiertos = resImp.textoResumen;
               }
             }
-            guardarDBCloud(data);
+            await guardarDBCloud(data);
           }
           return jsonResp({ ok: true, data, comprobante: comp });
         }
@@ -1824,7 +1866,7 @@
           proyectoId: body.proyectoId || '',
           proyectoTitulo: proy ? proy.titulo : 'Gasto Operativo General'
         });
-        guardarDBCloud(data);
+        await guardarDBCloud(data);
         return jsonResp({ ok: true, data });
       }
 
@@ -1841,7 +1883,7 @@
           proyectoId: body.proyectoId || '',
           proyectoTitulo: proy ? proy.titulo : 'Fondo General'
         });
-        guardarDBCloud(data);
+        await guardarDBCloud(data);
         return jsonResp({ ok: true, data });
       }
 
@@ -1874,7 +1916,7 @@
             if (body.aporteFondoComun !== undefined) pr.aporteFondoComun = Number(body.aporteFondoComun);
           }
         }
-        guardarDBCloud(data);
+        await guardarDBCloud(data);
         return jsonResp({ ok: true, data });
       }
 
@@ -1886,24 +1928,42 @@
           const tablaTemas = Array.isArray(body.tablaTemas) ? body.tablaTemas : String(body.tablaTemas || '').split('\n').map(s => s.trim()).filter(Boolean);
           const fechaVal = body.fechaReunion || body.fecha || new Date().toISOString().slice(0, 10);
           const lugarVal = body.lugarOEnlace || body.lugarEnlace || 'Acceso Principal Loteo Los Mañíos';
-          data.citacionesAsamblea.unshift({
-            id: 'cit-' + Date.now(),
-            numeroCitacion: body.numeroCitacion || `Citación N° 0${data.citacionesAsamblea.length + 1}/2026`,
-            tipo: body.tipo || 'ORDINARIA',
-            titulo: body.titulo,
-            fecha: fechaVal,
-            fechaReunion: fechaVal,
-            horaPrimeraCitacion: body.horaPrimeraCitacion || '19:00',
-            horaSegundaCitacion: body.horaSegundaCitacion || '19:30',
-            modalidad: body.modalidad || 'HIBRIDA',
-            lugarEnlace: lugarVal,
-            lugarOEnlace: lugarVal,
-            tablaTemas,
-            estado: body.estado || 'PROGRAMADA',
-            creadoPor: 'Comité de Administración'
-          });
+          if (body.accion === 'EDITAR' && body.citacionId) {
+            const cit = data.citacionesAsamblea.find(c => c.id === body.citacionId);
+            if (cit) {
+              if (body.numeroCitacion !== undefined) cit.numeroCitacion = body.numeroCitacion;
+              if (body.tipo !== undefined) cit.tipo = body.tipo;
+              if (body.titulo !== undefined) cit.titulo = body.titulo;
+              cit.fecha = fechaVal;
+              cit.fechaReunion = fechaVal;
+              if (body.horaPrimeraCitacion !== undefined) cit.horaPrimeraCitacion = body.horaPrimeraCitacion;
+              if (body.horaSegundaCitacion !== undefined) cit.horaSegundaCitacion = body.horaSegundaCitacion;
+              if (body.modalidad !== undefined) cit.modalidad = body.modalidad;
+              cit.lugarEnlace = lugarVal;
+              cit.lugarOEnlace = lugarVal;
+              if (tablaTemas.length) cit.tablaTemas = tablaTemas;
+              if (body.estado !== undefined) cit.estado = body.estado;
+            }
+          } else {
+            data.citacionesAsamblea.unshift({
+              id: 'cit-' + Date.now(),
+              numeroCitacion: body.numeroCitacion || `Citación N° 0${data.citacionesAsamblea.length + 1}/2026`,
+              tipo: body.tipo || 'ORDINARIA',
+              titulo: body.titulo,
+              fecha: fechaVal,
+              fechaReunion: fechaVal,
+              horaPrimeraCitacion: body.horaPrimeraCitacion || '19:00',
+              horaSegundaCitacion: body.horaSegundaCitacion || '19:30',
+              modalidad: body.modalidad || 'HIBRIDA',
+              lugarEnlace: lugarVal,
+              lugarOEnlace: lugarVal,
+              tablaTemas,
+              estado: body.estado || 'PROGRAMADA',
+              creadoPor: 'Comité de Administración'
+            });
+          }
         }
-        guardarDBCloud(data);
+        await guardarDBCloud(data);
         return jsonResp({ ok: true, data });
       }
 
@@ -1911,7 +1971,7 @@
         if (!data.actasAsamblea) data.actasAsamblea = [];
         if (body.accion === 'ELIMINAR') {
           data.actasAsamblea = data.actasAsamblea.filter(a => a.id !== body.actaId);
-          guardarDBCloud(data);
+          await guardarDBCloud(data);
           return jsonResp({ ok: true, data });
         }
         const parcelasPresentes = Number(body.parcelasPresentes || 30);
@@ -1934,7 +1994,7 @@
           firmantesComite: ['Presidente Comité', 'Tesorero', 'Secretario'],
           documentoPdfUrl: body.pdfBase64 || ''
         });
-        guardarDBCloud(data);
+        await guardarDBCloud(data);
         return jsonResp({ ok: true, data });
       }
 
@@ -1961,7 +2021,7 @@
             sancionSugerida: Number(body.sancionSugerida || 30000)
           });
         }
-        guardarDBCloud(data);
+        await guardarDBCloud(data);
         return jsonResp({ ok: true, data });
       }
 
@@ -1995,7 +2055,7 @@
         } else if (body.accion === 'ELIMINAR') {
           data.votacionesAcuerdos = data.votacionesAcuerdos.filter(v => v.id !== body.votacionId);
         }
-        guardarDBCloud(data);
+        await guardarDBCloud(data);
         return jsonResp({ ok: true, data });
       }
 
@@ -2011,7 +2071,7 @@
             opcion: body.opcion,
             fecha: new Date().toISOString().slice(0, 10)
           });
-          guardarDBCloud(data);
+          await guardarDBCloud(data);
         }
         return jsonResp({ ok: true, data });
       }
@@ -2065,19 +2125,25 @@
             });
           }
         }
-        guardarDBCloud(data);
+        await guardarDBCloud(data);
         return jsonResp({ ok: true, data });
       }
 
       if (path === '/api/perfil-seguridad') {
         const parcela = data.parcelas.find(p => p.id === body.parcelaId);
         if (parcela) {
+          if (body.numeroParcela !== undefined && String(body.numeroParcela).trim() !== '') {
+            parcela.numeroParcela = String(body.numeroParcela).trim();
+          }
           if (body.propietarioActual !== undefined) parcela.propietarioActual = body.propietarioActual;
           if (body.rutPropietario !== undefined) parcela.rutPropietario = body.rutPropietario;
           if (body.propietarioAnterior !== undefined) parcela.propietarioAnterior = body.propietarioAnterior;
           if (body.condicion !== undefined) parcela.condicion = body.condicion;
+          if (body.inicioCobro !== undefined) parcela.inicioCobro = body.inicioCobro;
           if (body.fechaPasoConCasa !== undefined) parcela.fechaPasoConCasa = body.fechaPasoConCasa || null;
+          if (body.observaciones !== undefined) parcela.observaciones = body.observaciones;
           if (body.rolSii !== undefined) parcela.rolSii = body.rolSii;
+          if (body.superficieM2 !== undefined) parcela.superficieM2 = Number(body.superficieM2);
           if (body.telefonoContacto !== undefined) parcela.telefonoContacto = body.telefonoContacto;
           if (body.telefonoSecundario !== undefined) parcela.telefonoSecundario = body.telefonoSecundario;
           if (body.emailContacto !== undefined) parcela.emailContacto = body.emailContacto;
@@ -2100,7 +2166,7 @@
           if (body.accesosDuenoAnteriorRevocados !== undefined) {
             parcela.seguridadPorton.accesosDuenoAnteriorRevocados = Boolean(body.accesosDuenoAnteriorRevocados);
           }
-          guardarDBCloud(data);
+          await guardarDBCloud(data);
         }
         return jsonResp({ ok: true, data });
       }
@@ -2112,7 +2178,7 @@
       const urlStr = typeof input === 'string' ? input : (input.url || '');
       if (urlStr.includes('/api/')) {
         if (window.location.hostname.endsWith('github.io') || obtenerFirebaseUrl()) {
-          if (!window.location.hostname.endsWith('github.io')) {
+          if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
             NATIVE_FETCH(input, init).catch(() => {});
           }
           return procesarApiCloudFallback(urlStr, init);
@@ -2341,6 +2407,103 @@
       }
     }
 
+    let AUTO_SYNC_STARTED = false;
+
+    function hayModalEdicionAbierto() {
+      const modales = [
+        'modal-pago',
+        'modal-ficha-parcela',
+        'modal-nuevo-proyecto',
+        'modal-movimiento-proyecto',
+        'modal-nueva-citacion',
+        'modal-nueva-acta',
+        'modal-nueva-votacion',
+        'modal-nueva-norma',
+        'modal-cambiar-pin-vecino'
+      ];
+      for (const id of modales) {
+        const m = document.getElementById(id);
+        if (m && !m.classList.contains('hidden')) return true;
+      }
+      const act = document.activeElement;
+      if (act && (act.tagName === 'INPUT' || act.tagName === 'TEXTAREA') && act.id !== 'login-pin-vecino' && act.id !== 'login-clave-admin') {
+        return true;
+      }
+      return false;
+    }
+
+    async function sincronizarDesdeNubeSilencioso(forzar = false) {
+      if (IS_SAVING_CLOUD) return false;
+      if (!forzar && hayModalEdicionAbierto()) return false;
+      const fbUrl = obtenerFirebaseUrl();
+      if (!fbUrl || !fbUrl.includes('firestore.googleapis.com')) return false;
+      try {
+        const rFs = await NATIVE_FETCH(fbUrl, {
+          cache: 'no-store',
+          headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+        });
+        if (!rFs.ok) return false;
+        const doc = await rFs.json();
+        const cloudTs = doc?.fields?.updatedAt?.stringValue || doc?.updateTime || '';
+        if (!forzar && cloudTs && LAST_CLOUD_UPDATED_AT && cloudTs === LAST_CLOUD_UPDATED_AT) {
+          return false;
+        }
+        const rawJson = doc?.fields?.jsonPayload?.stringValue || doc?.fields?.payload?.stringValue;
+        if (!rawJson) return false;
+        const fsData = JSON.parse(rawJson);
+        if (!fsData || !Array.isArray(fsData.parcelas)) return false;
+        recalcularEstadoCloud(fsData);
+        if (cloudTs) LAST_CLOUD_UPDATED_AT = cloudTs;
+        localStorage.setItem(STORAGE_KEY_MANIOS, JSON.stringify(fsData));
+        STATE = fsData;
+        asegurarPinsUnicosPorParcela();
+        inicializarControles();
+        const selLogin = document.getElementById('login-select-parcela');
+        if (selLogin && STATE) {
+          const prevVal = selLogin.value;
+          selLogin.innerHTML = STATE.parcelas.map(p =>
+            `<option value="${p.id}">Parcela ${p.numeroParcela} — ${p.propietarioActual}</option>`
+          ).join('');
+          if (prevVal) selLogin.value = prevVal;
+        }
+        renderTodo();
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    async function sincronizarAhoraManual(btnEl) {
+      const icon = document.getElementById('icon-sync-now');
+      const lbl = document.getElementById('lbl-sync-now');
+      if (icon) icon.textContent = '⏳';
+      if (lbl) lbl.textContent = 'Sincronizando...';
+      await sincronizarDesdeNubeSilencioso(true);
+      if (icon) icon.textContent = '✅';
+      if (lbl) lbl.textContent = 'Sincronizado';
+      setTimeout(() => {
+        if (icon) icon.textContent = '🔄';
+      }, 1500);
+    }
+
+    function iniciarAutoSincronizacionNube() {
+      if (AUTO_SYNC_STARTED) return;
+      AUTO_SYNC_STARTED = true;
+      setInterval(() => {
+        if (document.visibilityState === 'visible') {
+          sincronizarDesdeNubeSilencioso(false);
+        }
+      }, 6000);
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+          sincronizarDesdeNubeSilencioso(false);
+        }
+      });
+      window.addEventListener('focus', () => {
+        sincronizarDesdeNubeSilencioso(false);
+      });
+    }
+
     async function cargarDatos() {
       const resp = await fetch('/api/data');
       STATE = await resp.json();
@@ -2349,6 +2512,7 @@
       inicializarControles();
       inicializarSesionPortal();
       renderTodo();
+      iniciarAutoSincronizacionNube();
     }
 
     function obtenerParcelaDesdeUrl() {
@@ -2758,11 +2922,18 @@
           if (m === STATE.configuracion.mesCorteActivo) opt.selected = true;
           selCorte.appendChild(opt);
         });
-        selCorte.addEventListener('change', () => {
+        selCorte.addEventListener('change', async () => {
           STATE.configuracion.mesCorteActivo = selCorte.value;
           actualizarPeriodosDestinoComprobante(PARCELA_SELECCIONADA_ID);
           renderTodo();
+          await fetch('/api/configuracion', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mesCorteActivo: selCorte.value })
+          });
         });
+      } else if (STATE?.configuracion?.mesCorteActivo && selCorte.value !== STATE.configuracion.mesCorteActivo) {
+        selCorte.value = STATE.configuracion.mesCorteActivo;
       }
 
       // Poblar selectores de parcelas

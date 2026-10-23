@@ -107,6 +107,14 @@
           -73.15958
         ]
       ]
+    },
+    "datosTransferencia": {
+      "titular": "Felipe Gu??ez Contreras",
+      "rut": "17614306-1",
+      "banco": "Mercado Pago",
+      "tipoCuenta": "Cuenta Vista",
+      "numeroCuenta": "1020030758",
+      "correo": "administracion.manios@gmail.com"
     }
   },
   "meses": [
@@ -2016,9 +2024,9 @@
         ]
       ],
       "telefonoContacto": "+56975777711",
-      "emailContacto": "silvana.bustos@losmanios.cl",
+      "emailContacto": "silvana.bustos.astudillo@gmail.com",
       "pinAcceso": "1154",
-      "telefonoSecundario": "+56993528384",
+      "telefonoSecundario": "+56955266179",
       "rolAccesoSistema": "COPROPIETARIO",
       "notificacionesWhatsApp": true,
       "notificacionesEmail": true,
@@ -2032,29 +2040,23 @@
           },
           {
             "codigo": "RF-P17-02",
-            "asignadoA": "Vehículo Familiar #2",
+            "asignadoA": "Familiar #2",
             "estado": "ACTIVO"
           }
         ],
-        "telefonosConectadosCount": 3,
+        "telefonosConectadosCount": 2,
         "cupoMaximoTelefonos": 4,
         "telefonosPorton": [
           {
-            "numero": "+56984272830",
+            "numero": "+56975777711",
             "titular": "Silvana Bustos Astudillo (Titular)",
             "relacion": "Propietario",
             "activo": true
           },
           {
-            "numero": "+56993528384",
+            "numero": "+56955266179",
             "titular": "Contacto Familiar — Parc. 17",
-            "relacion": "Cónyuge / Familiar",
-            "activo": true
-          },
-          {
-            "numero": "+56975777711",
-            "titular": "Familiar Autorizado",
-            "relacion": "Cónyuge / Familiar",
+            "relacion": "Propietario",
             "activo": true
           }
         ],
@@ -2066,7 +2068,7 @@
       "servidumbreM2": 159,
       "utmEste": 657424,
       "utmNorte": 5594862,
-      "rutPropietario": null
+      "rutPropietario": "18139417-k"
     },
     {
       "id": "parc-15",
@@ -4920,212 +4922,9 @@
       "votosTotales": 36
     }
   ],
-  "actasAsamblea": [
-    {
-      "id": "acta-1792722400291",
-      "numeroActa": "Acta N° 03/2026",
-      "titulo": "ewewew",
-      "tipo": "ORDINARIA",
-      "modalidad": "HIBRIDA",
-      "fecha": "2026-10-22",
-      "horaInicio": "19:00",
-      "horaCierre": "21:00",
-      "parcelasPresentes": 31,
-      "totalParcelas": 37,
-      "quorumPorcentaje": 83.8,
-      "resumenDeliberacion": "wewe",
-      "ordenDelDia": [
-        "sdsd"
-      ],
-      "acuerdos": [
-        {
-          "codigo": "AC-032026-1",
-          "texto": "ewew",
-          "responsable": "Comité de Administración",
-          "estado": "VIGENTE"
-        }
-      ],
-      "documentoPdfUrl": "",
-      "documentoPdfNombre": "",
-      "firmantesComite": [
-        "Presidente Comité",
-        "Tesorero",
-        "Secretario"
-      ],
-      "firmadoComite": true
-    },
-    {
-      "id": "acta-1",
-      "numeroActa": "Acta N° 01/2025",
-      "titulo": "Asamblea Extraordinaria: Actualización de Cuotas Tramo Jun-2025 y Diferenciación Con Casa / Sin Casa",
-      "tipo": "EXTRAORDINARIA",
-      "modalidad": "HIBRIDA",
-      "fecha": "2025-05-24",
-      "horaInicio": "19:00",
-      "horaCierre": "21:10",
-      "quorumPorcentaje": 84.2,
-      "parcelasPresentes": 31,
-      "totalParcelas": 37,
-      "resumenDeliberacion": "Se revisó el alza de costos de electricidad de bombas de agua y mantención de caminos interiores. La Asamblea aprobó fijar desde Junio 2025 una tarifa diferenciada según uso efectivo de infraestructura y agua común: $30.000/mes para parcelas Sin Casa o Sin Agua común, y $40.000/mes para parcelas Con Casa conectadas a la red.",
-      "ordenDelDia": [
-        "1. Rendición de gastos operativos 2024 - Mayo 2025.",
-        "2. Aprobación de nueva estructura tarifaria diferenciada desde Junio 2025 ($30.000 vs $40.000).",
-        "3. Regla de transición por \"Fecha de Paso a Con Casa\" para propietarios en construcción."
-      ],
-      "acuerdos": [
-        {
-          "codigo": "AC-01/2025",
-          "texto": "Fijar cuota mensual de $30.000 para condición Sin Casa / Sin Agua y $40.000 para condición Con Casa a contar de Junio 2025.",
-          "responsable": "Tesorería",
-          "plazo": "2025-06-01",
-          "estado": "CUMPLIDO"
-        },
-        {
-          "codigo": "AC-02/2025",
-          "texto": "Aplicar cobro de $40.000 desde el mes registrado en \"Fecha Paso a Con Casa\" para parcelas que finalicen su vivienda.",
-          "responsable": "Administración",
-          "plazo": "Permanente",
-          "estado": "CUMPLIDO"
-        }
-      ],
-      "firmadoComite": true
-    },
-    {
-      "id": "acta-2",
-      "numeroActa": "Acta N° 01/2026",
-      "titulo": "Asamblea Ordinaria: Recepción de Nueva Administración y Entrega de Saldo Inicial en Caja",
-      "tipo": "ORDINARIA",
-      "modalidad": "PRESENCIAL",
-      "fecha": "2026-06-07",
-      "horaInicio": "11:00",
-      "horaCierre": "13:30",
-      "quorumPorcentaje": 89.5,
-      "parcelasPresentes": 33,
-      "totalParcelas": 37,
-      "resumenDeliberacion": "Con fecha 07 de junio de 2026 se formaliza el traspaso de la administración comunitaria, certificando una recaudación histórica base de $28.450.000 y un Saldo Inicial recibido en Caja de $7.253.500. Se aprueba plan de inversión en cámaras de seguridad, iluminación de portón y mantención permanente con Don Jorge.",
-      "ordenDelDia": [
-        "1. Arqueo y recepción conforme del Saldo Inicial en Caja ($7.253.500 al 07-06-2026).",
-        "2. Contratación de labores periódicas de mantención (Don Jorge).",
-        "3. Proyecto de Cámaras de Seguridad para Loteo 1 y Sector Altos con aportes extraordinarios."
-      ],
-      "acuerdos": [
-        {
-          "codigo": "AC-01/2026",
-          "texto": "Ratificar Saldo Inicial en Caja por $7.253.500 al 07-06-2026 como línea base del flujo de caja.",
-          "responsable": "Comité Administración",
-          "plazo": "2026-06-07",
-          "estado": "CUMPLIDO"
-        },
-        {
-          "codigo": "AC-02/2026",
-          "texto": "Ejecutar proyecto de Cámaras de Seguridad ($1.830.275) cofinanciado con aportes extraordinarios registrados en Otros Ingresos.",
-          "responsable": "Comité Seguridad",
-          "plazo": "2026-10-05",
-          "estado": "CUMPLIDO"
-        }
-      ],
-      "firmadoComite": true
-    }
-  ],
-  "votacionesAcuerdos": [
-    {
-      "id": "vot-2",
-      "actaId": "acta-2",
-      "titulo": "Actualización Reglamento de Convivencia: Velocidad Máxima 20 km/h y Control de Mascotas",
-      "descripcion": "Ratificar el protocolo de seguridad vial interior (máximo 20 km/h) y tenencia responsable de mascotas dentro de los límites de cada parcela, con multa de 1 cuota mensual ($30.000) en caso de reincidencia.",
-      "materiaExtraordinaria": false,
-      "restringirMorosos": false,
-      "fechaCierre": "2026-11-15",
-      "estado": "CERRADA",
-      "votosEmitidos": [
-        {
-          "parcelaId": "parc-1",
-          "numeroParcela": "4",
-          "propietario": "Gonzalo de la Cuadra",
-          "opcion": "APRUEBO",
-          "fecha": "2026-10-15"
-        },
-        {
-          "parcelaId": "parc-4",
-          "numeroParcela": "7",
-          "propietario": "Ignacio",
-          "opcion": "APRUEBO",
-          "fecha": "2026-10-16"
-        },
-        {
-          "parcelaId": "parc-7",
-          "numeroParcela": "10",
-          "propietario": "Bárbara",
-          "opcion": "APRUEBO",
-          "fecha": "2026-10-17"
-        },
-        {
-          "parcelaId": "parc-29",
-          "numeroParcela": "35",
-          "propietario": "Pablo Francois",
-          "opcion": "APRUEBO",
-          "fecha": "2026-10-18"
-        },
-        {
-          "parcelaId": "parc-14",
-          "numeroParcela": "17",
-          "propietario": "Silvana Bustos Astudillo",
-          "opcion": "APRUEBO",
-          "fecha": "2026-10-23"
-        }
-      ]
-    }
-  ],
-  "normasConvivencia": [
-    {
-      "id": "norma-1",
-      "codigo": "ART-01",
-      "categoria": "Vialidad y Caminos Interiores",
-      "titulo": "Velocidad Máxima 20 km/h y Cuidado de Caminos",
-      "descripcion": "La velocidad máxima de circulación dentro de todo el Loteo Los Mañíos es de 20 km/h para proteger a peatones, fauna nativa y evitar el deterioro de la carpeta de ripio. Camiones de alto tonelaje por obras deben coordinar su ingreso y reparar eventuales daños en cunetas.",
-      "sancionSugerida": 30000
-    },
-    {
-      "id": "norma-2",
-      "codigo": "ART-02",
-      "categoria": "Tenencia Responsable de Mascotas",
-      "titulo": "Control Perimetral y Circulación con Correa",
-      "descripcion": "Toda mascota debe permanecer dentro del cierre perimetral de su respectiva parcela. Los paseos por caminos comunes deben realizarse siempre con correa para resguardar la seguridad de los vecinos y la fauna silvestre.",
-      "sancionSugerida": 30000
-    },
-    {
-      "id": "norma-3",
-      "codigo": "ART-03",
-      "categoria": "Ruidos Molestos y Obras de Construcción",
-      "titulo": "Horarios de Faenas Constructivas y Silencio Nocturno",
-      "descripcion": "Los trabajos de construcción y uso de maquinaria ruidosa están permitidos de Lunes a Viernes de 08:30 a 18:30 hrs y Sábados de 09:00 a 14:00 hrs. Domingos y festivos quedan prohibidas las faenas ruidosas.",
-      "sancionSugerida": 40000
-    },
-    {
-      "id": "norma-4",
-      "codigo": "ART-04",
-      "categoria": "Prevención de Incendios Forestales",
-      "titulo": "Prohibición Estricta de Quemas de Basura y Desechos Vegetales",
-      "descripcion": "Queda estrictamente prohibida la quema de ramas, pastizales o basura en cualquier época del año. Cada parcela debe mantener una franja cortafuego limpia alrededor de sus edificaciones.",
-      "sancionSugerida": 60000
-    },
-    {
-      "id": "norma-5",
-      "codigo": "ART-05",
-      "categoria": "Uso de Agua Comunitaria",
-      "titulo": "Uso Doméstico Racional y Condición \"Sin Agua\"",
-      "descripcion": "El agua de la red común está destinada exclusivamente al consumo doméstico de las parcelas con conexión autorizada (Condición \"Con Casa\"). Se prohíbe el llenado de piscinas desde la red común en temporada estival sin autorización expresa del Comité.",
-      "sancionSugerida": 50000
-    },
-    {
-      "id": "norma-1792725417693",
-      "codigo": "ART-06",
-      "categoria": "Aseo y Ornato ",
-      "titulo": "Basura ",
-      "descripcion": "El manejo de la basura domiciliaria es responsabilidad de cada propietario o usufructuario de la parcela, su disposicion en el contenedor comunitario debe ser siempre en bolsa cerrada. No esta permitido depositar escombros (estos deben desecharse via Minucipalidad) y se deben depositar las bolsas dentro de los contenedores, dejando siempre cerrado el acceso y limpio el suelo. ",
-      "sancionSugerida": 30000
-    }
-  ],
+  "actasAsamblea": [],
+  "votacionesAcuerdos": [],
+  "normasConvivencia": [],
   "reportesConvivencia": [
     {
       "id": "rep-1",

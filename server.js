@@ -129,6 +129,9 @@ function imputarPagoEnParcela(parcela, montoTotal, periodoPreferido, mesCorte, l
 
 function recalcularProyectos(data) {
   if (Array.isArray(data.proyectosComunitarios)) {
+    data.proyectosComunitarios = data.proyectosComunitarios.filter(
+      (p) => p.id !== 'proy-4' && !/telemetr[ií]a/i.test(p.titulo || p.nombre || '')
+    );
     for (const pr of data.proyectosComunitarios) {
       const gastosVinculados = (data.egresos || [])
         .filter((e) => e.proyectoId === pr.id)
@@ -233,6 +236,16 @@ const server = http.createServer(async (req, res) => {
       const data = readData();
       writeData(data);
       return sendJson(res, 200, data);
+    }
+
+    // 1.B Actualizar configuración global (ej: Mes de Corte activo)
+    if (req.method === 'POST' && url.pathname === '/api/configuracion') {
+      const body = await parseBody(req);
+      const data = readData();
+      if (!data.configuracion) data.configuracion = {};
+      if (body.mesCorteActivo) data.configuracion.mesCorteActivo = body.mesCorteActivo;
+      writeData(data);
+      return sendJson(res, 200, { ok: true, data });
     }
 
     // 2. Actualizar pago mensual, condición o datos del dueño de una parcela
