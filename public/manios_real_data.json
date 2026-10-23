@@ -107,6 +107,14 @@
           -73.15958
         ]
       ]
+    },
+    "datosTransferencia": {
+      "titular": "Felipe Gu??ez Contreras",
+      "rut": "17614306-1",
+      "banco": "Mercado Pago",
+      "tipoCuenta": "Cuenta Vista",
+      "numeroCuenta": "1020030758",
+      "correo": "administracion.manios@gmail.com"
     }
   },
   "meses": [
