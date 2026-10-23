@@ -509,10 +509,17 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 200, { ok: true, data });
     }
 
-    // 8. Subir / Crear Nueva Acta de Asamblea (con soporte de archivo PDF adjunto)
+    // 8. Subir / Crear / Eliminar Acta de Asamblea (con soporte de archivo PDF adjunto)
     if (req.method === 'POST' && url.pathname === '/api/acta') {
       const body = await parseBody(req);
       const data = readData();
+      if (!data.actasAsamblea) data.actasAsamblea = [];
+
+      if (body.accion === 'ELIMINAR') {
+        data.actasAsamblea = data.actasAsamblea.filter((a) => a.id !== body.actaId);
+        writeData(data);
+        return sendJson(res, 200, { ok: true, data });
+      }
 
       let pdfUrl = body.documentoPdfUrl || '';
       const rawB64 = body.pdfBase64 || body.archivoPdfBase64;
